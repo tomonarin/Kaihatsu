@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Items</title>
+</head>
+<body>
+
+	<span th:replace="menu"></span>
+
+	<hr>
+
+	<table border="1">
+	<tr>
+		<th>ジャンル</th><th>作品名</th><th>作者/監督</th><th>感想</th><th>投稿日時</th>
+	</tr>
+	<tr th:each="review:${reviews}">
+		<td th:text="${review.genre}"></td>
+		<td th:text="${review.name}"></td>
+		<td th:text="${review.director}"></td>
+		<td th:text="${review.review}"></td>
+		<td th:text="${review.date}"></td>
+	</tr>
+	</table>
+
+	<hr>
+
+	<span th:replace="logout"></span>
+
+</body>
+</html>
