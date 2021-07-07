@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,15 +15,12 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
-
-	private Integer category_code;
-
+	@Column(name="category_code")
+	private Integer categoryCode;
 	private Integer genre;
-
 	private String name;
-
 	private String director;
-
+	private Integer spoil;
 	private String review;
 
 	private Integer account;
@@ -33,25 +31,27 @@ public class Review {
 	}
 
 	//コンストラクタ
-	public Review(int code, int category_code, int genre, String name, String director, String review, int account,
+	public Review(int code, int categoryCode, int genre, String name, String director,int spoil, String review, int account,
 			Timestamp date) {
 		this.code = code;
-		this.category_code = category_code;
+		this.categoryCode = categoryCode;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
+		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
 		this.date = date;
 	}
 
 	//code無しのコンストラクタ
-	public Review(int category_code, int genre, String name, String director, String review, int account,
+	public Review(int categoryCode, int genre, String name, String director,int spoil, String review, int account,
 			Timestamp date) {
-		this.category_code = category_code;
+		this.categoryCode = categoryCode;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
+		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
 		this.date = date;
@@ -66,12 +66,12 @@ public class Review {
 		this.code = code;
 	}
 
-	public Integer getCategory_code() {
-		return category_code;
+	public Integer getCategoryCode() {
+		return categoryCode;
 	}
 
-	public void setCategory_code(Integer category_code) {
-		this.category_code = category_code;
+	public void setCategoryCode(Integer categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
 	public Integer getGenre() {
@@ -96,6 +96,15 @@ public class Review {
 
 	public void setDirector(String director) {
 		this.director = director;
+	}
+
+
+	public Integer getSpoil() {
+		return spoil;
+	}
+
+	public void setSpoil(Integer spoil) {
+		this.spoil = spoil;
 	}
 
 	public String getReview() {

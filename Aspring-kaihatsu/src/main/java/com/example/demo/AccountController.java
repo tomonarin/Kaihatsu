@@ -27,13 +27,13 @@ public class AccountController {
 	public String login() {
 		// セッション情報はクリアする
 		session.invalidate();
-		return "index";
+		return "login";
 	}
 
 	/**
 	 * 新規登録画面を表示
 	 */
-	@GetMapping(value = "/signup")
+	@RequestMapping(value="/signup")
 	public ModelAndView signup(ModelAndView mv) {
 		mv.setViewName("signup");
 		return mv;
@@ -42,7 +42,7 @@ public class AccountController {
 	/**
 	 * 新規登録を実行
 	 */
-	@PostMapping(value = "/signup")
+	@PostMapping(value="/signup")
 	public ModelAndView doSignup(
 			@RequestParam("name") String name,
 			@RequestParam("account_name") String account_name,
