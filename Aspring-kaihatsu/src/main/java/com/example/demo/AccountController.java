@@ -20,9 +20,6 @@ public class AccountController {
 	@Autowired
 	AccountRepository AccountRepository;
 
-//	@Autowired
-//	CategoryRepository categoryRepository;
-
 	/**
 	 * ログイン画面を表示
 	 */
@@ -36,51 +33,78 @@ public class AccountController {
 	/**
 	 * 新規登録画面を表示
 	 */
-	@GetMapping(value="/signup")
-	public ModelAndView signup (ModelAndView mv) {
+	@GetMapping(value = "/signup")
+	public ModelAndView signup(ModelAndView mv) {
 		mv.setViewName("signup");
 		return mv;
 	}
 
+	/**
+	 * 新規登録を実行
+	 */
+	@PostMapping(value = "/signup")
+	public ModelAndView doSignup(
+			@RequestParam("name") String name,
+			@RequestParam("account_name") String account_name,
+			@RequestParam("email") String email,
+			@RequestParam("password") String password,
+			ModelAndView mv) {
+		//未入力チェック
+		if (name.equals("") || account_name.equals("") || email.equals("") || password.equals("")) {
+			mv.addObject("message", "未入力の項目があります。");
+			mv.setViewName("signup");
+			return mv;
+		}
+
+		//登録するAccountエンティティのインスタンスを生成
+		Account account = new Account(name, account_name, email, password);
+
+		//AccountエンティティをAccountテーブルに登録
+		AccountRepository.saveAndFlush(account);
+
+		mv.addObject("result", "登録が完了しました。");
+
+		mv.setViewName("login");
+		return mv;
+
+	}
 
 	/**
 	 * ログインを実行
 	 */
-	@PostMapping(value="/login")
+	@PostMapping(value = "/login")
 	public ModelAndView doLogin(
 			@RequestParam("account_name") String account_name,
 			@RequestParam("password") String password,
-			ModelAndView mv
-	) {
-//		// アカウント名が空の場合にエラーとする
-//		if(account_name == null || account_name.length() == 0) {
-//			mv.addObject("message", "アカウント名を入力してください");
-//			mv.setViewName("index");
-//			return mv;
-//		}
+			ModelAndView mv) {
+		// アカウント名が空の場合にエラーとする
+		if (account_name.equals("") || password.equals("")) {
+			mv.addObject("message", "未入力の項目があります。");
+			mv.setViewName("login");
+			return mv;
+		}
 
 		//アカウント名で顧客を検索する
-		List<Account> list = AccountRepository.findByAccount_name(account_name);
+		List<Account> list = AccountRepository.findBylikeAccount_name(account_name);
 
 		//アカウント名が登録されてない場合はエラーとする
-		if(list.size() == 0) {
-			mv.addObject("message","入力されたアカウント名は登録されていません");
+		if (list.size() == 0) {
+			mv.addObject("message", "入力されたアカウント名は登録されていません");
 			mv.setViewName("index");
 			return mv;
-			}
-		Account accountInfo =list.get(0);
+		}
 
-		//パスワードが空の場合にエラーとする
-//		if(password == null || password.length() == 0) {
-//		mv.addObject("message", "パスワード名を入力してください");
-//		mv.setViewName("index");
-//		return mv;
-//	}
+		Account accountInfo = list.get(0);
+		//アカウント名とパスワードが一致するか確認する
+		if (account_name.equals(accountInfo.getAccount_name()) && password.equals(accountInfo.getPassword())) {
+			// セッションスコープにログイン名とカテゴリ情報を格納する
+			session.setAttribute("accountInfo", accountInfo);
 
-		// セッションスコープにログイン名とカテゴリ情報を格納する
-		session.setAttribute("accountInfo", accountInfo);
-//		session.setAttribute("categories", categoryRepository.findAll());
-		mv.setViewName("top");
+			mv.setViewName("top");
+		} else {
+			mv.addObject("message", "アカウント名とパスワードが一致しません");
+			mv.setViewName("login");
+		}
 		return mv;
 	}
 
