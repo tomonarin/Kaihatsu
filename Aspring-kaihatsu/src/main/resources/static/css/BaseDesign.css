@@ -38,14 +38,28 @@ table{
 	}
 
 .btn{
-	display: block;
-    width: 200px;
-    padding: 0.5em;
-    color:white;
-    text-align: center;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    background-color:navy;
-    margin: 0.5em auto;
-   	line-height: 1.5;
+	 display: block;
+	 max-width: 200px;
+	 background-color: blue;
+	 font-size: 16px;
+	 color: white;
+	 text-decoration: none;
+	 font-weight: bold;
+	 padding: 0.5em;
+	 border-radius: 4px;
+	 border-bottom: 4px solid navy;
+	 margin: 0.5em auto;
+}
+.btn:hover{
+	 display: block;
+	 max-width: 200px;
+	 background-color: white;
+	 font-size: 16px;
+	 color: navy;
+	 text-decoration: none;
+	 font-weight: bold;
+	 padding: 0.5em;
+	 border-radius: 4px;
+	 border-bottom: 4px solid navy;
+	 margin: 0.5em auto;
 }
