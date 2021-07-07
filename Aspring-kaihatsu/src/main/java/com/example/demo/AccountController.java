@@ -96,7 +96,7 @@ public class AccountController {
 
 		Account accountInfo = list.get(0);
 		//アカウント名とパスワードが一致するか確認する
-		if (account_name.equals(accountInfo.getAccount_name()) && password.equals(accountInfo.getPassword())) {
+		if (account_name.equals(accountInfo.getAccountName()) && password.equals(accountInfo.getPassword())) {
 			// セッションスコープにログイン名とカテゴリ情報を格納する
 			session.setAttribute("accountInfo", accountInfo);
 

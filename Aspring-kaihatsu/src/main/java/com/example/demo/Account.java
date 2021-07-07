@@ -54,12 +54,12 @@ public class Account {
 		this.name = name;
 	}
 
-	public String getAccount_name() {
+	public String getAccountName() {
 		return accountName;
 	}
 
-	public void setAccount_name(String account_name) {
-		this.accountName = account_name;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public String getEmail() {
