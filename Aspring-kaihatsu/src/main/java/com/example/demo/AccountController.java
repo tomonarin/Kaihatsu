@@ -85,7 +85,7 @@ public class AccountController {
 		}
 
 		//アカウント名で顧客を検索する
-		List<Account> list = AccountRepository.findBylikeAccount_name(account_name);
+		List<Account> list = AccountRepository.findByAccountName(account_name);
 
 		//アカウント名が登録されてない場合はエラーとする
 		if (list.size() == 0) {

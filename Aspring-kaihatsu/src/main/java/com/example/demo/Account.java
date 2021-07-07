@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;//ユーザーID
 	private String name;//名前
-	private String account_name;//アカウント名
+	@Column(name="account_name")
+	private String accountName;//アカウント名
 	private String email;//メールアドレス
 	private String password;//パスワード
 
@@ -23,14 +25,14 @@ public class Account {
 
 	}
 
-	public Account(Integer code, String name, String account_name, String email, String password) {
-		this(name, account_name, email,password);
+	public Account(Integer code, String name, String accountName, String email, String password) {
+		this(name, accountName, email,password);
 		this.code = code;
 	}
 
-	public Account(String name, String account_name, String email, String password) {
+	public Account(String name, String accountName, String email, String password) {
 		this.name = name;
-		this.account_name = account_name;
+		this.accountName = accountName;
 		this.email = email;
 		this.password = password;
 	}
@@ -53,11 +55,11 @@ public class Account {
 	}
 
 	public String getAccount_name() {
-		return account_name;
+		return accountName;
 	}
 
 	public void setAccount_name(String account_name) {
-		this.account_name = account_name;
+		this.accountName = account_name;
 	}
 
 	public String getEmail() {

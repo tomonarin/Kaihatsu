@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
-	List<Account> findBylikeAccount_name(String account_name);
+	List<Account> findByAccountName(String AccountName);
 }
