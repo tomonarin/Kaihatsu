@@ -1,1 +1,51 @@
 @charset "UTF-8";
+body{
+	background-image: url(images/backplaid.jpg);
+	background-repeat:repeat;
+	background-color:rgba(255,255,255,0.4);
+	background-blend-mode:lighten;
+	color:navy;
+}
+
+h1{
+	text-align: center;
+	color:orange;
+}
+
+hr{
+	border-top: 5px double orange;
+}
+
+
+table{
+	background-color:white;
+	color:navy;
+	border: 3px solid navy;
+    border-collapse: collapse;
+	text-align: center;
+}
+.txt{
+	display: block;
+    width: 30%;
+    padding: 0.5em;
+    border: 3px solid navy;
+    box-sizing: border-box;
+    background-color:white;
+    margin: 0.5em auto;
+}
+.txt:focus{
+	background-color:LemonChiffon;
+	}
+
+.btn{
+	display: block;
+    width: 200px;
+    padding: 0.5em;
+    color:white;
+    text-align: center;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background-color:navy;
+    margin: 0.5em auto;
+   	line-height: 1.5;
+}

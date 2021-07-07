@@ -2,13 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+ <link th:href="@{css/BaseDesign.css}" rel="stylesheet">
 <title>ログイン</title>
 </head>
 <body>
+
+<h1>ログインページ</h1>
+<hr>
 <form action="/login" method="post">
-	<input type="text" name="account_name" placeholder="アカウント名"><br>
-	<input type="checkbox" name="type" th:checked="${1} == ${acheck}">ネタバレありを含む<br>
-	<input type="submit" value="ログイン"><br>
+	<input type="text" name="account_name" placeholder="アカウント名" class="txt"><br>
+	<input type="password" name="password" placeholder="パスワード" class="txt"><br>
+	<input type="submit" value="ログイン" class="btn"><br>
 	<br>
 	<span th:text="${message}" style="color:red"></span>
 </form>
