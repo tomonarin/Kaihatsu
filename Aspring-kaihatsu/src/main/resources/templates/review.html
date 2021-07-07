@@ -10,7 +10,7 @@
 	<div id="er" th:text="${error}">
 	</div>
 
-	<h1><span th:text="${session.name}"></span>さんのレビュー</h1>
+	<h1><span th:text="${session. accountInfo.name}"></span>さんのレビュー</h1>
 
 	<form action="/newreview" method="post">
 		<input type="text" name="name" placeholder="作品名">
