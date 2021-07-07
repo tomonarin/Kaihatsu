@@ -20,9 +20,14 @@ public class AccountController {
 	@Autowired
 	AccountRepository AccountRepository;
 
+	@Autowired
+	GenreRepository GenreRepository;
+
 	/**
 	 * ログイン画面を表示
 	 */
+
+	//http://localhost:8080/
 	@GetMapping("/")
 	public String login() {
 		// セッション情報はクリアする
@@ -99,6 +104,7 @@ public class AccountController {
 		if (account_name.equals(accountInfo.getAccountName()) && password.equals(accountInfo.getPassword())) {
 			// セッションスコープにログイン名とカテゴリ情報を格納する
 			session.setAttribute("accountInfo", accountInfo);
+			session.setAttribute("genre", GenreRepository.findAll());
 
 			mv.setViewName("top");
 		} else {

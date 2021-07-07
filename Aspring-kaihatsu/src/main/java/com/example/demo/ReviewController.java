@@ -2,13 +2,19 @@ package com.example.demo;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReviewController {
+	@Autowired
+	HttpSession session;
 
 	@Autowired
 	ReviewRepository reviewR;
@@ -17,33 +23,82 @@ public class ReviewController {
 	GenreRepository genreR;
 
 	//全レビュー表示（ログイン時、自分の過去投稿）
-    @GetMapping(value="/review")
+	@GetMapping(value = "/review")
 	public ModelAndView reviews(ModelAndView mv) {
-    	List<Review> reviewList = reviewR.findAll();
-    	mv.addObject("reviews", reviewList);
+		List<Review> reviewList = reviewR.findAll();
+		mv.addObject("reviews", reviewList);
 
-    	mv.setViewName("list");
-    	return mv;
-    }
+		mv.setViewName("list");
+		return mv;
+	}
 
 	//映画のレビュー表示
-    @GetMapping(value="/review/movie")
+	@GetMapping(value = "/review/movie")
 	public ModelAndView movieReviews(ModelAndView mv) {
-    	List<Review> reviewList = reviewR.findByCategoryCode(1);
-    	mv.addObject("reviews", reviewList);
+		List<Review> reviewList = reviewR.findByCategoryCode(1);
+		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("list");
 
-    	return mv;
-    }
+		return mv;
+	}
 
-    //本のレビュー表示
-    @GetMapping(value="/review/book")
+	//本のレビュー表示
+	@GetMapping(value = "/review/book")
 	public ModelAndView bookReviews(ModelAndView mv) {
-    	List<Review> reviewList = reviewR.findByCategoryCode(2);
-    	mv.addObject("reviews", reviewList);
+		List<Review> reviewList = reviewR.findByCategoryCode(2);
+		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("list");
-    	return mv;
-    }
+		return mv;
+	}
+
+	//新規レビュー投稿
+	@GetMapping(value = "/newreview")
+	public String newReview() {
+		return "review";
+	}
+
+	@PostMapping(value="/newreview")
+   	public ModelAndView Review(
+   			@RequestParam("name") String name,
+			@RequestParam("category") String category,
+			@RequestParam(name="genre", defaultValue= "0") int genre,
+			@RequestParam(name="director") String director,
+			@RequestParam("review") String review,
+			@RequestParam(name="withspoil", defaultValue="0") int spoil,
+   			ModelAndView mv) {
+
+    	//未入力チェック
+    	if (name.equals("") || category.equals("") || genre == 0|| review.equals("")) {
+    	    mv.addObject("error", "未入力の項目があります。");
+    		mv.setViewName("review");
+    		return mv;
+    		}
+
+    	//インスタンス生成
+    	int categoryCode = 0;
+
+    	//カテゴリーコードの設定
+    	if(category.equals("movie")) {
+    		categoryCode = 1;
+    	}else if(category.equals("book")){
+    		categoryCode = 2;
+    	}
+
+    	//アカウント情報の取り出し
+    	Account account = (Account)session.getAttribute("accountInfo");
+    	int accountCode = account.getCode();
+
+    	//登録するreviewエンティティのインスタンスを生成
+    	Review record = new Review(categoryCode, genre, name, director, spoil, review, accountCode);
+
+    	//recordエンティティをreviewテーブルに登録
+    	reviewR.saveAndFlush(record);
+
+		mv.addObject("message", "レビューのが完了しました。");
+
+       	return reviews(mv);
+       }
+
 }

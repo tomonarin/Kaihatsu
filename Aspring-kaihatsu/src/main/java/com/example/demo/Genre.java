@@ -13,7 +13,6 @@ public class Genre {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer code;
-
 private String name;
 
 //コンストラクタ

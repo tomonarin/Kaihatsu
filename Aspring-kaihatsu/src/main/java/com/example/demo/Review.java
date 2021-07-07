@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,10 +23,8 @@ public class Review {
 	private String director;
 	private Integer spoil;
 	private String review;
-
 	private Integer account;
-
-	private Timestamp date;
+	private LocalDateTime date;
 
 	public Review() {
 	}
@@ -41,12 +40,11 @@ public class Review {
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
-		this.date = date;
+		this.date = LocalDateTime.now();
 	}
 
 	//code無しのコンストラクタ
-	public Review(int categoryCode, int genre, String name, String director,int spoil, String review, int account,
-			Timestamp date) {
+	public Review(int categoryCode, int genre, String name, String director,int spoil, String review, int account) {
 		this.categoryCode = categoryCode;
 		this.genre = genre;
 		this.name = name;
@@ -54,7 +52,7 @@ public class Review {
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
-		this.date = date;
+		this.date = LocalDateTime.now();
 	}
 
 	//ゲッターセッター
@@ -123,11 +121,11 @@ public class Review {
 		this.account = account;
 	}
 
-	public Timestamp getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
