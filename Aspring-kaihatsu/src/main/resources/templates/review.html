@@ -13,20 +13,20 @@
 	<h1><span th:text="${session. accountInfo.name}"></span>さんのレビュー</h1>
 
 	<form action="/newreview" method="post">
-		<input type="text" name="name" placeholder="作品名">
-		<input type="text" name="direector" placeholder="監督/作者">
+		<input type="text" name="name" placeholder="作品名"><br>
+		<input type="text" name="director" placeholder="監督/作者">
 	<div>
 	作品形態
 	<select name="category">
-  	<option value="movie">映画</option>
-	<option value="book">書籍</option>
+  	<option value="映画">映画</option>
+	<option value="書籍">書籍</option>
 	</select>
 	</div>
 
 	<div>
 	作品ジャンル
-	<select name="genre" th;each="gen:${session.genre}">
-  	<option th:value="${gen.code}"><span th:text="${gen.name}"></span></option>
+	<select name="genre" >
+  	<option th:each="gen:${session.genre}" th:value="${gen.code}"><span th:text="${gen.name}"></span></option>
 	</select>
 	</div>
 	<br>

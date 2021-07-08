@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -24,14 +23,14 @@ public class Review {
 	private Integer spoil;
 	private String review;
 	private Integer account;
-	private LocalDateTime date;
+	private  LocalDateTime date = LocalDateTime.now();
 
 	public Review() {
 	}
 
 	//コンストラクタ
 	public Review(int code, int categoryCode, int genre, String name, String director,int spoil, String review, int account,
-			Timestamp date) {
+			LocalDateTime date) {
 		this.code = code;
 		this.categoryCode = categoryCode;
 		this.genre = genre;
@@ -40,7 +39,7 @@ public class Review {
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
-		this.date = LocalDateTime.now();
+		this.date = date;
 	}
 
 	//code無しのコンストラクタ

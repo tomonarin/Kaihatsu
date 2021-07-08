@@ -59,46 +59,53 @@ public class ReviewController {
 		return "review";
 	}
 
-	@PostMapping(value="/newreview")
-   	public ModelAndView Review(
-   			@RequestParam("name") String name,
+	@PostMapping(value = "/newreview")
+	public ModelAndView Review(
+			@RequestParam("name") String name,
 			@RequestParam("category") String category,
-			@RequestParam(name="genre", defaultValue= "0") int genre,
-			@RequestParam(name="director") String director,
+			@RequestParam(name = "genre", defaultValue = "0") int genre,
+			@RequestParam("director") String director,
 			@RequestParam("review") String review,
-			@RequestParam(name="withspoil", defaultValue="0") int spoil,
-   			ModelAndView mv) {
+			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
+			ModelAndView mv) {
 
-    	//未入力チェック
-    	if (name.equals("") || category.equals("") || genre == 0|| review.equals("")) {
-    	    mv.addObject("error", "未入力の項目があります。");
-    		mv.setViewName("review");
-    		return mv;
-    		}
+		//未入力チェック
+		if (name.equals("") || category.equals("") || genre == 0 || review.equals("")) {
+			mv.addObject("error", "未入力の項目があります。");
+			mv.setViewName("review");
+			return mv;
+		}
 
-    	//インスタンス生成
-    	int categoryCode = 0;
+		//インスタンス生成
+		int categoryCode = 0;
 
-    	//カテゴリーコードの設定
-    	if(category.equals("movie")) {
-    		categoryCode = 1;
-    	}else if(category.equals("book")){
-    		categoryCode = 2;
-    	}
+		//カテゴリーコードの設定
+		if (category.equals("映画")) {
+			categoryCode = 1;
+		} else if (category.equals("書籍")) {
+			categoryCode = 2;
+		}
 
-    	//アカウント情報の取り出し
-    	Account account = (Account)session.getAttribute("accountInfo");
-    	int accountCode = account.getCode();
+		//アカウント情報の取り出し
+		Account account = (Account) session.getAttribute("accountInfo");
+		int accountCode = account.getCode();
 
-    	//登録するreviewエンティティのインスタンスを生成
-    	Review record = new Review(categoryCode, genre, name, director, spoil, review, accountCode);
+		//登録するreviewエンティティのインスタンスを生成
+		Review record = new Review(categoryCode, genre, name, director, spoil, review, accountCode);
 
-    	//recordエンティティをreviewテーブルに登録
-    	reviewR.saveAndFlush(record);
+		//recordエンティティをreviewテーブルに登録
+		reviewR.saveAndFlush(record);
 
+		mv.addObject("category", category);
 		mv.addObject("message", "レビューのが完了しました。");
 
-       	return reviews(mv);
-       }
+		return reviews(mv);
+	}
+
+	//検索機能
+	@GetMapping(value="/search")
+	public String search() {
+		return "search";
+	}
 
 }
