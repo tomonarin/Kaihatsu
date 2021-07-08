@@ -137,3 +137,18 @@ a:hover{
 	color:gray;
 
 }
+input[type="button"]{
+	font-size:20px;
+	color: navy;
+	 border: none;
+    outline: none;
+    background: transparent;
+}
+input[type="button"]:hover{
+	color: orange;
+    outline: none;
+}
+
+#netabare {
+	display: none;
+	 }

@@ -15,6 +15,7 @@
 	<br>
 	<form action="/search" method="get">
 		検索カテゴリー： <select name="category">
+		<option value="すべて">すべて</option>
 			<option value="映画">映画</option>
 			<option value="書籍">書籍</option>
 		</select> ジャンル：<select name="genre">
@@ -44,17 +45,16 @@
 			<td th:text="${review.category}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
-			<p th:if="${review.spoil = 0}">
-			<td th:text="${review.review}"></td>
-			</p>
-			<p th:if="${review.spoil = 1}">
-			<td th:text="${review.review}" id=netabare>
-			<input type="button"value="表示"
-				onclick="document.getElementById('abc').style.visibility = 'visible';">
-				<input type="button" value="非表示"
-				onclick="document.getElementById('netabare').style.visibility = 'hidden';">
+			<td th:if="${review.spoil eq 0}">
+			<span th:text="${review.review}"></span>
 			</td>
-			</p>
+			<td th:if="${review.spoil eq 1}">
+			<input type="button"value="ネタバレを表示"
+				onclick="document.getElementById('netabare').style.display = 'inline';">
+			<br>
+			<span th:text="${review.review}" id="netabare" ></span>
+			</td>
+
 
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
