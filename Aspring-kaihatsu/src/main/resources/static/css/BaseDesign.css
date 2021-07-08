@@ -22,6 +22,7 @@ table {
 	border: 2px solid gray;
 	border-collapse: collapse;
 	text-align: center;
+	margin: 0.5em auto;
 }
 
 input[type="text"], textarea {

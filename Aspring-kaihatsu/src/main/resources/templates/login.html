@@ -2,28 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
- <link th:href="@{css/BaseDesign.css}" rel="stylesheet">
+<link th:href="@{css/BaseDesign.css}" rel="stylesheet">
 <title>ログイン</title>
 </head>
 <body>
-<header>
-<img alt="" src="css/images/logo.png;">
-</header>
-<br>
-<br>
-<br>
-<br>
-	<span th:text="${message}" style="color:red"></span>
-<br>
-<form action="/login" method="post">
-	<input type="text" name="account_name" placeholder="アカウント名"><br>
-	<input type="password" name="password" placeholder="パスワード" ><br>
-	<input type="submit" value="ログイン" class="btn"><br>
+	<header>
+		<img alt="" src="css/images/logo.png;">
+	</header>
 	<br>
+	<br>
+	<br>
+	<br>
+	<span th:text="${message}" style="color: red"></span>
+	<br>
+	<form action="/login" method="post">
+		<input type="text" name="account_name" placeholder="アカウント名"><br>
+		<input type="password" name="password" placeholder="パスワード"><br>
+		<input type="submit" value="ログイン" class="btn"><br> <br>
 
-</form>
+	</form>
 
-<a href="/signup">アカウントの新規作成はこちらから</a>
+	<a href="/signup">アカウントの新規作成はこちらから</a>
 
 
 </body>
