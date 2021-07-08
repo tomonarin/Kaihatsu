@@ -14,22 +14,25 @@
 	<br>
 	<br>
 	<form action="/search" method="get">
-	 	検索カテゴリー： <select name="category">
-				<option value="映画">映画</option>
-				<option value="書籍">書籍</option></select>
-		ジャンル：<select name="genre">
-				<option th:each="gen:${session.genre}" th:value="${gen.code}">
-				<span th:text="${gen.name}"></span></option></select><br><br>
-		作品名：<input type="text" name="title" th:value="${keyword}"><br>
+		検索カテゴリー： <select name="category">
+			<option value="映画">映画</option>
+			<option value="書籍">書籍</option>
+		</select> ジャンル：<select name="genre">
+			<option th:each="gen:${session.genre}" th:value="${gen.code}">
+				<span th:text="${gen.name}"></span></option>
+		</select><br>
+		<br> 作品名：<input type="text" name="title" th:value="${keyword}"><br>
 		監督名/作者名<input type="text" name="director" th:value="${director}"><br>
-		投稿者<input type="text" name="account" placeholder="ユーザーIDを入力して下さい"th:value="${director}"><br>
-		ネタバレありを含む<input type="checkbox" name="withspoil" value="1" th:checked="${1} == ${acheck}">
-		<input type="submit" value="検索" class="btn">
+		投稿者<input type="text" name="account" placeholder="ユーザーIDを入力して下さい"
+			th:value="${director}"><br> ネタバレありを含む<input
+			type="checkbox" name="withspoil" value="1"
+			th:checked="${1} == ${acheck}"> <input type="submit"
+			value="検索" class="btn">
 
 	</form>
 
 
-<table border="1">
+	<table border="1">
 		<tr>
 			<th>ジャンル</th>
 			<th>作品名</th>
@@ -41,7 +44,18 @@
 			<td th:text="${review.category}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
+			<p th:if="${review.spoil = 0}">
 			<td th:text="${review.review}"></td>
+			</p>
+			<p th:if="${review.spoil = 1}">
+			<td th:text="${review.review}" id=netabare>
+			<input type="button"value="表示"
+				onclick="document.getElementById('abc').style.visibility = 'visible';">
+				<input type="button" value="非表示"
+				onclick="document.getElementById('netabare').style.visibility = 'hidden';">
+			</td>
+			</p>
+
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>

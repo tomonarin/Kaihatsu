@@ -27,7 +27,6 @@ public class ReviewController {
 	public ModelAndView reviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findAll();
 		mv.addObject("reviews", reviewList);
-
 		mv.setViewName("list");
 		return mv;
 	}
@@ -76,7 +75,6 @@ public class ReviewController {
 			return mv;
 		}
 
-
 		//アカウント情報の取り出し
 		Account account = (Account) session.getAttribute("accountInfo");
 		int accountCode = account.getCode();
@@ -87,28 +85,26 @@ public class ReviewController {
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);
 
-		mv.addObject("message", "レビューのが完了しました。");
+		mv.addObject("message", "レビューの投稿が完了しました。");
 
 		return reviews(mv);
 	}
 
 	//検索機能
-	@GetMapping(value="/search")
+	@GetMapping(value = "/search")
 	public String search() {
 		return "search";
 	}
 
-	@PostMapping(value="/search")
+	@PostMapping(value = "/search")
 	public ModelAndView doSearch(
 			@RequestParam("name") String name,
 			@RequestParam("category") String category,
-			@RequestParam(name="genre", defaultValue="0") int genre,
+			@RequestParam(name = "genre", defaultValue = "0") int genre,
 			@RequestParam("director") String director,
 			@RequestParam("account") String account,
-			@RequestParam(name="withspoil", defaultValue="0") int spoil,
-			ModelAndView mv
-			) {
-
+			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
+			ModelAndView mv) {
 
 		return mv;
 

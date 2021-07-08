@@ -114,13 +114,13 @@ public class AccountController {
 		return mv;
 	}
 
-//	/**
-//	 * ログアウトを実行
-//	 */
-//	@RequestMapping("/logout")
-//	public String logout() {
-//		// ログイン画面表示処理を実行するだけ
-//		return login();
-//	}
+	/**
+	 * ログアウトを実行
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		// ログイン画面表示処理を実行するだけ
+		return login();
+	}
 
 }
