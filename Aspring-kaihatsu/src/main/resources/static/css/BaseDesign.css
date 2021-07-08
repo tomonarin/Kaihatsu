@@ -19,7 +19,7 @@ header {
 table {
 	background-color: white;
 	color: navy;
-	border: 3px solid navy;
+	border: 2px solid gray;
 	border-collapse: collapse;
 	text-align: center;
 }
