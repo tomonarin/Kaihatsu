@@ -99,7 +99,15 @@ public class ReviewController {
 	}
 
 	@PostMapping(value="/search")
-	public ModelAndView doSearch(ModelAndView mv) {
+	public ModelAndView doSearch(
+			@RequestParam("name") String name,
+			@RequestParam("category") String category,
+			@RequestParam(name = "genre", defaultValue = "0") int genre,
+			@RequestParam("director") String director,
+			@RequestParam("account") String account,
+			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
+			ModelAndView mv
+			) {
 
 		return mv;
 

@@ -13,7 +13,7 @@
 	<br>
 	<br>
 	<h1>レビュー</h1>
-	<div id="er" th:text="${error}"></div>
+	<span th:text="${error}" style="color: red"></span>
 
 	<h1>
 		<span th:text="${session. accountInfo.name}"></span>さんのレビュー
@@ -31,8 +31,8 @@
 
 		<div>
 			作品ジャンル <select name="genre">
-				<option th:each="gen:${session.genre}" th:value="${gen.code}"><span
-						th:text="${gen.name}"></span></option>
+				<option th:each="gen:${session.genre}" th:value="${gen.code}">
+				<span th:text="${gen.name}"></span></option>
 			</select>
 		</div>
 		<br>
