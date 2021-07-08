@@ -8,14 +8,22 @@ body {
 }
 
 header {
-	padding: 0.5em;
+	padding: 1px 10px;
 	background-color: orange;
+	color: black;
 	text-align: left;
 	position: fixed;
 	top: 0;
 	width: 100%;
 }
 
+.nav{
+	color: black;
+	padding: 1px 20px;
+	text-align:right;
+	font-size:15px;
+
+}
 
 table {
 	background-color: white;
@@ -116,4 +124,12 @@ a {
 
 a:hover{
 	color: orange;
+}
+
+.menu{
+	color:black
+}
+.menu:hover{
+	color:gray;
+
 }
