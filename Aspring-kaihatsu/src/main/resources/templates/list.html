@@ -17,7 +17,7 @@
 		<th>ジャンル</th><th>作品名</th><th>作者/監督</th><th>感想</th><th>投稿日時</th>
 	</tr>
 	<tr th:each="review:${reviews}">
-		<td th:text="${category}"></td>
+		<td th:text="${review.category}"></td>
 		<td th:text="${review.name}"></td>
 		<td th:text="${review.director}"></td>
 		<td th:text="${review.review}"></td>

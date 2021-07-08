@@ -35,7 +35,7 @@ public class ReviewController {
 	//映画のレビュー表示
 	@GetMapping(value = "/review/movie")
 	public ModelAndView movieReviews(ModelAndView mv) {
-		List<Review> reviewList = reviewR.findByCategoryCode(1);
+		List<Review> reviewList = reviewR.findByCategory("映画");
 		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("list");
@@ -46,7 +46,7 @@ public class ReviewController {
 	//本のレビュー表示
 	@GetMapping(value = "/review/book")
 	public ModelAndView bookReviews(ModelAndView mv) {
-		List<Review> reviewList = reviewR.findByCategoryCode(2);
+		List<Review> reviewList = reviewR.findByCategory("書籍");
 		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("list");
@@ -76,27 +76,17 @@ public class ReviewController {
 			return mv;
 		}
 
-		//インスタンス生成
-		int categoryCode = 0;
-
-		//カテゴリーコードの設定
-		if (category.equals("映画")) {
-			categoryCode = 1;
-		} else if (category.equals("書籍")) {
-			categoryCode = 2;
-		}
 
 		//アカウント情報の取り出し
 		Account account = (Account) session.getAttribute("accountInfo");
 		int accountCode = account.getCode();
 
 		//登録するreviewエンティティのインスタンスを生成
-		Review record = new Review(categoryCode, genre, name, director, spoil, review, accountCode);
+		Review record = new Review(category, genre, name, director, spoil, review, accountCode);
 
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);
 
-		mv.addObject("category", category);
 		mv.addObject("message", "レビューのが完了しました。");
 
 		return reviews(mv);
@@ -106,6 +96,13 @@ public class ReviewController {
 	@GetMapping(value="/search")
 	public String search() {
 		return "search";
+	}
+
+	@PostMapping(value="/search")
+	public ModelAndView doSearch(ModelAndView mv) {
+
+		return mv;
+
 	}
 
 }

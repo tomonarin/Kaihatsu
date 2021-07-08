@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +14,7 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
-	@Column(name="category_code")
-	private Integer categoryCode;
+	private String category;
 	private Integer genre;
 	private String name;
 	private String director;
@@ -29,10 +27,10 @@ public class Review {
 	}
 
 	//コンストラクタ
-	public Review(int code, int categoryCode, int genre, String name, String director,int spoil, String review, int account,
+	public Review(int code, String category, int genre, String name, String director,int spoil, String review, int account,
 			LocalDateTime date) {
 		this.code = code;
-		this.categoryCode = categoryCode;
+		this.category = category;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
@@ -43,8 +41,8 @@ public class Review {
 	}
 
 	//code無しのコンストラクタ
-	public Review(int categoryCode, int genre, String name, String director,int spoil, String review, int account) {
-		this.categoryCode = categoryCode;
+	public Review(String category, int genre, String name, String director,int spoil, String review, int account) {
+		this.category = category;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
@@ -63,12 +61,12 @@ public class Review {
 		this.code = code;
 	}
 
-	public Integer getCategoryCode() {
-		return categoryCode;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategoryCode(Integer categoryCode) {
-		this.categoryCode = categoryCode;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Integer getGenre() {
