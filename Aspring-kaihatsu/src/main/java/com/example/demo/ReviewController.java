@@ -102,12 +102,13 @@ public class ReviewController {
 	public ModelAndView doSearch(
 			@RequestParam("name") String name,
 			@RequestParam("category") String category,
-			@RequestParam(name = "genre", defaultValue = "0") int genre,
+			@RequestParam(name="genre", defaultValue="0") int genre,
 			@RequestParam("director") String director,
 			@RequestParam("account") String account,
-			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
+			@RequestParam(name="withspoil", defaultValue="0") int spoil,
 			ModelAndView mv
 			) {
+
 
 		return mv;
 
