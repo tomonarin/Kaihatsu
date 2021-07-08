@@ -3,6 +3,7 @@
 body {
 	background-color: ivory;
 	color: navy;
+	font-size:20px;
 	text-align: center;
 }
 
@@ -25,7 +26,7 @@ table {
 	margin: 0.5em auto;
 }
 
-input[type="text"], textarea {
+input[type="text"]{
 	display: block;
 	width: 30%;
 	padding: 0.5em;
@@ -35,13 +36,13 @@ input[type="text"], textarea {
 	margin: 0.5em auto;
 }
 
-input[type="text"]:focus, textarea {
+input[type="text"]:focus{
 	outline: none;
 	background-color: lightgoldenrodyellow;
 	box-shadow: 0 0 9px gold;
 }
 
-input[type="password"], textarea {
+input[type="password"]{
 	display: block;
 	width: 30%;
 	padding: 0.5em;
@@ -51,7 +52,36 @@ input[type="password"], textarea {
 	margin: 0.5em auto;
 }
 
-input[type="password"]:focus, textarea {
+input[type="password"]:focus{
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
+
+textarea{
+	display: block;
+	width: 30%;
+	height:100px;
+	padding: 0.5em;
+	border: 2px solid gray;
+	box-sizing: border-box;
+	background-color: white;
+	margin: 0.5em auto;
+}
+
+textarea:focus{
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
+select{
+	width: 5%;
+	height:30px;
+	border: 2px solid gray;
+	box-sizing: border-box;
+	background-color: white;
+}
+select:focus{
 	outline: none;
 	background-color: lightgoldenrodyellow;
 	box-shadow: 0 0 9px gold;
