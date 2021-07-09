@@ -137,3 +137,20 @@ a:hover{
 	color:gray;
 
 }
+input[type="checkbox"],
+.hyouji{
+	font-size:20px;
+	color: navy;
+	 border: none;
+    outline: none;
+    background: transparent;
+}
+input[type="button"]:hover,
+.hyouji{
+	color: orange;
+    outline: none;
+}
+
+.netabare {
+	display: none;
+	 }

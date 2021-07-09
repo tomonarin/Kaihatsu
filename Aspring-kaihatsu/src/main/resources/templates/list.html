@@ -33,7 +33,19 @@
 			<td th:text="${review.category}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
-			<td th:text="${review.review}"></td>
+
+			<td th:if="${review.spoil eq 0}">
+			<span th:text="${review.review}"></span>
+			</td>
+			<td th:if="${review.spoil eq 1}">
+			<input type="checkbox"value="ネタバレの表示/非表示" class="hyouji"
+				onclick="document.getElementById('${review.code}').style.display = 'inline';">
+			<br>
+			<span th:text="${review.review}" class="netabare"  id="${review.code}"></span>
+			</td>
+
+
+
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
