@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>レビュー投稿</title>
+
+</head>
+<body>
+	<header>
+		<img alt="" src="css/images/logo.png;">
+		<span th:replace="header"></span>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<span th:text="${error}" style="color: red"></span>
+
+	<h1>
+		<span th:text="${session. accountInfo.name}"></span>さんの新規レビュー
+	</h1>
+
+	<form action="/update" method="post">
+		<input type="text" name="name"><br> <input
+			type="text" name="director">
+		<div>
+			作品形態 <select name="category">
+				<option value="映画">映画</option>
+				<option value="書籍">書籍</option>
+			</select>
+		</div>
+
+		<div>
+			作品ジャンル <select name="genre">
+				<option th:each="gen:${session.genre}" th:value="${gen.code}">
+				<span th:text="${gen.name}"></span></option>
+			</select>
+		</div>
+
+		<textarea name="review" placeholder="作品のレビューをこちらに書いてください"></textarea>
+
+		ネタバレあり<input type="checkbox" name="withspoil" value="1"
+			th:checked="${1} == ${acheck}"><br>
+			<input type="submit" value="投稿する" class="btn">
+
+	</form>
+
+
+</body>
+</html>

@@ -229,7 +229,12 @@ public class SearchController {
 
 			}
 
-			mv.addObject("reviews", reviewList);
+			mv.addObject("name", name);
+			mv.addObject("category", category);
+			mv.addObject("director", director);
+			mv.addObject("account", account);
+			mv.addObject("genre", genre);
+			mv.addObject("spoil", spoil);
 			mv.setViewName("search");
 
 
