@@ -56,6 +56,7 @@ public class SearchController {
 				if (genre == 0 && spoil == 0) {//アカウント名のみ指定
 					//listの０号室を取り出して、そのコード番号をゲットする
 
+					////
 				} else if (genre == 0 && spoil != 0) {
 
 				} else if (genre != 0 && spoil == 0) {
