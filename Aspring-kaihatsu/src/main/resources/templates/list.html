@@ -38,10 +38,10 @@
 			<span th:text="${review.review}"></span>
 			</td>
 			<td th:if="${review.spoil eq 1}">
-			<input type="button"value="ネタバレを表示"
-				onclick="document.getElementById('netabare').style.display = 'inline';">
+			<input type="checkbox"value="ネタバレの表示/非表示" class="hyouji"
+				onclick="document.getElementById('${review.code}').style.display = 'inline';">
 			<br>
-			<span th:text="${review.review}" id="netabare" ></span>
+			<span th:text="${review.review}" class="netabare"  id="${review.code}"></span>
 			</td>
 
 
