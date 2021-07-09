@@ -43,7 +43,7 @@ public class Review {
 	}
 
 	//code無しのコンストラクタ
-	public Review(String category, int genre, String name, String director,int spoil,int star,String review, int account) {
+	public Review(String category, int genre, String name, String director,int star,int spoil,String review, int account) {
 		this.category = category;
 		this.genre = genre;
 		this.name = name;

@@ -36,16 +36,11 @@
 			<td th:text="${review.genre}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
-			<td th:if="${review.star eq 1}">
-			<span th:text="★"></span></td>
-			<td th:if="${review.star eq 2}">
-			<span th:text="★★"></span></td>
-			<td th:if="${review.star eq 3}">
-			<span th:text="★★★"></span></td>
-			<td th:if="${review.star eq 4}">
-			<span th:text="★★★★"></span></td>
-			<td th:if="${review.star eq 5}">
-			<span th:text="★★★★★"></span></td>
+			<td th:if="${review.star eq 1}">★</td>
+			<td th:if="${review.star eq 2}">★★</td>
+			<td th:if="${review.star eq 3}">★★★</td>
+			<td th:if="${review.star eq 4}">★★★★</td>
+			<td th:if="${review.star eq 5}">★★★★★</td>
 
 			<td th:if="${review.spoil eq 0}"><span
 				th:text="${review.review}"></span></td>
@@ -60,9 +55,6 @@
 					</div>
 				</div>
 			</td>
-
-
-
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
