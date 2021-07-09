@@ -137,20 +137,35 @@ a:hover{
 	color:gray;
 
 }
-input[type="checkbox"],
-.hyouji{
-	font-size:20px;
-	color: navy;
-	 border: none;
-    outline: none;
-    background: transparent;
-}
-input[type="button"]:hover,
-.hyouji{
-	color: orange;
-    outline: none;
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 8px;
+    font-weight: bold;
+    border: none;
+    cursor :pointer;
 }
 
-.netabare {
-	display: none;
-	 }
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    color: orange;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
