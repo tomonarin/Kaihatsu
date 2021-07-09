@@ -27,9 +27,6 @@ public class ReviewController {
 	@Autowired
 	AccountRepository accountR;
 
-	//アカウント情報の取り出し
-	Account account = (Account) session.getAttribute("accountInfo");
-	int accountCode = account.getCode();
 
 	//全レビュー表示（ログイン時、自分の過去投稿）
 	@GetMapping(value = "/review")
@@ -85,6 +82,10 @@ public class ReviewController {
 			return mv;
 		}
 
+		//アカウント情報の取り出し
+		Account account = (Account) session.getAttribute("accountInfo");
+		int accountCode = account.getCode();
+
 		//登録するreviewエンティティのインスタンスを生成
 		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
 
@@ -125,6 +126,10 @@ public class ReviewController {
 			mv.setViewName("review");
 			return mv;
 		}
+
+		//アカウント情報の取り出し
+		Account account = (Account) session.getAttribute("accountInfo");
+		int accountCode = account.getCode();
 
 		//登録するreviewエンティティのインスタンスを生成
 		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
