@@ -89,9 +89,9 @@ public class SearchController {
 					reviewList = reviewR.findByDirectorAndAccount(director, aCode);
 				} else if (genre == 0 && spoil == 0) {//作者+アカウント名+ネタバレなし
 					reviewList = reviewR.findByDirectorAndAccountAndSpoil(director, aCode,spoil);
-				} else if (genre != 0 && spoil == 0) {//作者+アカウント名+ジャンル指定
+				} else if (genre != 0 && spoil == 1) {//作者+アカウント名+ジャンル指定
 					reviewList = reviewR.findByDirectorAndAccountAndGenre(director, aCode,genre);
-				} else if (genre != 0 && spoil == 1) {//作者+アカウント名+ジャンル指定+ネタバレなし
+				} else if (genre != 0 && spoil == 0) {//作者+アカウント名+ジャンル指定+ネタバレなし
 					reviewList = reviewR.findByDirectorAndAccountAndGenreAndSpoil(director, aCode,genre,spoil);
 				}
 
@@ -110,121 +110,121 @@ public class SearchController {
 				if (genre == 0 && spoil == 1) {//カテゴリー+アカウント名
 					reviewList = reviewR.findByCategoryAndAccount(category, aCode);
 				} else if (genre == 0 && spoil == 0) {//カテゴリー+アカウント名+ネタバレなし
-					//reviewList = reviewR.findByCategoryAndAccounAndSpoil(category, aCode, spoil);
-				} else if (genre != 0 && spoil == 0) {//カテゴリー+アカウント名+ジャンル指定
-					//reviewList = reviewR.findByCategoryAndAccounAndGenre(category, aCode, genre);
-				} else if (genre != 0 && spoil != 0) {//カテゴリー+アカウント名+ジャンル指定+ネタバレなし
-					//reviewList = reviewR.findByCategoryAndAccounAndGenreAndSpoil(category, aCode, genre, spoil);
+					reviewList = reviewR.findByCategoryAndAccountAndSpoil(category, aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//カテゴリー+アカウント名+ジャンル指定
+					reviewList = reviewR.findByCategoryAndAccountAndGenre(category, aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//カテゴリー+アカウント名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByCategoryAndAccountAndGenreAndSpoil(category, aCode, genre, spoil);
 				}
 
 			} else if (name.equals("") && !category.equals("すべて") && !director.equals("") && account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//カテゴリー+作者名
+					reviewList = reviewR.findByCategoryAndDirector(category, director);
+				} else if (genre == 0 && spoil == 0) {//カテゴリー+作者名+ネタバレなし
+					reviewList = reviewR.findByCategoryAndDirectorAndSpoil(category, director, spoil);
+				} else if (genre != 0 && spoil == 1) {//カテゴリー+作者名+ジャンル指定
+					reviewList = reviewR.findByCategoryAndDirectorAndGenre(category, director, genre);
+				} else if (genre != 0 && spoil == 0) {//カテゴリー+作者名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByCategoryAndDirectorAndGenreAndSpoil(category, director, genre, spoil);
 				}
 
 			} else if (name.equals("") && !category.equals("すべて") && !director.equals("") && !account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//カテゴリー+作者名+アカウント名
+					reviewList = reviewR.findByCategoryAndDirectorAndAccount(category, director, aCode);
+				} else if (genre == 0 && spoil == 0) {//カテゴリー+作者名+アカウント名+ネタバレなし
+					reviewList = reviewR.findByCategoryAndDirectorAndAccountAndSpoil(category, director, aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//カテゴリー+作者名+アカウント名+ジャンル指定
+					reviewList = reviewR.findByCategoryAndDirectorAndAccountAndGenre(category, director, aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//カテゴリー+作者名+アカウント名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByCategoryAndDirectorAndAccountAndGenreAndSpoil(category, director, aCode, genre, spoil);
 				}
 
 			} else if (!name.equals("") && category.equals("すべて") && director.equals("") && account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名のみ
+					reviewList = reviewR.findByNameLike(name);
+				} else if (genre == 0 && spoil == 0) {//作品名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndSpoil("%" + name + "%", spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndGenre("%" + name + "%", genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndGenreAndSpoil("%" + name + "%", genre, spoil);
 				}
 
 			} else if (!name.equals("") && category.equals("すべて") && director.equals("") && !account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+アカウント
+					reviewList = reviewR.findByNameLikeAndAccount("%" + name + "%", aCode);
+				} else if (genre == 0 && spoil == 0) {//作品名+アカウント+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndAccountAndSpoil("%" + name + "%", aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+アカウント+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndAccountAndGenre("%" + name + "%", aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+アカウント+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndAccountAndGenreAndSpoil("%" + name + "%", aCode, genre, spoil);
 				}
 
 			} else if (!name.equals("") && category.equals("すべて") && !director.equals("") && account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+作者名
+					reviewList = reviewR.findByNameLikeAndDirector("%" + name + "%", director);
+				} else if (genre == 0 && spoil == 0) {//作品名+作者名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndDirectorAndSpoil("%" + name + "%", director, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+作者名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndDirectorAndGenre("%" + name + "%", director, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+作者名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndDirectorAndGenreAndSpoil("%" + name + "%", director, genre, spoil);
 				}
 
 			} else if (!name.equals("") && category.equals("すべて") && !director.equals("") && !account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+作者名+アカウント名
+					reviewList = reviewR.findByNameLikeAndDirectorAndAccount("%" + name + "%", director, aCode);
+				} else if (genre == 0 && spoil == 0) {//作品名+作者名+アカウント名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndDirectorAndAccountAndSpoil("%" + name + "%", director, aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+作者名+アカウント名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndDirectorAndAccountAndGenre("%" + name + "%", director, aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+作者名+アカウント名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndDirectorAndAccountAndGenreAndSpoil("%" + name + "%", director, aCode, genre, spoil);
 				}
 
 			} else if (!name.equals("") && !category.equals("すべて") && director.equals("") && account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+カテゴリー指定
+					reviewList = reviewR.findByNameLikeAndCategory("%" + name + "%", category);
+				} else if (genre == 0 && spoil == 0) {//作品名+カテゴリー指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndSpoil("%" + name + "%", category, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+カテゴリー指定+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndCategoryAndGenre("%" + name + "%", category, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+カテゴリー指定+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndGenreAndSpoil("%" + name + "%", category, genre, spoil);
 				}
 
 			} else if (!name.equals("") && !category.equals("すべて") && director.equals("") && !account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+カテゴリー指定+アカウント名
+					reviewList = reviewR.findByNameLikeAndCategoryAndAccount("%" + name + "%", category, aCode);
+				} else if (genre == 0 && spoil == 0) {//作品名+カテゴリー指定+アカウント名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndAccountAndSpoil("%" + name + "%", category, aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+カテゴリー指定+アカウント名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndCategoryAndAccountAndGenre("%" + name + "%", category, aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+カテゴリー指定+アカウント名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndAccountAndGenreAndSpoil("%" + name + "%", category, aCode, genre, spoil);
 				}
 
 			} else if (!name.equals("") && !category.equals("すべて") && !director.equals("") && account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+カテゴリー指定+作者名
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirector("%" + name + "%", category, director);
+				} else if (genre == 0 && spoil == 0) {//作品名+カテゴリー指定+作者名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndSpoil("%" + name + "%", category, director, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+カテゴリー指定+作者名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndGenre("%" + name + "%", category, director, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+カテゴリー指定+作者名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndGenreAndSpoil("%" + name + "%", category, director, genre, spoil);
 				}
 
 			} else if (!name.equals("") && !category.equals("すべて") && !director.equals("") && !account.equals("")) {
-				if (genre == 0 && spoil == 0) {
-
-				} else if (genre == 0 && spoil != 0) {
-
-				} else if (genre != 0 && spoil == 0) {
-
-				} else if (genre != 0 && spoil != 0) {
-
+				if (genre == 0 && spoil == 1) {//作品名+カテゴリー指定+作者名+アカウント名
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndAccount("%" + name + "%", category, director, aCode);
+				} else if (genre == 0 && spoil == 0) {//作品名+カテゴリー指定+作者名+アカウント名+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndAccountAndSpoil("%" + name + "%", category, director, aCode, spoil);
+				} else if (genre != 0 && spoil == 1) {//作品名+カテゴリー指定+作者名+アカウント名+ジャンル指定
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndAccountAndGenre("%" + name + "%", category, director, aCode, genre);
+				} else if (genre != 0 && spoil == 0) {//作品名+カテゴリー指定+作者名+アカウント名+ジャンル指定+ネタバレなし
+					reviewList = reviewR.findByNameLikeAndCategoryAndDirectorAndAccountAndGenreAndSpoil("%" + name + "%", category, director, aCode, genre, spoil);
 				}
 
 			}
