@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -98,19 +97,21 @@ public class ReviewController {
 	}
 
 	//レビューの更新
-	@RequestMapping(value = "/review/update")
+	@RequestMapping(value="/review/update")
 	public ModelAndView reviewUpdate(
 			@RequestParam("code") int code,
 			ModelAndView mv) {
-		Optional<Review> review = reviewR.findById(code);
+		Review review = reviewR.findById(code).get();
 
 		mv.addObject("review", review);
 		mv.setViewName("update");
+
 		return mv;
 	}
 
 	@PostMapping(value = "/review/update")
 	public ModelAndView ReviewUpdate(
+			@RequestParam("code") int code,
 			@RequestParam("name") String name,
 			@RequestParam("category") String category,
 			@RequestParam(name = "genre", defaultValue = "0") int genre,
@@ -132,7 +133,7 @@ public class ReviewController {
 		int accountCode = account.getCode();
 
 		//登録するreviewエンティティのインスタンスを生成
-		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
+		Review record = new Review(code, category, genre, name, director, star, spoil, review, accountCode);
 
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);

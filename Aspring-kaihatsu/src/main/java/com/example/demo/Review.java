@@ -28,8 +28,7 @@ public class Review {
 	}
 
 	//コンストラクタ
-	public Review(int code, String category, int genre, String name, String director,int star,int spoil, String review, int account,
-			LocalDateTime date) {
+	public Review(int code, String category, int genre, String name, String director,int star,int spoil, String review, int account) {
 		this.code = code;
 		this.category = category;
 		this.genre = genre;
@@ -39,7 +38,7 @@ public class Review {
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
-		this.date = date;
+		this.date = LocalDateTime.now();
 	}
 
 	//code無しのコンストラクタ
