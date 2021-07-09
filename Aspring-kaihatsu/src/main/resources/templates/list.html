@@ -27,6 +27,7 @@
 			<th>ジャンル</th>
 			<th>作品名</th>
 			<th>作者/監督</th>
+			<th>評価</th>
 			<th>感想</th>
 			<th>投稿日時</th>
 		</tr>
@@ -35,6 +36,16 @@
 			<td th:text="${review.genre}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
+			<td th:if="${review.star eq 1}">
+			<span th:text="★"></span></td>
+			<td th:if="${review.star eq 2}">
+			<span th:text="★★"></span></td>
+			<td th:if="${review.star eq 3}">
+			<span th:text="★★★"></span></td>
+			<td th:if="${review.star eq 4}">
+			<span th:text="★★★★"></span></td>
+			<td th:if="${review.star eq 5}">
+			<span th:text="★★★★★"></span></td>
 
 			<td th:if="${review.spoil eq 0}"><span
 				th:text="${review.review}"></span></td>

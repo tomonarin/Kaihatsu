@@ -74,18 +74,19 @@ public class ReviewController {
 			@RequestParam(name = "genre", defaultValue = "0") int genre,
 			@RequestParam("director") String director,
 			@RequestParam("review") String review,
+			@RequestParam(name = "star", defaultValue = "0") int star,
 			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
 			ModelAndView mv) {
 
 		//未入力チェック
-		if (name.equals("") || category.equals("") || genre == 0 || review.equals("")) {
+		if (name.equals("") || category.equals("") || genre == 0 ||star == 0 || review.equals("")) {
 			mv.addObject("error", "未入力の項目があります。");
 			mv.setViewName("review");
 			return mv;
 		}
 
 		//登録するreviewエンティティのインスタンスを生成
-		Review record = new Review(category, genre, name, director, spoil, review, accountCode);
+		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
 
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);
@@ -114,18 +115,19 @@ public class ReviewController {
 			@RequestParam(name = "genre", defaultValue = "0") int genre,
 			@RequestParam("director") String director,
 			@RequestParam("review") String review,
+			@RequestParam(name = "star", defaultValue = "0") int star,
 			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
 			ModelAndView mv) {
 
 		//未入力チェック
-		if (name.equals("") || category.equals("") || genre == 0 || review.equals("")) {
+		if (name.equals("") || category.equals("") || genre == 0 || star == 0 || review.equals("")) {
 			mv.addObject("error", "未入力の項目があります。");
 			mv.setViewName("review");
 			return mv;
 		}
 
 		//登録するreviewエンティティのインスタンスを生成
-		Review record = new Review(category, genre, name, director, spoil, review, accountCode);
+		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
 
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);

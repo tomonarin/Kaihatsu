@@ -18,6 +18,7 @@ public class Review {
 	private Integer genre;
 	private String name;
 	private String director;
+	private Integer star;
 	private Integer spoil;
 	private String review;
 	private Integer account;
@@ -27,13 +28,14 @@ public class Review {
 	}
 
 	//コンストラクタ
-	public Review(int code, String category, int genre, String name, String director,int spoil, String review, int account,
+	public Review(int code, String category, int genre, String name, String director,int star,int spoil, String review, int account,
 			LocalDateTime date) {
 		this.code = code;
 		this.category = category;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
+		this.star = star;
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
@@ -41,11 +43,12 @@ public class Review {
 	}
 
 	//code無しのコンストラクタ
-	public Review(String category, int genre, String name, String director,int spoil, String review, int account) {
+	public Review(String category, int genre, String name, String director,int spoil,int star,String review, int account) {
 		this.category = category;
 		this.genre = genre;
 		this.name = name;
 		this.director = director;
+		this.star = star;
 		this.spoil = spoil;
 		this.review = review;
 		this.account = account;
@@ -93,6 +96,13 @@ public class Review {
 		this.director = director;
 	}
 
+	public Integer getStar() {
+		return star;
+	}
+
+	public void setStar(Integer star) {
+		this.star = star;
+	}
 
 	public Integer getSpoil() {
 		return spoil;
