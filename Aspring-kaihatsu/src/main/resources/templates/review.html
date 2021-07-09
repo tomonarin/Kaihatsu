@@ -37,13 +37,12 @@
 				<span th:text="${gen.name}"></span></option>
 			</select>
 		</div>
-		<br>
 
 		<textarea name="review" placeholder="作品のレビューをこちらに書いてください"></textarea>
 
 		ネタバレあり<input type="checkbox" name="withspoil" value="1"
-			th:checked="${1} == ${acheck}"><br> <input type="submit"
-			value="投稿する">
+			th:checked="${1} == ${acheck}"><br>
+			<input type="submit" value="投稿する" class="btn">
 
 	</form>
 
