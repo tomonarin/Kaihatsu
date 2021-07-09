@@ -22,6 +22,10 @@ public class ReviewController {
 	@Autowired
 	GenreRepository genreR;
 
+	@Autowired
+	AccountRepository accountR;
+
+
 	//全レビュー表示（ログイン時、自分の過去投稿）
 	@GetMapping(value = "/review")
 	public ModelAndView reviews(ModelAndView mv) {
@@ -90,24 +94,6 @@ public class ReviewController {
 		return reviews(mv);
 	}
 
-	//検索機能
-	@GetMapping(value = "/search")
-	public String search() {
-		return "search";
-	}
 
-	@PostMapping(value = "/search")
-	public ModelAndView doSearch(
-			@RequestParam("name") String name,
-			@RequestParam("category") String category,
-			@RequestParam(name = "genre", defaultValue = "0") int genre,
-			@RequestParam("director") String director,
-			@RequestParam("account") String account,
-			@RequestParam(name = "withspoil", defaultValue = "0") int spoil,
-			ModelAndView mv) {
-
-		return mv;
-
-	}
 
 }
