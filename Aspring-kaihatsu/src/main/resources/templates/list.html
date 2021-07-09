@@ -23,6 +23,7 @@
 
 	<table border="1">
 		<tr>
+			<th>作品形態</th>
 			<th>ジャンル</th>
 			<th>作品名</th>
 			<th>作者/監督</th>
@@ -31,6 +32,7 @@
 		</tr>
 		<tr th:each="review:${reviews}">
 			<td th:text="${review.category}"></td>
+			<td th:text="${review.genre}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
 
