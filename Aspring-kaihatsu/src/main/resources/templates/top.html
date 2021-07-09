@@ -24,6 +24,32 @@
 
 	<hr>
 
+	<h3>【<span th:text="${session. accountInfo.name}"></span> さんの過去レビュー】</h3>
+	<table border="1">
+		<tr>
+			<th>作品形態</th>
+			<th>ジャンル</th>
+			<th>作品名</th>
+			<th>作者/監督</th>
+			<th>感想</th>
+			<th>投稿日時</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="review:${reviews}">
+			<td th:text="${review.category}"></td>
+			<td th:text="${review.genre}"></td>
+			<td th:text="${review.name}"></td>
+			<td th:text="${review.director}"></td>
+			<td th:text="${review.review}"></td>
+			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+			<td><form action="/review/update" method="post"><input type="submit" value="更新">
+				<input type="hidden" name="code" th:value="${review.code}"></form></td>
+			<td><form action="/delete" method="post"><input type="submit" value="削除">
+				<input type="hidden" name="code" th:value="${review.code}"></form></td>
+		</tr>
+	</table>
+
 	<span th:replace="logout"></span>
 
 

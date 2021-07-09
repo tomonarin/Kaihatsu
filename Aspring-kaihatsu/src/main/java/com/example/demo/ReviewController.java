@@ -94,6 +94,26 @@ public class ReviewController {
 		return reviews(mv);
 	}
 
+	//投稿の削除
+	@PostMapping("/delete")
+	public ModelAndView deleteCart(
+			@RequestParam("code") int code,
+			ModelAndView mv
+			) {
+		//レビューを削除
+		reviewR.deleteById(code);
+
+		//ログインしたアカウントのレビュー情報のみ取得
+		//アカウントコードを取得
+		Account accountInfo = (Account)session.getAttribute("accountInfo");
+		int aCode = accountInfo.getCode();
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+		mv.addObject("reviews", reviewList);
+
+		mv.setViewName("top");
+		return mv;
+	}
+
 
 
 }

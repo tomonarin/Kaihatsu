@@ -23,6 +23,9 @@ public class AccountController {
 	@Autowired
 	GenreRepository GenreRepository;
 
+	@Autowired
+	ReviewRepository reviewR;
+
 	/**
 	 * ログイン画面を表示
 	 */
@@ -95,16 +98,22 @@ public class AccountController {
 		//アカウント名が登録されてない場合はエラーとする
 		if (list.size() == 0) {
 			mv.addObject("message", "入力されたアカウント名は登録されていません");
-			mv.setViewName("index");
+			mv.setViewName("login");
 			return mv;
 		}
 
 		Account accountInfo = list.get(0);
 		//アカウント名とパスワードが一致するか確認する
 		if (account_name.equals(accountInfo.getAccountName()) && password.equals(accountInfo.getPassword())) {
-			// セッションスコープにログイン名とカテゴリ情報を格納する
+			//セッションスコープにログイン名とジャンル情報を格納する
 			session.setAttribute("accountInfo", accountInfo);
 			session.setAttribute("genre", GenreRepository.findAll());
+
+			//ログインしたアカウントのレビュー情報のみ取得
+			//アカウントコードを取得
+			int aCode = accountInfo.getCode();
+			List<Review> reviewList = reviewR.findByAccount(aCode);
+			mv.addObject("reviews", reviewList);
 
 			mv.setViewName("top");
 		} else {
