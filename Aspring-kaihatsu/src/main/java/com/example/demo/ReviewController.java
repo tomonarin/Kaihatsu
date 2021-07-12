@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,8 +33,23 @@ public class ReviewController {
 	@GetMapping(value = "/review")
 	public ModelAndView reviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findAll();
+
+		List<Genre> genreList = genreR.findAll();
+
+		List<String> genreNames = new ArrayList<String>();
+
+		for (Genre genres : genreList) {
+			 int gCode = genres.getCode();
+			 Optional<Genre> genreRecord =genreR.findById(gCode);
+			 Genre record = genreRecord.get();
+			 String gName = record.getName();
+			 genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
+
+
 		mv.addObject("reviews", reviewList);
-		mv.setViewName("list");
+			mv.setViewName("list");
 		return mv;
 	}
 
@@ -41,6 +58,19 @@ public class ReviewController {
 	public ModelAndView movieReviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findByCategory("映画");
 		mv.addObject("reviews", reviewList);
+
+		List<Genre> genreList = genreR.findAll();
+
+		List<String> genreNames = new ArrayList<String>();
+
+		for (Genre genres : genreList) {
+			 int gCode = genres.getCode();
+			 Optional<Genre> genreRecord =genreR.findById(gCode);
+			 Genre record = genreRecord.get();
+			 String gName = record.getName();
+			 genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
 
 		mv.setViewName("list");
 
@@ -51,7 +81,21 @@ public class ReviewController {
 	@GetMapping(value = "/review/book")
 	public ModelAndView bookReviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findByCategory("書籍");
+
+		List<Genre> genreList = genreR.findAll();
+
+		List<String> genreNames = new ArrayList<String>();
+
+		for (Genre genres : genreList) {
+			 int gCode = genres.getCode();
+			 Optional<Genre> genreRecord =genreR.findById(gCode);
+			 Genre record = genreRecord.get();
+			 String gName = record.getName();
+			 genreNames.add(gName);
+		}
+
 		mv.addObject("reviews", reviewList);
+		mv.addObject("genres", genreNames);
 
 		mv.setViewName("list");
 		return mv;
@@ -164,7 +208,21 @@ public class ReviewController {
 		//アカウントコードを取得
 		Account accountInfo = (Account) session.getAttribute("accountInfo");
 		int aCode = accountInfo.getCode();
+
 		List<Review> reviewList = reviewR.findByAccount(aCode);
+
+		List<Genre> genreList = genreR.findAll();
+
+		List<String> genreNames = new ArrayList<String>();
+
+		for (Genre genres : genreList) {
+			 int gCode = genres.getCode();
+			 Optional<Genre> genreRecord =genreR.findById(gCode);
+			 Genre record = genreRecord.get();
+			 String gName = record.getName();
+			 genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("top");

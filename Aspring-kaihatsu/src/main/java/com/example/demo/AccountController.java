@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -113,6 +115,20 @@ public class AccountController {
 			//アカウントコードを取得
 			int aCode = accountInfo.getCode();
 			List<Review> reviewList = reviewR.findByAccount(aCode);
+
+			List<Genre> genreList = GenreRepository.findAll();
+
+			List<String> genreNames = new ArrayList<String>();
+
+			for (Genre genres : genreList) {
+				 int gCode = genres.getCode();
+				 Optional<Genre> genreRecord =GenreRepository.findById(gCode);
+				 Genre record = genreRecord.get();
+				 String gName = record.getName();
+				 genreNames.add(gName);
+			}
+			mv.addObject("genres", genreNames);
+
 			mv.addObject("reviews", reviewList);
 
 			mv.addObject("accountInfo",accountInfo);

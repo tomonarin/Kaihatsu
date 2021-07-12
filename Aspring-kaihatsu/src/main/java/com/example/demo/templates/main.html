@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>会員一覧</title>
+</head>
+<body>
+<a href="/">トップ</a><br>
+
+<span th:text="${message}"></span><br>
+
+<h1>会員情報</h1>
+
+<table border="1">
+	<tr>
+	<th>ユーザID</th>
+	<th>名前</th>
+	<th>パスワード</th>
+	</tr>
+	<tr th:each="u:${session.users}">
+	<td><span th:text="${u.id}"></span></td>
+	<td><span th:text="${u.name}"></span></td>
+	<td><span th:text="${u.pw}"></span></td>
+	</tr>
+
+</table><br>
+
+<a href="/logout">ログアウト</a>
+
+</body>
+</html>
