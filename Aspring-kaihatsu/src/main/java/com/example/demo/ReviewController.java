@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +35,8 @@ public class ReviewController {
 		//データベースから情報取得
 		List<Review> reviewList = reviewR.findAll();
 		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll();
-		List<Account> accountList = accountR.findAll();
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
 		List<String> accountNames = new ArrayList<String>();
 
@@ -71,8 +72,8 @@ public class ReviewController {
 		//データベースから情報取得
 		List<Review> reviewList = reviewR.findByCategory("映画");
 		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll();
-		List<Account> accountList = accountR.findAll();
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
 		List<String> accountNames = new ArrayList<String>();
 
@@ -108,8 +109,8 @@ public class ReviewController {
 	public ModelAndView bookReviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findByCategory("書籍");
 		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll();
-		List<Account> accountList = accountR.findAll();
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
 		List<String> accountNames = new ArrayList<String>();
 

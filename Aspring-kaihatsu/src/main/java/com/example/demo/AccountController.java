@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -117,7 +118,7 @@ public class AccountController {
 			List<Review> reviewList = reviewR.findByAccount(aCode);
 
 			//ジャンル情報取得、リスト生成してhtmlへ
-			List<Genre> genreList = GenreRepository.findAll();
+			List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
 			List<String> genreNames = new ArrayList<String>();
 			genreNames.add("");
 
