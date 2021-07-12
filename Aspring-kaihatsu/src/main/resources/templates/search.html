@@ -14,6 +14,7 @@
 	<br>
 	<br>
 	<br>
+	<span th:text="${message}" style="color: red"></span>
 	<form action="/search" method="post">
 		検索カテゴリー： <select name="category" th:selected="${category}">
 		<option value="すべて">すべて</option>
@@ -31,23 +32,22 @@
 
 	</form>
 
-
-	<table border="1">
+	<table th:if="${reviews ne null}" border="1">
 		<tr>
 			<th>作品形態</th>
 			<th>ジャンル</th>
 			<th>作品名</th>
 			<th>作者/監督</th>
 			<th>感想</th>
+			<th>投稿者</th>
 			<th>投稿日時</th>
 		</tr>
 		<tr th:each="review:${reviews}">
 			<td th:text="${review.category}"></td>
-			<td th:text="${review.genre}"></td>
+			<td th:text="${allgenres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
-			<td th:if="${review.spoil eq 0}"><span
-				th:text="${review.review}"></span></td>
+			<td th:if="${review.spoil eq 0}"><span th:text="${review.review}"></span></td>
 			<td th:if="${review.spoil eq 1}">
 				<div class="hidden_box">
 					<label th:for="'review'+ ${review.code}">ネタバレの表示/非表示</label>
@@ -56,11 +56,8 @@
 						<!--非表示ここから-->
 						<span th:text="${review.review}"></span>
 						<!--ここまで-->
-					</div>
-				</div>
-			</td>
-
-
+				</div></div></td>
+			<td th:text="${names.get(__${review.account}__)}"></td>
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>

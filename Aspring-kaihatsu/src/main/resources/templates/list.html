@@ -43,8 +43,7 @@
 			<td th:if="${review.star eq 4}">★★★★</td>
 			<td th:if="${review.star eq 5}">★★★★★</td>
 
-			<td th:if="${review.spoil eq 0}"><span
-				th:text="${review.review}"></span></td>
+			<td th:if="${review.spoil eq 0}"><span th:text="${review.review}"></span></td>
 			<td th:if="${review.spoil eq 1}">
 				<div class="hidden_box">
 					<label th:for="'review'+ ${review.code}">ネタバレの表示/非表示</label>

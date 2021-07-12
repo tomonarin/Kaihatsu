@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -229,14 +230,46 @@ public class SearchController {
 
 			}
 
+			if(reviewList.size() == 0){
+				mv.addObject("message", "検索条件に一致するレビューはありません");
+
+			}else {
 			mv.addObject("name", name);
 			mv.addObject("category", category);
 			mv.addObject("director", director);
 			mv.addObject("account", account);
 			mv.addObject("genre", genre);
 			mv.addObject("spoil", spoil);
-			mv.setViewName("search");
+			mv.addObject("reviews", reviewList);
+			List<Genre> genreList = genreR.findAll();
+			List<Account> accountList = accountR.findAll();
+			List<String> genreNames = new ArrayList<String>();
+			List<String> accountNames = new ArrayList<String>();
 
+			//ジャンルの名前が格納されたリスト生成
+			genreNames.add("");
+			for (Genre genres : genreList) {
+				int gCode = genres.getCode();
+				Optional<Genre> genreRecord = genreR.findById(gCode);
+				Genre record = genreRecord.get();
+				String gName = record.getName();
+				genreNames.add(gName);
+			}
+			mv.addObject("allgenres", genreNames);
+
+			//アカウント名が格納されたリスト生成
+			accountNames.add("");
+			for (Account accounts : accountList) {
+				int accountCode = accounts.getCode();
+				Optional<Account> accountRecord = accountR.findById(accountCode);
+				Account record = accountRecord.get();
+				String aName = record.getAccountName();
+				accountNames.add(aName);
+			}
+			mv.addObject("names", accountNames);
+			}
+
+			mv.setViewName("search");
 
 			return mv;
 
