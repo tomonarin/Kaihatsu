@@ -140,34 +140,6 @@ public class AccountController {
 		}
 		return mv;
 	}
-	/**
-	 * マイページへ
-	 */
-	//http://localhost:8080/top
-	@GetMapping("/editAccount")
-	public ModelAndView edit(ModelAndView mv) {
-		Account a = (Account)session.getAttribute("accountInfo");
-		int code = a.getCode();
-
-		Account account = null;
-		//Userテーブルから指定のレコードを取得
-		Optional<Account> record = AccountRepository.findById(code);
-
-		if (record.isEmpty() == false) {//レコードがあれば
-			account = record.get(); //レコードを取得する
-
-		}
-
-		//Thymeleafで表示する準備
-		mv.addObject("code", code);
-		mv.addObject("name", account.getName());
-		mv.addObject("accountName", account.getAccountName());
-		mv.addObject("password", account.getPassword());
-		mv.addObject("email", account.getEmail());
-
-		mv.setViewName("/editAccount");
-		return mv;
-	}
 
 
 	/**
@@ -219,6 +191,20 @@ public class AccountController {
 			mv.setViewName("top");
 			return mv;
 		}
+
+	/**
+	 * マイページへ
+	 */
+	//http://localhost:8080/top
+	@GetMapping("/top")
+	public ModelAndView top(ModelAndView mv) {
+		Account accountInfo = (Account)session.getAttribute("accountInfo");
+		//Thymeleafで表示する準備
+		mv.addObject("accountInfo", accountInfo);
+		mv.setViewName("top");
+		return mv;
+	}
+
 
 	/**
 	 * ログアウトを実行
