@@ -115,6 +115,7 @@ public class AccountController {
 			List<Review> reviewList = reviewR.findByAccount(aCode);
 			mv.addObject("reviews", reviewList);
 
+			mv.addObject("accountInfo",accountInfo);
 			mv.setViewName("top");
 		} else {
 			mv.addObject("message", "アカウント名とパスワードが一致しません");

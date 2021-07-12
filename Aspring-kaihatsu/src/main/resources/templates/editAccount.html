@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>顧客更新</title>
+</head>
+<body>
+	<h1>顧客更新</h1>
+	<form action=/editAccount method="POST">
+		<table border="1">
+			<tr>
+				<th>コード</th>
+				<td th:text="${code}"></td>
+			</tr>
+			<tr>
+				<th>名前</th>
+				<td><input type="text" name="name" th:value="${name}"></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td><input type="text" name="email" th:value="${email}"></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><input type="text" name="password" th:value="${password}"></td>
+			</tr>
+		</table>
+		<br> <input type="hidden" name="code" th:value="${code}">
+		<input type="submit" value="更新">
+	</form>
+
+</body>
+</html>

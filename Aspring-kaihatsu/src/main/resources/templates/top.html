@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
-<title>トップページ</title>
+<title>マイページ</title>
 </head>
 <body>
 	<header>
 		<img alt="" src="css/images/logo.png;">
+		<span th:replace="header"></span>
 	</header>
 	<br>
 	<br>
 	<br>
 	<br>
-	<h1>トップページ</h1>
+	<h1>マイページ</h1>
 
 	<span th:replace="menu"></span>
 
@@ -23,6 +24,27 @@
 	<h2>映画・書籍レビューサイトです！</h2>
 
 	<hr>
+
+	<h3>【<span th:text="${session. accountInfo.name}"></span> さんのアカウント情報】</h3>
+	<table border="1">
+		<tr>
+		<th>名前</th><td th:text="${accountInfo.name}"></td>
+		</tr>
+
+		<tr>
+		<th>アカウント名</th><td th:text="${accountInfo.accountName}"></td>
+		</tr>
+
+		<tr>
+		<th>メールアドレス</th><td th:text="${accountInfo.email}"></td>
+		</tr>
+
+		<tr>
+		<th>パスワード</th><td th:text="${accountInfo.password}"></td>
+		</tr>
+	</table>
+
+<a href=editAccount>アカウント情報を編集する</a>
 
 	<h3>【<span th:text="${session. accountInfo.name}"></span> さんの過去レビュー】</h3>
 	<table border="1">
