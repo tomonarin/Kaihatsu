@@ -116,9 +116,10 @@ public class AccountController {
 			int aCode = accountInfo.getCode();
 			List<Review> reviewList = reviewR.findByAccount(aCode);
 
+			//ジャンル情報取得、リスト生成してhtmlへ
 			List<Genre> genreList = GenreRepository.findAll();
-
 			List<String> genreNames = new ArrayList<String>();
+			genreNames.add("");
 
 			for (Genre genres : genreList) {
 				 int gCode = genres.getCode();

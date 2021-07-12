@@ -28,49 +28,75 @@ public class ReviewController {
 	@Autowired
 	AccountRepository accountR;
 
-
 	//全レビュー表示（ログイン時、自分の過去投稿）
 	@GetMapping(value = "/review")
 	public ModelAndView reviews(ModelAndView mv) {
+		//データベースから情報取得
 		List<Review> reviewList = reviewR.findAll();
-
+		mv.addObject("reviews", reviewList);
 		List<Genre> genreList = genreR.findAll();
-
+		List<Account> accountList = accountR.findAll();
 		List<String> genreNames = new ArrayList<String>();
+		List<String> accountNames = new ArrayList<String>();
 
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
 		for (Genre genres : genreList) {
-			 int gCode = genres.getCode();
-			 Optional<Genre> genreRecord =genreR.findById(gCode);
-			 Genre record = genreRecord.get();
-			 String gName = record.getName();
-			 genreNames.add(gName);
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre record = genreRecord.get();
+			String gName = record.getName();
+			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
 
+		//アカウント名が格納されたリスト生成
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			int aCode = accounts.getCode();
+			Optional<Account> accountRecord = accountR.findById(aCode);
+			Account record = accountRecord.get();
+			String aName = record.getAccountName();
+			accountNames.add(aName);
+		}
+		mv.addObject("names", accountNames);
 
-		mv.addObject("reviews", reviewList);
-			mv.setViewName("list");
+		mv.setViewName("list");
 		return mv;
 	}
 
 	//映画のレビュー表示
 	@GetMapping(value = "/review/movie")
 	public ModelAndView movieReviews(ModelAndView mv) {
+		//データベースから情報取得
 		List<Review> reviewList = reviewR.findByCategory("映画");
 		mv.addObject("reviews", reviewList);
-
 		List<Genre> genreList = genreR.findAll();
-
+		List<Account> accountList = accountR.findAll();
 		List<String> genreNames = new ArrayList<String>();
+		List<String> accountNames = new ArrayList<String>();
 
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
 		for (Genre genres : genreList) {
-			 int gCode = genres.getCode();
-			 Optional<Genre> genreRecord =genreR.findById(gCode);
-			 Genre record = genreRecord.get();
-			 String gName = record.getName();
-			 genreNames.add(gName);
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre record = genreRecord.get();
+			String gName = record.getName();
+			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
+
+		//アカウント名が格納されたリスト生成
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			int aCode = accounts.getCode();
+			Optional<Account> accountRecord = accountR.findById(aCode);
+			Account record = accountRecord.get();
+			String aName = record.getAccountName();
+			accountNames.add(aName);
+		}
+		mv.addObject("names", accountNames);
 
 		mv.setViewName("list");
 
@@ -81,21 +107,33 @@ public class ReviewController {
 	@GetMapping(value = "/review/book")
 	public ModelAndView bookReviews(ModelAndView mv) {
 		List<Review> reviewList = reviewR.findByCategory("書籍");
-
-		List<Genre> genreList = genreR.findAll();
-
-		List<String> genreNames = new ArrayList<String>();
-
-		for (Genre genres : genreList) {
-			 int gCode = genres.getCode();
-			 Optional<Genre> genreRecord =genreR.findById(gCode);
-			 Genre record = genreRecord.get();
-			 String gName = record.getName();
-			 genreNames.add(gName);
-		}
-
 		mv.addObject("reviews", reviewList);
+		List<Genre> genreList = genreR.findAll();
+		List<Account> accountList = accountR.findAll();
+		List<String> genreNames = new ArrayList<String>();
+		List<String> accountNames = new ArrayList<String>();
+
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre record = genreRecord.get();
+			String gName = record.getName();
+			genreNames.add(gName);
+		}
 		mv.addObject("genres", genreNames);
+
+		//アカウント名が格納されたリスト生成
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			int aCode = accounts.getCode();
+			Optional<Account> accountRecord = accountR.findById(aCode);
+			Account record = accountRecord.get();
+			String aName = record.getAccountName();
+			accountNames.add(aName);
+		}
+		mv.addObject("names", accountNames);
 
 		mv.setViewName("list");
 		return mv;
@@ -119,7 +157,7 @@ public class ReviewController {
 			ModelAndView mv) {
 
 		//未入力チェック
-		if (name.equals("") || category.equals("") || genre == 0 ||star == 0 || review.equals("")) {
+		if (name.equals("") || category.equals("") || genre == 0 || star == 0 || review.equals("")) {
 			mv.addObject("error", "未入力の項目があります。");
 			mv.setViewName("review");
 			return mv;
@@ -141,7 +179,7 @@ public class ReviewController {
 	}
 
 	//レビューの更新
-	@RequestMapping(value="/review/update")
+	@RequestMapping(value = "/review/update")
 	public ModelAndView reviewUpdate(
 			@RequestParam("code") int code,
 			ModelAndView mv) {
@@ -216,11 +254,11 @@ public class ReviewController {
 		List<String> genreNames = new ArrayList<String>();
 
 		for (Genre genres : genreList) {
-			 int gCode = genres.getCode();
-			 Optional<Genre> genreRecord =genreR.findById(gCode);
-			 Genre record = genreRecord.get();
-			 String gName = record.getName();
-			 genreNames.add(gName);
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre record = genreRecord.get();
+			String gName = record.getName();
+			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);

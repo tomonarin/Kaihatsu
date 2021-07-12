@@ -60,7 +60,7 @@
 		</tr>
 		<tr th:each="review:${reviews}">
 			<td th:text="${review.category}"></td>
-			<td th:text="${review.genre}"></td>
+			<td th:text="${genres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
 			<td th:text="${review.review}"></td>
