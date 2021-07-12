@@ -1,30 +1,30 @@
 @charset "UTF-8";
-
+/*本文の設定*/
 body {
 	background-color: ivory;
 	color: navy;
-	font-size:20px;
+	font-size: 20px;
 	text-align: center;
 }
-
+/*ヘッダーの設定*/
 header {
 	padding: 1px 10px;
 	background-color: orange;
-	color: black;
+	color: navy;
 	text-align: left;
 	position: fixed;
 	top: 0;
 	width: 100%;
 }
-
-.nav{
-	color: black;
+/*ヘッダーメニューの設定*/
+.nav {
+	color: navy;
 	padding: 1px 20px;
-	text-align:right;
-	font-size:15px;
-
+	text-align: right;
+	font-size: 15px;
 }
 
+/*テーブルの設定*/
 table {
 	background-color: white;
 	color: navy;
@@ -34,13 +34,14 @@ table {
 	margin: 0.5em auto;
 }
 
-table th{
-	background-color: orange;
-}
+	table th {
+		background-color: orange;
+	}
 
-input[type="text"]{
+/*名前、アカウント名、メールアドレスフォームの設定*/
+input[type="text"] {
 	display: block;
-	width: 30%;
+	width: 250px;
 	padding: 0.5em;
 	border: 2px solid gray;
 	box-sizing: border-box;
@@ -48,15 +49,16 @@ input[type="text"]{
 	margin: 0.5em auto;
 }
 
-input[type="text"]:focus{
-	outline: none;
-	background-color: lightgoldenrodyellow;
-	box-shadow: 0 0 9px gold;
-}
+	input[type="text"]:focus {
+		outline: none;
+		background-color: lightgoldenrodyellow;
+		box-shadow: 0 0 9px gold;
+	}
 
-input[type="password"]{
+/*パスワード入力フォームの設定*/
+input[type="password"] {
 	display: block;
-	width: 30%;
+	width: 250px;
 	padding: 0.5em;
 	border: 2px solid gray;
 	box-sizing: border-box;
@@ -64,16 +66,17 @@ input[type="password"]{
 	margin: 0.5em auto;
 }
 
-input[type="password"]:focus{
-	outline: none;
-	background-color: lightgoldenrodyellow;
-	box-shadow: 0 0 9px gold;
-}
+	input[type="password"]:focus {
+		outline: none;
+		background-color: lightgoldenrodyellow;
+		box-shadow: 0 0 9px gold;
+	}
 
-textarea{
+/*レビュー投稿フォームの設定*/
+textarea {
 	display: block;
-	width: 30%;
-	height:100px;
+	width: 500px;
+	height: 100px;
 	padding: 0.5em;
 	border: 2px solid gray;
 	box-sizing: border-box;
@@ -81,24 +84,28 @@ textarea{
 	margin: 0.5em auto;
 }
 
-textarea:focus{
-	outline: none;
-	background-color: lightgoldenrodyellow;
-	box-shadow: 0 0 9px gold;
-}
-select{
-	width: 5%;
-	height:30px;
+	textarea:focus {
+		outline: none;
+		background-color: lightgoldenrodyellow;
+		box-shadow: 0 0 9px gold;
+	}
+
+/*セレクトボックスの設定*/
+select {
+	width: 150px;
+	height: 30px;
 	border: 2px solid gray;
 	box-sizing: border-box;
 	background-color: white;
 }
-select:focus{
-	outline: none;
-	background-color: lightgoldenrodyellow;
-	box-shadow: 0 0 9px gold;
-}
 
+	select:focus {
+		outline: none;
+		background-color: lightgoldenrodyellow;
+		box-shadow: 0 0 9px gold;
+	}
+
+/*ボタンの設定*/
 .btn {
 	display: block;
 	max-width: 200px;
@@ -114,58 +121,57 @@ select:focus{
 	margin: 0.5em auto;
 }
 
-.btn:hover {
-	border: 2px solid darkorange;
-	background-color: orange;
-	color: white;
-	border-radius: 4px;
-	border-bottom: 4px solid darkorange;
-}
+	.btn:hover {
+		border: 2px solid darkorange;
+		background-color: orange;
+		color: white;
+		border-radius: 4px;
+		border-bottom: 4px solid darkorange;
+	}
 
+/*リンクの表示設定*/
 a {
 	color: gray;
 }
 
-a:hover{
-	color: orange;
+	a:hover {
+		color: orange;
+	}
+
+/*メニューの設定*/
+.menu {
+	color: navy;
 }
 
-.menu{
-	color:black
-}
-.menu:hover{
-	color:gray;
+	.menu:hover {
+		color: gray;
+	}
 
-}
-/*ボタン装飾*/
+/*ネタバレ防止機能の設定*/
 .hidden_box label {
-    padding: 8px;
-    font-weight: bold;
-    border: none;
-    cursor :pointer;
+	padding: 8px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
 }
 
-/*ボタンホバー時*/
-.hidden_box label:hover {
-    color: orange;
-}
+	.hidden_box label:hover {
+		color: orange;
+	}
 
-/*チェックは見えなくする*/
-.hidden_box input {
-    display: none;
-}
+	.hidden_box input {
+		display: none;
+	}
 
-/*中身を非表示にしておく*/
-.hidden_box .hidden_show {
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    opacity: 0;
-}
+	.hidden_box .hidden_show {
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+		opacity: 0;
+	}
 
-/*クリックで中身表示*/
-.hidden_box input:checked ~ .hidden_show {
-    padding: 10px 0;
-    height: auto;
-    opacity: 1;
-}
+	.hidden_box input:checked ~ .hidden_show {
+		padding: 10px 0;
+		height: auto;
+		opacity: 1;
+	}
