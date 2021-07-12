@@ -173,25 +173,25 @@ public class AccountController {
 			return mv;
 		}
 
-		/**
-		 * アカウント情報更新を実行
-		 */
-		@PostMapping("/editAccount")
-		public ModelAndView editAccount(
-				@RequestParam("code") int code,
-				@RequestParam("name") String name,
-				@RequestParam("accountName") String accountName,
-				@RequestParam("email") String email,
-				@RequestParam("password") String password,
-				ModelAndView mv) {
-			Account account = new Account(code, name,accountName, email, password);
-			AccountRepository.saveAndFlush(account);
+	/**
+	 * アカウント情報更新を実行
+	 */
+	@PostMapping("/editAccount")
+	public ModelAndView editAccount(
+			@RequestParam("code") int code,
+			@RequestParam("name") String name,
+			@RequestParam("accountName") String accountName,
+			@RequestParam("email") String email,
+			@RequestParam("password") String password,
+			ModelAndView mv) {
+		Account account = new Account(code, name,accountName, email, password);
+		AccountRepository.saveAndFlush(account);
 
-			session.setAttribute("accountInfo", account);
-			mv.addObject("accountInfo",account);
-			mv.setViewName("top");
-			return mv;
-		}
+		session.setAttribute("accountInfo", account);
+		mv.addObject("accountInfo",account);
+		mv.setViewName("top");
+		return mv;
+	}
 
 	/**
 	 * マイページへ
@@ -200,8 +200,29 @@ public class AccountController {
 	@GetMapping("/top")
 	public ModelAndView top(ModelAndView mv) {
 		Account accountInfo = (Account)session.getAttribute("accountInfo");
+
+		//ログインしたアカウントのレビュー情報のみ取得
+		//アカウントコードを取得
+		int aCode = accountInfo.getCode();
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+
+		//ジャンル情報取得、リスト生成してhtmlへ
+		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		genreNames.add("");
+
+		for (Genre genres : genreList) {
+			 int gCode = genres.getCode();
+			 Optional<Genre> genreRecord =GenreRepository.findById(gCode);
+			 Genre record = genreRecord.get();
+			 String gName = record.getName();
+			 genreNames.add(gName);
+		}
+
 		//Thymeleafで表示する準備
 		mv.addObject("accountInfo", accountInfo);
+		mv.addObject("genres", genreNames);
+		mv.addObject("reviews", reviewList);
 		mv.setViewName("top");
 		return mv;
 	}
