@@ -142,6 +142,56 @@ public class AccountController {
 	}
 
 	/**
+	 * アカウント情報更新ページへ
+	 */
+
+	//http://localhost:8080/editAccount
+		@GetMapping("/editAccount")
+		public ModelAndView edit(ModelAndView mv) {
+			Account a = (Account)session.getAttribute("accountInfo");
+			int code = a.getCode();
+
+			Account account = null;
+			//Userテーブルから指定のレコードを取得
+			Optional<Account> record = AccountRepository.findById(code);
+
+			if (record.isEmpty() == false) {//レコードがあれば
+				account = record.get(); //レコードを取得する
+
+			}
+
+			//Thymeleafで表示する準備
+			mv.addObject("code", code);
+			mv.addObject("name", account.getName());
+			mv.addObject("accountName", account.getAccountName());
+			mv.addObject("password", account.getPassword());
+			mv.addObject("email", account.getEmail());
+
+			mv.setViewName("/editAccount");
+			return mv;
+		}
+
+		/**
+		 * アカウント情報更新を実行
+		 */
+		@PostMapping("/editAccount")
+		public ModelAndView editAccount(
+				@RequestParam("code") int code,
+				@RequestParam("name") String name,
+				@RequestParam("accountName") String accountName,
+				@RequestParam("email") String email,
+				@RequestParam("password") String password,
+				ModelAndView mv) {
+			Account account = new Account(code, name,accountName, email, password);
+			AccountRepository.saveAndFlush(account);
+
+			session.setAttribute("accountInfo", account);
+			mv.addObject("accountInfo",account);
+			mv.setViewName("top");
+			return mv;
+		}
+
+	/**
 	 * ログアウトを実行
 	 */
 	@RequestMapping("/logout")
