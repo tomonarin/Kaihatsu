@@ -14,35 +14,25 @@
 	<br>
 	<br> 登録する情報の入力をお願いします。
 	<form action="/signup" method="post">
-		<div class="popup_images">
-			<input id="trigger" type="checkbox">
-			<div class=”popup_overlay”>
-				<label for="trigger" class="popup_trigger"></label>
-				<div class="popup_content">
-					<label for="trigger" class="close_btn">×</label>
-					<div>
-						<div class="icon">
-							<input id="image_1" type="radio"
-								value="css/images/icon_human.png" name="photo">
-								<label for="image_1">
-								<img src="css/images/icon_woman1.jpg">
-								</label>
-							<input id="image_2" type="radio"
-								value="css/images/icon_man1.png" name="photo">
-								<label for="image_2">
-								<img src="css/images/icon_man1.jpg">
-								</label>
-							<input id="image_3" type="radio"
-								value="css/images/icon_woman1.png" name="photo">
-								<label for="image_3">
-								<img src="css/images/icon_woman2.jpg">
-								</label>
-						</div>
-					</div>
-				</div>
+		<label for="popup" class="open">プロフィール画像を選択</label>
+		<input id="popup" type="checkbox">
+		<div class="popup_overlay">
+			<div class="icon">
+			<label for="popup" class="close">×</label>
+				<input id="image_1" type="radio" value="css/images/icon_human.png" name="photo">
+				<label for="image_1">
+				<img src="css/images/icon_human.png">
+				</label>
+			 	<input id="image_2" type="radio" value="css/images/icon_man1.png" name="photo">
+				<label for="image_2">
+				<img src="css/images/icon_man1.png">
+				</label>
+				<input id="image_3" type="radio" value="css/images/icon_woman1.png" name="photo">
+				<label for="image_3">
+				<img src="css/images/icon_woman1.png">
+				</label>
 			</div>
 		</div>
-		<label for="trigger" class="open_btn">プロフィール画像を選択</label><br>
 		<input type="text" name="name" placeholder="お名前"><br>
 		<input type="text" name="account_name" placeholder="アカウント名"><br>
 		<input type="text" name="email" placeholder="メールアドレス"><br>
