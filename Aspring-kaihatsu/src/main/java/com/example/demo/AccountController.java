@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,9 +67,13 @@ public class AccountController {
 			mv.setViewName("signup");
 			return mv;
 		}
+		//システム完成したら消します
+		String photo ="css/images/icon_woman1.png";
+		Integer login = 1;
+		LocalDateTime date = LocalDateTime.now();
 
 		//登録するAccountエンティティのインスタンスを生成
-		Account account = new Account(name, account_name, email, password);
+		Account account = new Account(name, account_name, email, password,photo,login,date);
 
 		//AccountエンティティをAccountテーブルに登録
 		AccountRepository.saveAndFlush(account);
@@ -184,7 +189,12 @@ public class AccountController {
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			ModelAndView mv) {
-		Account account = new Account(code, name,accountName, email, password);
+		//システム完成したら消します
+		String photo ="css/images/icon_woman1.png";
+		Integer login = 1;
+		LocalDateTime date = LocalDateTime.now();
+
+		Account account = new Account(code, name,accountName, email, password,photo,login,date);
 		AccountRepository.saveAndFlush(account);
 
 		session.setAttribute("accountInfo", account);

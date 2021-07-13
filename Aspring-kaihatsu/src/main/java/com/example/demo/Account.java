@@ -23,23 +23,27 @@ public class Account {
 	private String password;//パスワード
 	private String photo;//プロフィール画像
 	private Integer login;//ログインスタンプの個数
-	private  LocalDateTime date;//最終ログイン日
+	@Column(name="lastlogin")
+	private LocalDateTime date;//最終ログイン日
 
 	//コンストラクタ
 	public Account() {
 
 	}
 
-	public Account(Integer code, String name, String accountName, String email, String password) {
-		this(name, accountName, email,password);
+	public Account(Integer code, String name, String accountName, String email,String password,String photo,Integer login,LocalDateTime date ) {
+		this(name, accountName, email,password,photo,login,date);
 		this.code = code;
 	}
 
-	public Account(String name, String accountName, String email, String password) {
+	public Account(String name, String accountName, String email, String password,String photo,Integer login,LocalDateTime date) {
 		this.name = name;
 		this.accountName = accountName;
 		this.email = email;
 		this.password = password;
+		this.photo = photo;
+		this.login = login;
+		this.date = date;
 	}
 
 	//アクセッサ・メソッド（セッタ＆ゲッタ

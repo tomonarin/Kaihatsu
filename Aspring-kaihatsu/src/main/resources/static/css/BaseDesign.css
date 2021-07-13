@@ -24,6 +24,11 @@ header {
 	font-size: 15px;
 }
 
+/*プロフィール画像の設定*/
+.profile{
+	border-radius: 50%;
+}
+
 /*テーブルの設定*/
 table {
 	background-color: white;
