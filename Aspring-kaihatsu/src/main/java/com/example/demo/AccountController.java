@@ -191,10 +191,8 @@ public class AccountController {
 			ModelAndView mv) {
 		//システム完成したら消します
 		String photo ="css/images/icon_woman1.png";
-		Integer login = 1;
-		LocalDateTime date = LocalDateTime.now();
 
-		Account account = new Account(code, name,accountName, email, password,photo,login,date);
+		Account account = new Account(code, name,accountName, email, password,photo);
 		AccountRepository.saveAndFlush(account);
 
 		session.setAttribute("accountInfo", account);

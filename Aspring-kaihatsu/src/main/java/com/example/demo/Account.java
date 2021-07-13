@@ -46,6 +46,20 @@ public class Account {
 		this.date = date;
 	}
 
+	public Account(Integer code,String name, String accountName, String email, String password,String photo) {
+		this.code = code;
+		this.name = name;
+		this.accountName = accountName;
+		this.email = email;
+		this.password = password;
+		this.photo = photo;
+	}
+
+	public Account (Integer login, LocalDateTime date) {
+		this.login = login;
+		this.date = date;
+	}
+
 	//アクセッサ・メソッド（セッタ＆ゲッタ
 	public Integer getCode() {
 		return code;
