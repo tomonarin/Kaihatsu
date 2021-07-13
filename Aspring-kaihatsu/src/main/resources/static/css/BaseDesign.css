@@ -231,7 +231,8 @@ color:#fff;
 
 /*ログインスタンプの設定*/
 .stamp img{
-	width:150px
+	width:150px;
+	float:left;
 }
 
 /*ボタンの設定*/
