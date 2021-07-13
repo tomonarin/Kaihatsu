@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,8 +71,7 @@ public class AccountController {
 		//システム完成したら消します
 //		String photo ="css/images/icon_woman1.png";
 		Integer login = 1;
-		LocalDateTime date = LocalDateTime.now();
-
+		LocalDate date = LocalDate.now();
 		//登録するAccountエンティティのインスタンスを生成
 		Account account = new Account(name, account_name, email, password,photo,login,date);
 
@@ -197,7 +196,7 @@ public class AccountController {
 //		String photo ="css/images/icon_woman1.png";
 		Account a = (Account)session.getAttribute("accountInfo");
 		int login = a.getLogin();
-		LocalDateTime date = a.getDate();
+		LocalDate date = a.getDate();
 
 
 		Account account = new Account(code, name,accountName, email, password,photo,login,date);

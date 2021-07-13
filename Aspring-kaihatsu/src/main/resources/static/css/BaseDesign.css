@@ -111,82 +111,99 @@ select {
 	}
 
 /*画像選択ポップアップの設定*/
-.open {
-	display: block;
-	max-width: 200px;
-	background-color: white;
-	border: 2px solid gray;
-	font-size: 16px;
-	color: orange;
-	text-decoration: none;
-	font-weight: bold;
-	padding: 0.5em;
-	border-radius: 4px;
-	border-bottom: 4px solid gray;
-	margin: 0.5em auto;
+.popup_images input {
+display: none;
 }
-
-	.open:hover{
-		border: 2px solid darkorange;
-		background-color: orange;
-		color: white;
-		border-radius: 4px;
-		border-bottom: 4px solid darkorange;
-	}
-
-#popup {
-	display: none;
-}
-
 .popup_overlay {
-	display: none;
+display: flex;
+justify-content: center;
+overflow: auto;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 999;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+opacity: 0;
+transition: opacity 0.5s, transform 0s 0.5s;
+transform: scale(0);
 }
 
-#popup:checked + .popup_overlay {
-	display: inline;
-	text-align:center;
-	margin:auto;
-	z-index: 9999;
-	background-color: #00000070;
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	top: 0;
-	left: 0;
+.popup_trigger {
+position: absolute;
+width: 100%;
+height: 100%;
 }
 
-.icon {
-	position: relative;
-	align-self: center;
-	margin:auto;
-	width: 90%;
-	max-width: 800px;
-	padding: 30px 40px;
-	box-sizing: border-box;
-	background: #fff;
-	line-height: 1.4em;
-	transition: 0.5s;
-	text-align: justify;
+.popup_content {
+position: relative;
+align-self: center;
+width: 90%;
+max-width: 800px;
+padding: 30px 40px;
+box-sizing: border-box;
+background: #fff;
+line-height: 1.4em;
+transition: 0.5s;
+text-align: justify;
 }
 
-.close {
+.close_btn {
 position: absolute;
 top: 10px;
 right: 10px;
 font-size: 14px;
 cursor: pointer;
 padding:8px;
-background: orange;
-color: white;
+background: #f29c9f;
+color: #fff;
 border-radius:15px;
 line-height:14px;
 font-weight:bold;
 }
 
+.popup_images input:checked ~ .popup_overlay {
+opacity: 1;
+transform: scale(1);
+}
+
+.popup_images input:checked ~ .popup_overlay .popup_content{
+transform: translateY(50px);
+}
+
+.open_btn {
+position: relative;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 200px;
+height: 30px;
+margin:10px auto;
+color: #555;
+background:fff;
+padding: 20px 16px;
+border:solid 1px #ccc;
+font-weight: bold;
+border-radius: 21px;
+cursor: pointer;
+}
+
+.open_btn:hover{
+background:#f29c9f;
+border:solid 1px #f29c9f;
+color:#fff;
+
+}
+
 /* 画像選択の設定 */
 /* ラジオボタンの○を消す */
 .icon input[type="radio"] {
-	display: none;
+/*    display: none;*/
 }
 /* 画像の周りに隙間をあける */
 .icon label img {
@@ -200,6 +217,21 @@ font-weight:bold;
 /* 選択済みの場合、色を濃くする */
 .icon input[type="radio"]:checked + label img {
     opacity:1;
+}
+
+/* 未選択の場合、色を薄くする */
+.icon input[type="radio"] + label img {
+    opacity:0.2;
+  }
+/* 選択済みの場合、色を濃くする */
+.icon input[type="radio"]:checked + label img {
+    opacity:1;
+}
+
+
+/*ログインスタンプの設定*/
+.stamp img{
+	width:150px
 }
 
 /*ボタンの設定*/

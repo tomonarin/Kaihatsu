@@ -1,6 +1,8 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,19 +26,19 @@ public class Account {
 	private String photo;//プロフィール画像
 	private Integer login;//ログインスタンプの個数
 	@Column(name="lastlogin")
-	private LocalDateTime date;//最終ログイン日
+	private LocalDate date;//最終ログイン日
 
 	//コンストラクタ
 	public Account() {
 
 	}
 
-	public Account(Integer code, String name, String accountName, String email,String password,String photo,Integer login,LocalDateTime date ) {
+	public Account(Integer code, String name, String accountName, String email,String password,String photo,Integer login, LocalDate date) {
 		this(name, accountName, email,password,photo,login,date);
 		this.code = code;
 	}
 
-	public Account(String name, String accountName, String email, String password,String photo,Integer login,LocalDateTime date) {
+	public Account(String name, String accountName, String email, String password,String photo,Integer login,LocalDate date) {
 		this.name = name;
 		this.accountName = accountName;
 		this.email = email;
@@ -55,7 +57,13 @@ public class Account {
 		this.photo = photo;
 	}
 
-	public Account (Integer login, LocalDateTime date) {
+	public Account (Integer code, Integer login, LocalDate date) {
+		this.code = code;
+		this.name = getName();
+		this.accountName = getAccountName();
+		this.email = getEmail();
+		this.password = getPassword();
+		this.photo = getPhoto();
 		this.login = login;
 		this.date = date;
 	}
@@ -117,11 +125,11 @@ public class Account {
 		this.login = login;
 	}
 
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
