@@ -60,6 +60,7 @@ public class AccountController {
 			@RequestParam("account_name") String account_name,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
+			@RequestParam("photo") String photo,
 			ModelAndView mv) {
 		//未入力チェック
 		if (name.equals("") || account_name.equals("") || email.equals("") || password.equals("")) {
@@ -68,7 +69,7 @@ public class AccountController {
 			return mv;
 		}
 		//システム完成したら消します
-		String photo ="css/images/icon_woman1.png";
+//		String photo ="css/images/icon_woman1.png";
 		Integer login = 1;
 		LocalDateTime date = LocalDateTime.now();
 
@@ -171,8 +172,10 @@ public class AccountController {
 			mv.addObject("code", code);
 			mv.addObject("name", account.getName());
 			mv.addObject("accountName", account.getAccountName());
-			mv.addObject("password", account.getPassword());
 			mv.addObject("email", account.getEmail());
+			mv.addObject("password", account.getPassword());
+			mv.addObject("photo", account.getPhoto());
+
 
 			mv.setViewName("/editAccount");
 			return mv;
@@ -188,11 +191,16 @@ public class AccountController {
 			@RequestParam("accountName") String accountName,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
+			@RequestParam("photo") String photo,
 			ModelAndView mv) {
 		//システム完成したら消します
-		String photo ="css/images/icon_woman1.png";
+//		String photo ="css/images/icon_woman1.png";
+		Account a = (Account)session.getAttribute("accountInfo");
+		int login = a.getLogin();
+		LocalDateTime date = a.getDate();
 
-		Account account = new Account(code, name,accountName, email, password,photo);
+
+		Account account = new Account(code, name,accountName, email, password,photo,login,date);
 		AccountRepository.saveAndFlush(account);
 
 		session.setAttribute("accountInfo", account);

@@ -110,6 +110,124 @@ select {
 		box-shadow: 0 0 9px gold;
 	}
 
+/*画像選択ポップアップの設定*/
+.popup_images input {
+display: none;
+}
+.popup_overlay {
+display: flex;
+justify-content: center;
+overflow: auto;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 999;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+opacity: 0;
+transition: opacity 0.5s, transform 0s 0.5s;
+transform: scale(0);
+}
+
+.popup_trigger {
+position: absolute;
+width: 100%;
+height: 100%;
+}
+
+.popup_content {
+position: relative;
+align-self: center;
+width: 90%;
+max-width: 800px;
+padding: 30px 40px;
+box-sizing: border-box;
+background: #fff;
+line-height: 1.4em;
+transition: 0.5s;
+text-align: justify;
+}
+
+.close_btn {
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 14px;
+cursor: pointer;
+padding:8px;
+background: #f29c9f;
+color: #fff;
+border-radius:15px;
+line-height:14px;
+font-weight:bold;
+}
+
+.popup_images input:checked ~ .popup_overlay {
+opacity: 1;
+transform: scale(1);
+}
+
+.popup_images input:checked ~ .popup_overlay .popup_content{
+transform: translateY(50px);
+}
+
+.open_btn {
+position: relative;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 200px;
+height: 30px;
+margin:10px auto;
+color: #555;
+background:fff;
+padding: 20px 16px;
+border:solid 1px #ccc;
+font-weight: bold;
+border-radius: 21px;
+cursor: pointer;
+}
+
+.open_btn:hover{
+background:#f29c9f;
+border:solid 1px #f29c9f;
+color:#fff;
+
+}
+
+/* 画像選択の設定 */
+/* ラジオボタンの○を消す */
+.icon input[type="radio"] {
+/*    display: none;*/
+}
+/* 画像の周りに隙間をあける */
+.icon label img {
+    margin: 3px;
+    padding: 5px;
+}
+/* 未選択の場合、色を薄くする */
+.icon input[type="radio"] + label img {
+    opacity:0.2;
+  }
+/* 選択済みの場合、色を濃くする */
+.icon input[type="radio"]:checked + label img {
+    opacity:1;
+}
+
+/* 未選択の場合、色を薄くする */
+.icon input[type="radio"] + label img {
+    opacity:0.2;
+  }
+/* 選択済みの場合、色を濃くする */
+.icon input[type="radio"]:checked + label img {
+    opacity:1;
+}
+
 /*ボタンの設定*/
 .btn {
 	display: block;

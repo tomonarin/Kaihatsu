@@ -9,6 +9,34 @@
 	<h1>アカウント情報の編集</h1>
 	<form action=/editAccount method="POST">
 		<table border="1">
+		<div class="popup_images">
+			<input id="trigger" type="checkbox">
+			<div class=”popup_overlay”>
+				<label for="trigger" class="popup_trigger"></label>
+				<div class="popup_content">
+					<label for="trigger" class="close_btn">×</label>
+					<div>
+						<div class="icon">
+							<input id="image_1" type="radio"
+								value="css/images/icon_human.png" name="photo">
+								<label for="image_1">
+								<img src="css/images/icon_woman1.jpg" with="40" height="40">
+							</label> <input id="image_2" type="radio"
+								value="css/images/icon_man1.png" name="photo">
+								<label for="image_2">
+								<img src="css/images/icon_man1.jpg" with="40" height="40">
+							</label> <input id="image_3" type="radio"
+								value="css/images/icon_woman1.png" name="photo">
+								<label for="image_3">
+								<img src="css/images/icon_woman2.jpg" with="40" height="40">
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<label for=”trigger” class=”open_btn”>プロフィール画像を選択</label><br>
+
 			<tr>
 				<th>名前</th>
 				<td><input type="text" name="name" th:value="${name}"></td>
