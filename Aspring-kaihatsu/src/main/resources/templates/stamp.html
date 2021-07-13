@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>ログインスタンプ</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="css/images/logo.png;">
+		<span th:replace="header"></span>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/login" method="post">
+		<input type="text" name="account_name" placeholder="アカウント名"><br>
+		<input type="password" name="password" placeholder="パスワード"><br>
+		<input type="submit" value="ログイン" class="btn"><br> <br>
+
+	</form>
+
+	<a href="/signup">アカウントの新規作成はこちらから</a>
+
+
+</body>
+</html>

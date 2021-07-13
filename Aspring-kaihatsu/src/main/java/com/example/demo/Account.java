@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,9 @@ public class Account {
 	private String accountName;//アカウント名
 	private String email;//メールアドレス
 	private String password;//パスワード
+	private String photo;//プロフィール画像
+	private Integer login;//ログインスタンプの個数
+	private  LocalDateTime date;//最終ログイン日
 
 	//コンストラクタ
 	public Account() {
@@ -77,6 +82,31 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public Integer getLogin() {
+		return login;
+	}
+
+	public void setLogin(Integer login) {
+		this.login = login;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
 
 
 }
