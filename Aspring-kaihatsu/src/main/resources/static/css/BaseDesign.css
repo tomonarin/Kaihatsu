@@ -228,6 +228,11 @@ select:focus {
 	border-bottom: 4px solid darkorange;
 }
 
+.btn:active {
+  transform: translateY(2px);
+  border-bottom: none;
+}
+
 /*リンクの表示設定*/
 a {
 	color: gray;
