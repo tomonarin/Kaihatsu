@@ -192,8 +192,7 @@ public class AccountController {
 			@RequestParam("password") String password,
 			@RequestParam("photo") String photo,
 			ModelAndView mv) {
-		//システム完成したら消します
-//		String photo ="css/images/icon_woman1.png";
+
 		Account a = (Account)session.getAttribute("accountInfo");
 		int login = a.getLogin();
 		LocalDate date = a.getDate();
