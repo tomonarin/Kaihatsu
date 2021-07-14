@@ -62,6 +62,8 @@ public class ReviewController {
 		}
 		mv.addObject("names", accountNames);
 
+		mv.addObject("title", "全件レビュー");
+
 		mv.setViewName("list");
 		return mv;
 	}
@@ -98,6 +100,8 @@ public class ReviewController {
 			accountNames.add(aName);
 		}
 		mv.addObject("names", accountNames);
+
+		mv.addObject("title", "映画レビュー");
 
 		mv.setViewName("list");
 
@@ -136,6 +140,8 @@ public class ReviewController {
 		}
 		mv.addObject("names", accountNames);
 
+		mv.addObject("title", "書籍レビュー");
+
 		mv.setViewName("list");
 		return mv;
 	}
@@ -173,6 +179,33 @@ public class ReviewController {
 
 		//recordエンティティをreviewテーブルに登録
 		reviewR.saveAndFlush(record);
+
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		List<String> accountNames = new ArrayList<String>();
+
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre gRecord = genreRecord.get();
+			String gName = gRecord.getName();
+			genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
+
+		//アカウント名が格納されたリスト生成
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			int aCode = accounts.getCode();
+			Optional<Account> accountRecord = accountR.findById(aCode);
+			Account aRecord = accountRecord.get();
+			String aName = aRecord.getAccountName();
+			accountNames.add(aName);
+		}
+		mv.addObject("names", accountNames);
 
 		mv.addObject("message", "レビューの投稿が完了しました。");
 

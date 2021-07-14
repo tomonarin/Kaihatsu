@@ -58,6 +58,7 @@
 			<th>ジャンル</th>
 			<th>作品名</th>
 			<th>作者/監督</th>
+			<th>評価</th>
 			<th>感想</th>
 			<th>投稿日時</th>
 			<th>更新</th>
@@ -68,6 +69,11 @@
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
+			<td><span th:if="${review.star eq 1}">★</span>
+				<span th:if="${review.star eq 2}">★★</span>
+				<span th:if="${review.star eq 3}">★★★</span>
+				<span th:if="${review.star eq 4}">★★★★</span>
+				<span th:if="${review.star eq 5}">★★★★★</span></td>
 			<td th:text="${review.review}"></td>
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 			<td><form action="/review/update" method="get"><input type="submit" value="更新">

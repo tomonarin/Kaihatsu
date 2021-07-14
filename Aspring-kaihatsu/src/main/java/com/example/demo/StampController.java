@@ -30,7 +30,7 @@ public class StampController {
 	@RequestMapping(value="/stamp")
 	public ModelAndView stamp(ModelAndView mv) {
 		Account a = (Account)session.getAttribute("accountInfo");
-		int stamp = a.getLogin();
+		Integer stamp = a.getLogin();
 		mv.addObject("stamp", stamp);
 		mv.setViewName("stamp");
 

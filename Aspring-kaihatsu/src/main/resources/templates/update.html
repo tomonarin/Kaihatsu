@@ -36,17 +36,17 @@
 			</select>
 		</div>
 		<div>
-			評価 <select name="star" th:selected="${review.star}">
-				<option value="1">★</option>
-				<option value="2">★★</option>
-				<option value="3">★★★</option>
-				<option value="4">★★★★</option>
-				<option value="5">★★★★★</option>
+			評価 <select name="star">
+				<option value="1" th:selected="${review.star == 1}">★</option>
+				<option value="2" th:selected="${review.star == 2}">★★</option>
+				<option value="3" th:selected="${review.star == 3}">★★★</option>
+				<option value="4" th:selected="${review.star == 4}">★★★★</option>
+				<option value="5" th:selected="${review.star == 5}">★★★★★</option>
 			</select>
 		</div>
 		<textarea name="review" th:field="${review.review}"></textarea>
 
-		ネタバレあり<input type="checkbox" name="withspoil" value="1" th:checked="${1} == ${acheck}"><br>
+		ネタバレあり<input type="checkbox" name="withspoil" value="1" th:checked="${withspoil == 1}"><br>
 
 		<input type="submit" value="更新する" class="btn">
 		<input type="hidden" name="code" th:value="${review.code}">

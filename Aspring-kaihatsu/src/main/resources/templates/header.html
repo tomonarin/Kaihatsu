@@ -1,7 +1,8 @@
 
  <nav class="nav">
  		<a class="menu" href="/top">マイページ</a>
- 		<a class="menu" href="/stamp">ログインスタンプ</a><br>
+ 		<a class="menu" href="/stamp">ログインスタンプ</a>
+ 		<span th:text="'（'+${session.accountInfo.name}+' さんがログイン中）'"></span><br>
         <a class="menu" href="/search">レビュー検索</a>
         <a class="menu" href="/newreview">新規レビュー投稿</a>
         <a class="menu" href="/review">全てのレビュー</a>

@@ -19,7 +19,8 @@
 	<a href="javascript:form.submit()">今日のログインスタンプを押す！</a><br><br>
 </form>
 
-	<span th:text="${message}" style="color: red"></span>
+	<span th:text="${message}" style="color: red"></span><br><br>
+
 	<span th:text="${session. accountInfo.name}"></span> さんのスタンプは<br>
 	<h3><span th:text="${stamp}"></span>個！</h3>
 		<p class="stamp" th:each="i:${#numbers.sequence(1,__${stamp}__)}"><img src="css/images/stamp.png"></p>
