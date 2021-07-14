@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -238,6 +239,23 @@ public class AccountController {
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
 		mv.setViewName("top");
+		return mv;
+	}
+
+	/**
+	 * アカウント情報詳細表示
+	 */
+	@RequestMapping("/account/{aCode}")
+	public ModelAndView accountDetail(
+			@PathVariable(name = "aCode") int aCode,
+			ModelAndView mv
+			) {
+		Optional<Account> accountInfo = AccountRepository.findById(aCode);
+		Account a = accountInfo.get();
+
+		mv.addObject("accountInfo", a);
+
+		mv.setViewName("accountDetail");
 		return mv;
 	}
 

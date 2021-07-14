@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>アカウント情報</title>
+
+</head>
+<body>
+	<header>
+		<img alt="" src="css/images/logo.png;">
+		<span th:replace="header"></span>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+	<h3>【<span th:text="${accountInfo.name}"></span> さんのアカウント情報】</h3>
+
+	<img th:src="'/'+${accountInfo.photo}" alt="プロフィール画像" class=profile>
+	<table border="1">
+		<tr>
+		<th>名前</th><td th:text="${accountInfo.name}"></td>
+		</tr>
+
+		<tr>
+		<th>アカウント名</th><td th:text="${accountInfo.accountName}"></td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

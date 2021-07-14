@@ -62,7 +62,7 @@
 					</div>
 				</div>
 			</td>
-			<td th:text="${names.get(__${review.account}__)}"></td>
+			<td><a th:href="'/account/'+${review.account}"><span th:text="${names.get(__${review.account}__)}"></span></a></td>
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
