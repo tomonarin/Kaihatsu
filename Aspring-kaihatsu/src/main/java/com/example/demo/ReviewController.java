@@ -227,6 +227,21 @@ public class ReviewController {
 		int aCode = accountInfo.getCode();
 		List<Review> reviewList = reviewR.findByAccount(aCode);
 		mv.addObject("reviews", reviewList);
+		mv.addObject("accountInfo", accountInfo);
+
+		//ジャンルの名前が格納されたリスト生成
+
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			int gCode = genres.getCode();
+			Optional<Genre> genreRecord = genreR.findById(gCode);
+			Genre gRecord = genreRecord.get();
+			String gName = record.getName();
+			genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
 
 		mv.addObject("message", "レビューの更新が完了しました。");
 
