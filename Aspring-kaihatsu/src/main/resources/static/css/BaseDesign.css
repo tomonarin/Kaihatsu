@@ -25,7 +25,7 @@ header {
 }
 
 /*プロフィール画像の設定*/
-.profile{
+.profile {
 	border-radius: 50%;
 }
 
@@ -39,9 +39,9 @@ table {
 	margin: 0.5em auto;
 }
 
-	table th {
-		background-color: orange;
-	}
+table th {
+	background-color: orange;
+}
 
 /*名前、アカウント名、メールアドレスフォームの設定*/
 input[type="text"] {
@@ -54,11 +54,11 @@ input[type="text"] {
 	margin: 0.5em auto;
 }
 
-	input[type="text"]:focus {
-		outline: none;
-		background-color: lightgoldenrodyellow;
-		box-shadow: 0 0 9px gold;
-	}
+input[type="text"]:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 
 /*パスワード入力フォームの設定*/
 input[type="password"] {
@@ -71,11 +71,11 @@ input[type="password"] {
 	margin: 0.5em auto;
 }
 
-	input[type="password"]:focus {
-		outline: none;
-		background-color: lightgoldenrodyellow;
-		box-shadow: 0 0 9px gold;
-	}
+input[type="password"]:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 
 /*レビュー投稿フォームの設定*/
 textarea {
@@ -89,11 +89,11 @@ textarea {
 	margin: 0.5em auto;
 }
 
-	textarea:focus {
-		outline: none;
-		background-color: lightgoldenrodyellow;
-		box-shadow: 0 0 9px gold;
-	}
+textarea:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 
 /*セレクトボックスの設定*/
 select {
@@ -104,11 +104,11 @@ select {
 	background-color: white;
 }
 
-	select:focus {
-		outline: none;
-		background-color: lightgoldenrodyellow;
-		box-shadow: 0 0 9px gold;
-	}
+select:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 
 /*画像選択ポップアップの設定*/
 .open {
@@ -126,13 +126,13 @@ select {
 	margin: 0.5em auto;
 }
 
-	.open:hover{
-		border: 2px solid darkorange;
-		background-color: orange;
-		color: white;
-		border-radius: 4px;
-		border-bottom: 4px solid darkorange;
-	}
+.open:hover {
+	border: 2px solid darkorange;
+	background-color: orange;
+	color: white;
+	border-radius: 4px;
+	border-bottom: 4px solid darkorange;
+}
 
 #popup {
 	display: none;
@@ -142,15 +142,15 @@ select {
 	display: none;
 }
 
-#popup:checked + .popup_overlay {
+#popup:checked+.popup_overlay {
 	display: inline;
-	text-align:center;
-	margin:auto;
+	text-align: center;
+	margin: auto;
 	z-index: 9999;
-	background-color: #00000070;
+	background-color: gray;
 	position: fixed;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	top: 0;
 	left: 0;
 }
@@ -158,29 +158,25 @@ select {
 .icon {
 	position: relative;
 	align-self: center;
-	margin:auto;
+	margin: auto;
 	width: 90%;
-	max-width: 800px;
-	padding: 30px 40px;
+	padding: 10px 20px;
 	box-sizing: border-box;
-	background: #fff;
-	line-height: 1.4em;
-	transition: 0.5s;
-	text-align: justify;
+	background: white;
 }
 
 .close {
-position: absolute;
-top: 10px;
-right: 10px;
-font-size: 14px;
-cursor: pointer;
-padding:8px;
-background: orange;
-color: white;
-border-radius:15px;
-line-height:14px;
-font-weight:bold;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 14px;
+	cursor: pointer;
+	padding: 8px;
+	background: orange;
+	color: white;
+	border-radius: 15px;
+	line-height: 14px;
+	font-weight: bold;
 }
 
 /* 画像選択の設定 */
@@ -190,22 +186,22 @@ font-weight:bold;
 }
 
 .icon label img {
-    margin: 3px;
-    padding: 5px;
+	margin: 3px;
+	padding: 5px;
 }
 
-.icon input[type="radio"] + label img {
-    opacity:0.2;
-  }
+.icon input[type="radio"]+label img {
+	opacity: 0.2;
+}
 
-.icon input[type="radio"]:checked + label img {
-    opacity:1;
+.icon input[type="radio"]:checked+label img {
+	opacity: 1;
 }
 
 /*ログインスタンプの設定*/
-.stamp img{
-	width:150px;
-	float:left;
+.stamp img {
+	width: 150px;
+	float: left;
 }
 
 /*ボタンの設定*/
@@ -224,31 +220,31 @@ font-weight:bold;
 	margin: 0.5em auto;
 }
 
-	.btn:hover {
-		border: 2px solid darkorange;
-		background-color: orange;
-		color: white;
-		border-radius: 4px;
-		border-bottom: 4px solid darkorange;
-	}
+.btn:hover {
+	border: 2px solid darkorange;
+	background-color: orange;
+	color: white;
+	border-radius: 4px;
+	border-bottom: 4px solid darkorange;
+}
 
 /*リンクの表示設定*/
 a {
 	color: gray;
 }
 
-	a:hover {
-		color: orange;
-	}
+a:hover {
+	color: orange;
+}
 
 /*メニューの設定*/
 .menu {
 	color: navy;
 }
 
-	.menu:hover {
-		color: gray;
-	}
+.menu:hover {
+	color: gray;
+}
 
 /*ネタバレ防止機能の設定*/
 .hidden_box label {
@@ -258,23 +254,23 @@ a {
 	cursor: pointer;
 }
 
-	.hidden_box label:hover {
-		color: orange;
-	}
+.hidden_box label:hover {
+	color: orange;
+}
 
-	.hidden_box input {
-		display: none;
-	}
+.hidden_box input {
+	display: none;
+}
 
-	.hidden_box .hidden_show {
-		height: 0;
-		padding: 0;
-		overflow: hidden;
-		opacity: 0;
-	}
+.hidden_box .hidden_show {
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	opacity: 0;
+}
 
-	.hidden_box input:checked ~ .hidden_show {
-		padding: 10px 0;
-		height: auto;
-		opacity: 1;
-	}
+.hidden_box input:checked ~ .hidden_show {
+	padding: 10px 0;
+	height: auto;
+	opacity: 1;
+}
