@@ -47,7 +47,11 @@
 			<td th:text="${allgenres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
 			<td th:text="${review.director}"></td>
-			<td th:if="${review.spoil eq 0}"><span th:text="${review.review}"></span></td>
+			<td th:if="${review.spoil eq 0}">
+			<span th:text="${review.review}"></span>
+			<br>
+			<a th:href="'review/reply/'+ ${review.code}">コメント</a>
+			</td>
 			<td th:if="${review.spoil eq 1}">
 				<div class="hidden_box">
 					<label th:for="'review'+ ${review.code}">ネタバレの表示/非表示</label>
@@ -55,6 +59,8 @@
 					<div class="hidden_show">
 						<!--非表示ここから-->
 						<span th:text="${review.review}"></span>
+						<br>
+						<a th:href="'review/reply/'+ ${review.code}">コメント</a>
 						<!--ここまで-->
 				</div></div></td>
 			<td th:text="${names.get(__${review.account}__)}"></td>
