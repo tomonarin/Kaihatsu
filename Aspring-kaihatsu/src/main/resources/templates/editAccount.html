@@ -67,15 +67,15 @@
 		<table border="1">
 			<tr>
 				<th>ひとことコメント</th>
-				<td><input type="text" name="comment" th:value="${comment}"  placeholder="プロフィールコメントを設定できます"></td>
+				<td><input type="text" name="comment" th:value="${profile.comment}"  placeholder="プロフィールコメントを設定できます"></td>
 			</tr>
 			<tr>
 				<th>好きなジャンル</th>
-				<td><input type="text" name="favorite" th:value="${favorite}"  placeholder="設定されていません"></td>
+				<td><input type="text" name="favorite" th:value="${profile.favorite}"  placeholder="設定されていません"></td>
 			</tr>
 			<tr>
 				<th>一番好きな作品</th>
-				<td><input type="text" name="mybest" th:value="${mybest}"  placeholder="設定されていません"></td>
+				<td><input type="text" name="mybest" th:value="${profile.mybest}"  placeholder="設定されていません"></td>
 			</tr>
 		</table>
 

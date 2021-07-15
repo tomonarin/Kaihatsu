@@ -143,12 +143,19 @@ public class AccountController {
 				 String gName = record.getName();
 				 genreNames.add(gName);
 			}
+
+			//アカウントプロフィール取得
+
+			//アカウントプロフィールの取得
+			Optional<Profile> p = profileR.findById(aCode);
+			Profile profile = p.get();
+
 			mv.addObject("genres", genreNames);
-
 			mv.addObject("reviews", reviewList);
-
-			mv.addObject("accountInfo",accountInfo);
+			mv.addObject("accountInfo", accountInfo);
+			mv.addObject("profile", profile);
 			mv.setViewName("top");
+
 		} else {
 			mv.addObject("message", "アカウント名とパスワードが一致しません");
 			mv.setViewName("login");
@@ -187,15 +194,8 @@ public class AccountController {
 			//アカウントプロフィールの取得
 			Optional<Profile> p = profileR.findById(code);
 			Profile profile = p.get();
-			String comment = profile.getComment();
-			String favorite = profile.getFavorite();
-			String mybest = profile.getMybest();
 
-
-			//Thymeleafで表示する準備
-			mv.addObject("comment", comment);
-			mv.addObject("favorite", favorite);
-			mv.addObject("mybest", mybest);
+			mv.addObject("profile", profile);
 
 			mv.setViewName("/editAccount");
 			return mv;
@@ -229,6 +229,8 @@ public class AccountController {
 
 		session.setAttribute("accountInfo", account);
 		mv.addObject("accountInfo",account);
+		mv.addObject("profile", p);
+
 		mv.setViewName("top");
 		return mv;
 	}
@@ -259,10 +261,16 @@ public class AccountController {
 			 genreNames.add(gName);
 		}
 
+
+		//アカウントプロフィールの取得
+		Optional<Profile> p = profileR.findById(aCode);
+		Profile profile = p.get();
+
 		//Thymeleafで表示する準備
 		mv.addObject("accountInfo", accountInfo);
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
+		mv.addObject("profile", profile);
 		mv.setViewName("top");
 		return mv;
 	}

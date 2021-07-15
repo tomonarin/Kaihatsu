@@ -43,6 +43,10 @@ table th {
 	background-color: orange;
 }
 
+.th1{
+	background-color: gray;
+}
+
 /*名前、アカウント名、メールアドレスフォームの設定*/
 input[type="text"] {
 	display: block;

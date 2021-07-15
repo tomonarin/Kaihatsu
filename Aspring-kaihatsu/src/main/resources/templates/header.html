@@ -1,10 +1,11 @@
 
  <nav class="nav">
+ <span th:text="'（'+${session.accountInfo.name}+' さんがログイン中）'"></span>
  		<a class="menu" href="/top">マイページ</a>
  		<a class="menu" href="/stamp">ログインスタンプ</a>
- 		<span th:text="'（'+${session.accountInfo.name}+' さんがログイン中）'"></span><br>
+ 		 <a class="menu" href="/newreview">新規レビュー投稿</a><br>
+
         <a class="menu" href="/search">レビュー検索</a>
-        <a class="menu" href="/newreview">新規レビュー投稿</a>
         <a class="menu" href="/review">全てのレビュー</a>
         <a class="menu" href="/review/movie">全ての映画のレビュー</a>
         <a class="menu" href="/review/book">全ての本のレビュー</a>
