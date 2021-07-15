@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>コメント</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="css/images/logo.png;"> <span
+			th:replace="header"></span>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<span th:text="${message}" style="color: red"></span>
+	<br>
+	<table th:if="${comments != null}">
+		<tr>
+			<th>投稿者</th>
+			<th>コメント</th>
+			<th>コメント日時</th>
+		</tr>
+		<tr th:each="comment:${comments}">
+			<td th:text="${account.get(__${comment.accountCode}__)}"></td>
+			<td th:text="${comment.comment}"></td>
+			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+	</table>
+
+	<form action="/review/comment/{reviewCode}" method="post">
+		<textarea name="comment" placeholder="コメントをこちらに書いてください"></textarea>
+		<input type="submit" value="投稿する" class="btn">
+	</form>
+
+</body>
+</html>
