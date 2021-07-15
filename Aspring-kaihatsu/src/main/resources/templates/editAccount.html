@@ -9,6 +9,8 @@
 	<h1>アカウント情報の編集</h1>
 	<form action=/editAccount method="POST">
 
+	<h2>アカウント情報</h2>
+
 	<label for="popup" class="open">プロフィール画像を選択</label>
 		<input id="popup" type="checkbox">
 		<div class="popup_overlay">
@@ -57,9 +59,26 @@
 			</tr>
 			<tr>
 				<th>パスワード</th>
-				<td><input type="text" name="password" th:value="${password}"></td>
+				<td><input type="password" name="password" th:value="${password}"></td>
 			</tr>
 		</table>
+
+		<h2>プロフィール編集</h2>
+		<table border="1">
+			<tr>
+				<th>ひとことコメント</th>
+				<td><input type="text" name="comment" th:value="${comment}"  placeholder="プロフィールコメントを設定できます"></td>
+			</tr>
+			<tr>
+				<th>好きなジャンル</th>
+				<td><input type="text" name="favorite" th:value="${favorite}"  placeholder="設定されていません"></td>
+			</tr>
+			<tr>
+				<th>一番好きな作品</th>
+				<td><input type="text" name="mybest" th:value="${mybest}"  placeholder="設定されていません"></td>
+			</tr>
+		</table>
+
 		<br> <input type="hidden" name="code" th:value="${code}">
 		<input type="submit" value="更新" class=btn>
 	</form>

@@ -31,6 +31,9 @@ public class AccountController {
 	@Autowired
 	ReviewRepository reviewR;
 
+	@Autowired
+	ProfileRepository profileR;
+
 	/**
 	 * ログイン画面を表示
 	 */
@@ -78,6 +81,11 @@ public class AccountController {
 
 		//AccountエンティティをAccountテーブルに登録
 		AccountRepository.saveAndFlush(account);
+
+		//Profileテーブルに新しいデータ列を登録
+		int aCode = account.getCode();
+		Profile p = new Profile(aCode, "", "", "");
+		profileR.saveAndFlush(p);
 
 		mv.addObject("result", "登録が完了しました。");
 
@@ -165,7 +173,6 @@ public class AccountController {
 
 			if (record.isEmpty() == false) {//レコードがあれば
 				account = record.get(); //レコードを取得する
-
 			}
 
 			//Thymeleafで表示する準備
@@ -176,6 +183,19 @@ public class AccountController {
 			mv.addObject("password", account.getPassword());
 			mv.addObject("photo", account.getPhoto());
 
+
+			//アカウントプロフィールの取得
+			Optional<Profile> p = profileR.findById(code);
+			Profile profile = p.get();
+			String comment = profile.getComment();
+			String favorite = profile.getFavorite();
+			String mybest = profile.getMybest();
+
+
+			//Thymeleafで表示する準備
+			mv.addObject("comment", comment);
+			mv.addObject("favorite", favorite);
+			mv.addObject("mybest", mybest);
 
 			mv.setViewName("/editAccount");
 			return mv;
@@ -192,15 +212,20 @@ public class AccountController {
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			@RequestParam("photo") String photo,
+			@RequestParam("comment") String comment,
+			@RequestParam("favorite") String favorite,
+			@RequestParam("mybest") String mybest,
 			ModelAndView mv) {
 
 		Account a = (Account)session.getAttribute("accountInfo");
 		int login = a.getLogin();
 		LocalDate date = a.getDate();
 
-
 		Account account = new Account(code, name,accountName, email, password,photo,login,date);
 		AccountRepository.saveAndFlush(account);
+
+		Profile p = new Profile(code, comment, favorite, mybest);
+		profileR.saveAndFlush(p);
 
 		session.setAttribute("accountInfo", account);
 		mv.addObject("accountInfo",account);
@@ -243,7 +268,7 @@ public class AccountController {
 	}
 
 	/**
-	 * アカウント情報詳細表示
+	 * レビュー投稿者アカウント情報の詳細表示
 	 */
 	@RequestMapping("/account/{aCode}")
 	public ModelAndView accountDetail(
@@ -253,7 +278,11 @@ public class AccountController {
 		Optional<Account> accountInfo = AccountRepository.findById(aCode);
 		Account a = accountInfo.get();
 
+		Optional<Profile> profile = profileR.findById(aCode);
+		Profile p = profile.get();
+
 		mv.addObject("accountInfo", a);
+		mv.addObject("profile", p);
 
 		mv.setViewName("accountDetail");
 		return mv;

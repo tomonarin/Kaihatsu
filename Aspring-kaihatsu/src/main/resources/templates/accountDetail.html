@@ -28,7 +28,18 @@
 		<tr>
 		<th>アカウント名</th><td th:text="${accountInfo.accountName}"></td>
 		</tr>
+		<tr>
+		<th>ひとこと</th><td th:text="${profile.comment}"></td>
+		</tr>
+		<tr>
+		<th>好きなジャンル</th><td th:text="${profile.favorite}"></td>
+		</tr>
+		<tr>
+		<th>一番好きな作品</th><td th:text="${profile.mybest}"></td>
+		</tr>
 	</table>
+
+<a href="/top">マイページに戻る</a>
 
 
 </body>
