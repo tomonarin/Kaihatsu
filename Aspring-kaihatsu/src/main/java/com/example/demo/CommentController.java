@@ -72,7 +72,7 @@ public class CommentController {
 	 * コメントを登録
 	 */
 	@PostMapping(value="/review/comment/{reviewCode}")
-	public ModelAndView registCommnet(
+	public ModelAndView registComment(
 			@RequestParam(name="comment") String comment,
 			@PathVariable(name="reviewCode") int reviewCode,
 			ModelAndView mv) {
@@ -91,13 +91,10 @@ public class CommentController {
 		if (record.isEmpty() == false) {//レコードがあれば
 			review = record.get(); //レコードを取得する
 		}
-
-
 		mv.addObject("reviewCode",reviewCode);
 		mv.addObject("review",review);
 
-		mv.setViewName("comment");
-		return mv;
+		return comment(reviewCode, mv);
 	}
 
 }

@@ -14,26 +14,22 @@
 	<br>
 	<br>
 	<br>
+	<h2>レビューへのコメント</h2>
 
-	<table border="1">
-		<td th:text="${review.review}"></td>
-		<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
-	</table>
+	<div class="reviewbox">
+		<p th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></p>
+		<p th:text="${review.review}"></p>
+	</div>
 
 	<span th:text="${message}" style="color: red"></span>
 	<br>
-	<table th:if="${comments != null}">
-		<tr>
-			<th>投稿者</th>
-			<th>コメント</th>
-			<th>コメント日時</th>
-		</tr>
-		<tr th:each="comment:${comments}">
-			<td th:text="${account.get(__${comment.accountCode}__)}"></td>
-			<td th:text="${comment.comment}"></td>
-			<td th:text="${#temporals.format(comment.date, 'yyyy-MM-dd HH:mm')}"></td>
-		</tr>
-	</table>
+
+	<div th:if="${comments != null}" th:each="comment:${comments}" class="commentbox">
+		<span th:text="${account.get(__${comment.accountCode}__)} +'さん'"></span>
+		<span th:text="${#temporals.format(comment.date, 'yyyy-MM-dd HH:mm')}"></span>
+		<br>
+		<p th:text="${comment.comment}"></p>
+	</div>
 
 	<form th:action="'/review/comment/'+ ${reviewCode}" method="post">
 		<textarea name="comment" placeholder="コメントをこちらに書いてください"></textarea>
