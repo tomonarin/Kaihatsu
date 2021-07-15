@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<link th:href="@{/css/top.css}" rel="stylesheet">
 <title>マイページ</title>
 </head>
 <body>
@@ -27,24 +27,25 @@
 
 	<h3>【<span th:text="${session. accountInfo.name}"></span> さんのアカウント情報】</h3>
 
-	<img th:src="${session.accountInfo.photo}" alt="プロフィール画像" class=profile><br>
+	<div id="wrap">
+	<img th:src="${session.accountInfo.photo}" alt="プロフィール画像" class=profile>
 
-
-	<table border="1">
-		<tr><th class="th1" colspan="2">アカウント情報</th></tr>
-		<tr><th>名前</th><td th:text="${accountInfo.name}"></td></tr>
-		<tr><th>アカウント名</th><td th:text="${accountInfo.accountName}"></td></tr>
-		<tr><th>メールアドレス</th><td th:text="${accountInfo.email}"></td>
-		</tr><tr><th>パスワード</th><td th:text="${accountInfo.password}"></td></tr>
+	<table  class="table1" border="1">
+		<tr><th colspan="2">アカウント情報</th></tr>
+		<tr><th class="th1" >名前</th><td th:text="${accountInfo.name}"></td></tr>
+		<tr><th class="th1" >アカウント名</th><td th:text="${accountInfo.accountName}"></td></tr>
+		<tr><th class="th1" >メールアドレス</th><td th:text="${accountInfo.email}"></td>
 	</table>
 
-	<table border="1">
-		<tr><th class="th1" colspan="2">プロフィール情報</th></tr>
-		<tr><th>ひとこと</th><td th:text="${profile.comment}"></td></tr>
-		<tr><th>好きなジャンル</th><td th:text="${profile.favorite}"></td></tr>
-		<tr><th>一番好きな作品</th><td th:text="${profile.mybest}"></td></tr>
+	<table class="table2" border="1">
+		<tr><th colspan="2">プロフィール情報</th></tr>
+		<tr><th class="th1" >ひとこと</th><td th:text="${profile.comment}"></td></tr>
+		<tr><th class="th1" >好きなジャンル</th><td th:text="${profile.favorite}"></td></tr>
+		<tr><th class="th1" >一番好きな作品</th><td th:text="${profile.mybest}"></td></tr>
 	</table>
-<a href=/editAccount>アカウント情報を編集する</a>
+	</div><br>
+
+	<a href=/editAccount>アカウント情報を編集する</a><br>
 
 
 	<h3>【<span th:text="${session. accountInfo.name}"></span> さんの過去レビュー】</h3>

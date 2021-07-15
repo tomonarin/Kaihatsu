@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/*本文の設定*/
+body {
+	background-color: ivory;
+	color: navy;
+	font-size: 20px;
+	text-align: center;
+}
+/*ヘッダーの設定*/
+header {
+	padding: 1px 10px;
+	background-color: orange;
+	color: navy;
+	text-align: left;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+/*ヘッダーメニューの設定*/
+.nav {
+	color: navy;
+	padding: 1px 20px;
+	text-align: right;
+	font-size: 15px;
+}
+
+/*プロフィール画像の設定*/
+
+#wrap {
+	display:inline-block;
+}
+
+.profile {
+	border-radius: 50%;
+	width: 150px;
+	 left: -50%;
+	 float: left;
+}
+
+.table1{
+	 float: left;
+}
+
+
+
+/*テーブルの設定*/
+table {
+	background-color: white;
+	color: navy;
+	border: 2px solid gray;
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0.5em auto;
+}
+
+table th {
+	background-color: orange;
+}
+.th1{
+	background-color: #dedede;
+}
+
