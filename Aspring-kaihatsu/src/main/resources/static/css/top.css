@@ -28,17 +28,20 @@ header {
 
 #wrap {
 	display:inline-block;
+	margin:10px auto;
 }
 
 .profile {
 	border-radius: 50%;
-	width: 150px;
+	width: 130px;
 	 left: -50%;
 	 float: left;
+	 margin:auto 10px 5px ;
 }
 
 .table1{
 	 float: left;
+	 margin:auto 10px;
 }
 
 
@@ -50,13 +53,13 @@ table {
 	border: 2px solid gray;
 	border-collapse: collapse;
 	text-align: center;
-	margin: 0.5em auto;
+	margin: auto;
 }
 
 table th {
 	background-color: orange;
 }
 .th1{
-	background-color: #dedede;
+	background-color: #eeeeee;
 }
 
