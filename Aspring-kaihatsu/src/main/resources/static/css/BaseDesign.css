@@ -283,3 +283,48 @@ a:hover {
 	height: auto;
 	opacity: 1;
 }
+
+/*コメントページの設定*/
+/*レビュー表示の設定*/
+.reviewbox {
+	display: block;
+	width: 70%;
+	height: 100px;
+	padding: 0.5em;
+	border: 2px solid gray;
+	box-sizing: border-box;
+	background-color: white;
+	margin:auto;
+}
+.reviewbox span{
+	font-size: 15px;
+	float:left;
+}
+.reviewbox p{
+	font-size: 20px;
+	text-align: left;
+	word-wrap: break-word;
+}
+/*コメント表示の設定*/
+.commentbox {
+	display: block;
+	width: 60%;
+	/* height: 100px; */
+	padding: 0.5em;
+	border: 2px solid gray;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	background-color: white;
+	margin:auto;
+	margin-top: 5px;
+}
+.commentbox span{
+	font-size: 10px;
+	float:left;
+}
+
+.commentbox p{
+	font-size: 15px;
+	text-align: left;
+	word-wrap: break-word;
+}
