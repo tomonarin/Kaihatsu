@@ -29,6 +29,9 @@ public class ReviewController {
 	@Autowired
 	AccountRepository accountR;
 
+	@Autowired
+	ProfileRepository profileR;
+
 	//全レビュー表示（ログイン時、自分の過去投稿）
 	@GetMapping(value = "/review")
 	public ModelAndView reviews(ModelAndView mv) {
@@ -43,10 +46,7 @@ public class ReviewController {
 		//ジャンルの名前が格納されたリスト生成
 		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre record = genreRecord.get();
-			String gName = record.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
@@ -54,10 +54,7 @@ public class ReviewController {
 		//アカウント名が格納されたリスト生成
 		accountNames.add("");
 		for (Account accounts : accountList) {
-			int aCode = accounts.getCode();
-			Optional<Account> accountRecord = accountR.findById(aCode);
-			Account record = accountRecord.get();
-			String aName = record.getAccountName();
+			String aName = accounts.getAccountName();
 			accountNames.add(aName);
 		}
 		mv.addObject("names", accountNames);
@@ -82,10 +79,7 @@ public class ReviewController {
 		//ジャンルの名前が格納されたリスト生成
 		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre record = genreRecord.get();
-			String gName = record.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
@@ -93,10 +87,7 @@ public class ReviewController {
 		//アカウント名が格納されたリスト生成
 		accountNames.add("");
 		for (Account accounts : accountList) {
-			int aCode = accounts.getCode();
-			Optional<Account> accountRecord = accountR.findById(aCode);
-			Account record = accountRecord.get();
-			String aName = record.getAccountName();
+			String aName = accounts.getAccountName();
 			accountNames.add(aName);
 		}
 		mv.addObject("names", accountNames);
@@ -121,10 +112,7 @@ public class ReviewController {
 		//ジャンルの名前が格納されたリスト生成
 		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre record = genreRecord.get();
-			String gName = record.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
@@ -132,10 +120,7 @@ public class ReviewController {
 		//アカウント名が格納されたリスト生成
 		accountNames.add("");
 		for (Account accounts : accountList) {
-			int aCode = accounts.getCode();
-			Optional<Account> accountRecord = accountR.findById(aCode);
-			Account record = accountRecord.get();
-			String aName = record.getAccountName();
+			String aName = accounts.getAccountName();
 			accountNames.add(aName);
 		}
 		mv.addObject("names", accountNames);
@@ -188,10 +173,7 @@ public class ReviewController {
 		//ジャンルの名前が格納されたリスト生成
 		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre gRecord = genreRecord.get();
-			String gName = gRecord.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
 		mv.addObject("genres", genreNames);
@@ -199,12 +181,10 @@ public class ReviewController {
 		//アカウント名が格納されたリスト生成
 		accountNames.add("");
 		for (Account accounts : accountList) {
-			int aCode = accounts.getCode();
-			Optional<Account> accountRecord = accountR.findById(aCode);
-			Account aRecord = accountRecord.get();
-			String aName = aRecord.getAccountName();
+			String aName = accounts.getAccountName();
 			accountNames.add(aName);
 		}
+
 		mv.addObject("names", accountNames);
 
 		mv.addObject("message", "レビューの投稿が完了しました。");
@@ -263,20 +243,23 @@ public class ReviewController {
 		mv.addObject("accountInfo", accountInfo);
 
 		//ジャンルの名前が格納されたリスト生成
-
 		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
 		genreNames.add("");
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre gRecord = genreRecord.get();
-			String gName = record.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
-		mv.addObject("genres", genreNames);
 
+		//アカウントプロフィールの取得
+		Optional<Profile> p = profileR.findById(aCode);
+		Profile profile = p.get();
+
+		mv.addObject("genres", genreNames);
 		mv.addObject("message", "レビューの更新が完了しました。");
+		mv.addObject("profile", profile);
 
 		mv.setViewName("top");
 
@@ -302,13 +285,17 @@ public class ReviewController {
 
 		List<String> genreNames = new ArrayList<String>();
 
+		//アカウントプロフィールの取得
+		Optional<Profile> p = profileR.findById(aCode);
+		Profile profile = p.get();
+
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
 		for (Genre genres : genreList) {
-			int gCode = genres.getCode();
-			Optional<Genre> genreRecord = genreR.findById(gCode);
-			Genre record = genreRecord.get();
-			String gName = record.getName();
+			String gName = genres.getName();
 			genreNames.add(gName);
 		}
+		mv.addObject("profile", profile);
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
 

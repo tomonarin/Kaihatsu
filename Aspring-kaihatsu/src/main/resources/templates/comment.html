@@ -15,6 +15,11 @@
 	<br>
 	<br>
 
+	<table border="1">
+		<td th:text="${review.review}"></td>
+		<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+	</table>
+
 	<span th:text="${message}" style="color: red"></span>
 	<br>
 	<table th:if="${comments != null}">
@@ -26,11 +31,11 @@
 		<tr th:each="comment:${comments}">
 			<td th:text="${account.get(__${comment.accountCode}__)}"></td>
 			<td th:text="${comment.comment}"></td>
-			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+			<td th:text="${#temporals.format(comment.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
 
-	<form action="/review/comment/{reviewCode}" method="post">
+	<form th:action="'/review/comment/'+ ${reviewCode}" method="post">
 		<textarea name="comment" placeholder="コメントをこちらに書いてください"></textarea>
 		<input type="submit" value="投稿する" class="btn">
 	</form>

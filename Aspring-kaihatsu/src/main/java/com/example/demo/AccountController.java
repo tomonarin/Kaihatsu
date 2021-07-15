@@ -136,12 +136,11 @@ public class AccountController {
 			List<String> genreNames = new ArrayList<String>();
 			genreNames.add("");
 
+			//ジャンルの名前が格納されたリスト生成
+			genreNames.add("");
 			for (Genre genres : genreList) {
-				 int gCode = genres.getCode();
-				 Optional<Genre> genreRecord =GenreRepository.findById(gCode);
-				 Genre record = genreRecord.get();
-				 String gName = record.getName();
-				 genreNames.add(gName);
+				String gName = genres.getName();
+				genreNames.add(gName);
 			}
 
 			//アカウントプロフィール取得
@@ -253,12 +252,11 @@ public class AccountController {
 		List<String> genreNames = new ArrayList<String>();
 		genreNames.add("");
 
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
 		for (Genre genres : genreList) {
-			 int gCode = genres.getCode();
-			 Optional<Genre> genreRecord =GenreRepository.findById(gCode);
-			 Genre record = genreRecord.get();
-			 String gName = record.getName();
-			 genreNames.add(gName);
+			String gName = genres.getName();
+			genreNames.add(gName);
 		}
 
 
