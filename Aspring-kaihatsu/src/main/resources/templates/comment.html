@@ -14,13 +14,14 @@
 	<br>
 	<br>
 	<br>
-	<h2>レビューへのコメント</h2>
+	<h2>レビュー</h2>
 
 	<div class="reviewbox">
-		<p th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></p>
+		<span th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></span>
+		<br>
 		<p th:text="${review.review}"></p>
 	</div>
-
+	<h2>このレビューへのコメント</h2>
 	<span th:text="${message}" style="color: red"></span>
 	<br>
 
