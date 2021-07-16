@@ -324,12 +324,11 @@ a:hover {
 
 /*コメントページリンクの設定*/
 .comp{
-	color: gray;
 	text-decoration: none;
 	float: right;
 }
 .comp:hover{
-	color: orange;
+	opacity:0.2;
 }
 
 /*コメント表示の設定*/
