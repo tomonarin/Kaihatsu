@@ -134,7 +134,7 @@ select:focus {
   left: 45%;
   background: #ffff00;
   width: 600px;
-  height: 600px;
+  height: 500px;
   margin-left: -250px;
   margin-top: -250px;
   transform-origin: 50% 45%;

@@ -30,14 +30,16 @@ header {
 	padding-right:10px;
 }
 
+/*背景のもやもや*/
+
 .wave {
   opacity: .4;
   position: absolute;
   top: 40%;
-  left: 45%;
+  left: 50%;
   background: #ffff00;
-  width: 650px;
-  height: 650px;
+  width: 500px;
+  height: 500px;
   margin-left: -250px;
   margin-top: -250px;
   transform-origin: 50% 45%;
