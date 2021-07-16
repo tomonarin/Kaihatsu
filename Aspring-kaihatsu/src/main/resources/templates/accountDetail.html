@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header>
-		<img alt="" src="css/images/logo.png;">
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
 		<span th:replace="header"></span>
 	</header>
 	<br>
@@ -38,6 +38,55 @@
 		<th>一番好きな作品</th><td th:text="${profile.mybest}"></td>
 		</tr>
 	</table>
+
+	<h3>【<span th:text="${accountInfo.name}"></span> さんの過去レビュー】</h3>
+	<table border="1">
+		<tr>
+			<th>作品形態</th>
+			<th>ジャンル</th>
+			<th>作品名</th>
+			<th>作者/監督</th>
+			<th>評価</th>
+			<th>感想</th>
+			<th>投稿日時</th>
+
+		</tr>
+		<tr th:each="review:${reviews}">
+			<td th:text="${review.category}"></td>
+			<td th:text="${genres.get(__${review.genre}__)}"></td>
+			<td th:text="${review.name}"></td>
+			<td th:text="${review.director}"></td>
+			<td><span th:if="${review.star eq 1}">★</span>
+				<span th:if="${review.star eq 2}">★★</span>
+				<span th:if="${review.star eq 3}">★★★</span>
+				<span th:if="${review.star eq 4}">★★★★</span>
+				<span th:if="${review.star eq 5}">★★★★★</span></td>
+			<td th:if="${review.spoil eq 0}">
+			<span th:text="${review.review}"></span>
+			<a th:href="'/review/comment/'+ ${review.code}"class="comp">
+			💭
+			</a>
+			</td>
+
+			<td th:if="${review.spoil eq 1}">
+				<div class="hidden_box">
+					<label th:for="'review'+ ${review.code}">ネタバレの表示/非表示</label>
+					<input type="checkbox" th:id="'review'+ ${review.code}">
+					<div class="hidden_show">
+						<!--非表示ここから-->
+						<span th:text="${review.review}"></span>
+						<a th:href="'/review/comment/'+ ${review.code}"class="comp">
+						💭
+						</a>
+						<!--ここまで-->
+					</div>
+				</div>
+			</td>
+			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
 
 <a href="/top">マイページに戻る</a>
 

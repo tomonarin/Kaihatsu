@@ -289,8 +289,23 @@ public class AccountController {
 		Optional<Profile> profile = profileR.findById(aCode);
 		Profile p = profile.get();
 
+		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			String gName = genres.getName();
+			genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
+
+		//ログインしたアカウントのレビュー情報のみ取得
+		//アカウントコードを取得
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+
 		mv.addObject("accountInfo", a);
 		mv.addObject("profile", p);
+		mv.addObject("reviews",reviewList);
 
 		mv.setViewName("accountDetail");
 		return mv;
