@@ -18,18 +18,22 @@
 	<span th:replace="menu"></span>
 
 	<hr>
-	<h2 class="sort"><span th:text="${title}"></span></h2>
+	<h2 class="sort"><span th:text="${session.title}"></span></h2>
+<script>
+ function f(){
+	 document.sort.submit();
+ }
+</script>
 
-	<form th:action="'/sort/'+${session.category}" method="post" >
-	<div>並べ替え<select name="sort">
+	<form th:action="'/sort/'+${session.category}" method="post" name="sort">
+	<div>並べ替え<select name="sort" onchange="f();">
 				<option value="genre" th:selected="${sort == genre}">ジャンル順</option>
 				<option value="star1" th:selected="${sort == star1}">評価が高い順</option>
 				<option value="star2" th:selected="${sort == star2}">評価が低い順</option>
 				<option value="latest" th:selected="${sort == latest}">最新の投稿順</option>
 				<option value="oldest" th:selected="${sort == oldest}">古い投稿順</option>
 		</select></div>
-		<input type="submit" value="並び変える">
-		</form>
+		</form><br>
 
 	<span th:text="${message}" style="color: red"></span>
 
