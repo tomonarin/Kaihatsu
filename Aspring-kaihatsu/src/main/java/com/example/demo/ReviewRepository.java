@@ -11,6 +11,11 @@ public interface ReviewRepository  extends JpaRepository<Review, Integer>{
 
 	Optional<Review> findById(int code);
 	List<Review> findByCategory(String category);
+	List<Review> findByCategoryOrderByGenre(String category);
+	List<Review> findByCategoryOrderByStar(String category);
+	List<Review> findByCategoryOrderByStarDesc(String category);
+	List<Review> findByCategoryOrderByDate(String category);
+	List<Review> findByCategoryOrderByDateDesc(String category);
 	List<Review> findBySpoil(int spoil);
 	List<Review> findByGenre(int genre);
 	List<Review> findByGenreAndSpoil(int genre,int spoil);

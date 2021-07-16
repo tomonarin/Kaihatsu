@@ -20,15 +20,15 @@
 	<hr>
 	<h2><span th:text="${title}"></span></h2>
 
-	<form th:action="'sort/'+${category}">
+	<form th:action="'/sort/'+${session.category}" method="post">
 	<div>並べ替え<select name="sort">
-				<option value="category">カテゴリー順</option>
-				<option value="genre">ジャンル順</option>
-				<option value="star1">評価が高い順</option>
-				<option value="star2">評価が低い順</option>
-				<option value="recent">最新の投稿順</option>
+				<option value="genre" th:selected="${sort == genre}">ジャンル順</option>
+				<option value="star1" th:selected="${sort == star1}">評価が高い順</option>
+				<option value="star2" th:selected="${sort == star2}">評価が低い順</option>
+				<option value="latest" th:selected="${sort == latest}">最新の投稿順</option>
+				<option value="oldest" th:selected="${sort == oldest}">古い投稿順</option>
 		</select></div>
-		<input type="submit" value="並び変える" class="btn">
+		<input type="submit" value="並び変える">
 		</form>
 
 	<span th:text="${message}" style="color: red"></span>

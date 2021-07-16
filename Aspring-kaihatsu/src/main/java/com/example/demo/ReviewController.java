@@ -59,7 +59,8 @@ public class ReviewController {
 		}
 
 		mv.addObject("names", accountNames);
-		mv.addObject("category", "all");
+		session.setAttribute("category", "all");
+
 		mv.addObject("title", "全件レビュー");
 
 		mv.setViewName("list");
@@ -93,7 +94,8 @@ public class ReviewController {
 		}
 		mv.addObject("names", accountNames);
 
-		mv.addObject("category", "movie");
+		session.setAttribute("category", "movie");
+
 		mv.addObject("title", "映画レビュー");
 
 		mv.setViewName("list");
@@ -126,7 +128,9 @@ public class ReviewController {
 			accountNames.add(aName);
 		}
 		mv.addObject("names", accountNames);
-		mv.addObject("category", "book");
+
+		session.setAttribute("category", "book");
+
 		mv.addObject("title", "書籍レビュー");
 
 		mv.setViewName("list");
