@@ -32,9 +32,9 @@
 
 	<table  class="table1" border="1">
 		<tr><th colspan="2">アカウント情報</th></tr>
-		<tr><th class="th1" >名前</th><td th:text="${accountInfo.name}"></td></tr>
-		<tr><th class="th1" >アカウント名</th><td th:text="${accountInfo.accountName}"></td></tr>
-		<tr><th class="th1" >メールアドレス</th><td th:text="${accountInfo.email}"></td>
+		<tr><th class="th1" >名前</th><td th:text="${session.accountInfo.name}"></td></tr>
+		<tr><th class="th1" >アカウント名</th><td th:text="${session.accountInfo.accountName}"></td></tr>
+		<tr><th class="th1" >メールアドレス</th><td th:text="${session.accountInfo.email}"></td>
 	</table>
 
 	<table class="table2" border="1">
@@ -48,7 +48,7 @@
 	<a href=/editAccount>アカウント情報を編集する</a><br>
 
 
-	<h3>【<span th:text="${session. accountInfo.name}"></span> さんの過去レビュー】</h3>
+	<h3>【<span th:text="${session.accountInfo.name}"></span> さんの過去レビュー】</h3>
 	<table border="1">
 		<tr>
 			<th>作品形態</th>

@@ -164,6 +164,8 @@ public class ReviewController {
 		//アカウント情報の取り出し
 		Account account = (Account) session.getAttribute("accountInfo");
 		int accountCode = account.getCode();
+		List<Review> reviewList = reviewR.findByAccount(accountCode);
+		mv.addObject("reviews", reviewList);
 
 		//登録するreviewエンティティのインスタンスを生成
 		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
@@ -193,9 +195,14 @@ public class ReviewController {
 
 		mv.addObject("names", accountNames);
 
+		Optional<Profile> p = profileR.findById(accountCode);
+		Profile profile = p.get();
+		mv.addObject("profile", profile);
+
 		mv.addObject("message", "レビューの投稿が完了しました。");
 
-		return reviews(mv);
+		mv.setViewName("top");
+		return mv;
 	}
 
 	//レビューの更新
