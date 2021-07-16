@@ -33,14 +33,14 @@ header {
 /*背景のもやもや*/
 
 .wave {
-  opacity: .4;
+  opacity: .3;
   position: absolute;
   top: 40%;
   left: 45%;
   background: #ffff00;
-  width: 600px;
+  width: 500px;
   height: 500px;
-  margin-left: -250px;
+  margin-left: -175px;
   margin-top: -250px;
   transform-origin: 50% 45%;
   border-radius: 43%;
@@ -48,16 +48,10 @@ header {
   z-index: -1;
 }
 
-.wave.-three {
-	background: #beff7d;
-  animation: drift 5000ms infinite linear;
-  z-index: -1;
-}
-
 .wave.-two {
   animation: drift 7000ms infinite linear;
-  opacity: .1;
-  background: #a2ffff;
+  opacity: .3;
+  background: #ffff00;
   z-index: -1;
 }
 

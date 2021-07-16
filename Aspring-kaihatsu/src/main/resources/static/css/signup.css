@@ -128,7 +128,7 @@ select:focus {
 /* 背景のふわふわの設定 */
 
 .wave {
-  opacity: .4;
+  opacity: .3;
   position: absolute;
   top: 40%;
   left: 45%;
@@ -143,16 +143,10 @@ select:focus {
   z-index: -1;
 }
 
-.wave.-three {
-	background: #beff7d;
-  animation: drift 5000ms infinite linear;
-  z-index: -1;
-}
-
 .wave.-two {
   animation: drift 7000ms infinite linear;
-  opacity: .1;
-  background: #a2ffff;
+  opacity: .3;
+  background: #ffff00;
   z-index: -1;
 }
 
@@ -178,6 +172,21 @@ input[type="text"]:focus {
 	box-shadow: 0 0 9px gold;
 }
 
+input[type="email"] {
+	display: block;
+	width: 250px;
+	padding: 0.5em;
+	border: 2px solid gray;
+	box-sizing: border-box;
+	background-color: white;
+	margin: auto;
+}
+
+input[type="email"]:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 /*パスワード入力フォームの設定*/
 input[type="password"] {
 	display: block;
