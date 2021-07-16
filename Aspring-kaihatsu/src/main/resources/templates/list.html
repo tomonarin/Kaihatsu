@@ -18,9 +18,9 @@
 	<span th:replace="menu"></span>
 
 	<hr>
-	<h2><span th:text="${title}"></span></h2>
+	<h2 class="sort"><span th:text="${title}"></span></h2>
 
-	<form th:action="'/sort/'+${session.category}" method="post">
+	<form th:action="'/sort/'+${session.category}" method="post" >
 	<div>並べ替え<select name="sort">
 				<option value="genre" th:selected="${sort == genre}">ジャンル順</option>
 				<option value="star1" th:selected="${sort == star1}">評価が高い順</option>

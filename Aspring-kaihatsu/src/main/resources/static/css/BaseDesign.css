@@ -211,6 +211,15 @@ select:focus {
 	float: left;
 }
 
+/*list.html ソートボタン表示設定*/
+
+.sort{
+	margin: 1px 30px 3px 700px;
+	padding: 5px;
+	float:left;
+	display:inline-block;
+	}
+
 /*ボタンの設定*/
 .btn {
 	display: block;
