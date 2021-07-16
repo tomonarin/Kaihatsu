@@ -320,9 +320,12 @@ a:hover {
 
 /*コメントページリンクの設定*/
 .comp{
-	padding:2px;
-	height:20px;
-	float:right;
+	color: gray;
+	text-decoration: none;
+	float: right;
+}
+.comp:hover{
+	color: orange;
 }
 
 /*コメント表示の設定*/
