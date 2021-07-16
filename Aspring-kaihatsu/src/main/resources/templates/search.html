@@ -24,7 +24,7 @@
 			<option value="0">すべて</option>
 			<option th:each="gen:${session.genre}" th:value="${gen.code}"><span th:text="${gen.name}"></span></option>
 		</select><br>
-		<br> 作品名：<input type="text" name="name" th:value="${name}"><br>
+		<br> 作品名<input type="text" name="name" th:value="${name}"><br>
 		監督名/作者名<input type="text" name="director" th:value="${director}"><br>
 		投稿者<input type="text" name="account" placeholder="ユーザーIDを入力して下さい" th:value="${account}"><br>
 		ネタバレありを含む<input type="checkbox" name="withspoil" value="1" th:checked="${1} == ${acheck}"> <br>

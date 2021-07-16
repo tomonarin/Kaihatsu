@@ -1,24 +1,26 @@
 @charset "UTF-8";
 
+/*本文の設定*/
 body {
 	background-color: ivory;
 	color: navy;
 	font-size: 20px;
 	text-align: center;
+	margin:0;
 }
-
 /*ヘッダーの設定*/
 header {
-	padding: 1px 10px;
 	background-color: orange;
-	color: navy;
-	text-align: left;
+	text-align: right;
 	position: fixed;
 	top: 0;
 	width: 100%;
+	float:right;
 }
-
-
+.logo{
+	float:left;
+	height:75px;
+}
 
 /*セレクトボックスの設定*/
 select {
