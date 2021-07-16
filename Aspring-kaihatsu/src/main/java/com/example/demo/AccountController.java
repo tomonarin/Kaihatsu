@@ -49,7 +49,7 @@ public class AccountController {
 	/**
 	 * 新規登録画面を表示
 	 */
-	@RequestMapping(value="/signup")
+	@RequestMapping(value = "/signup")
 	public ModelAndView signup(ModelAndView mv) {
 		mv.setViewName("signup");
 		return mv;
@@ -58,7 +58,7 @@ public class AccountController {
 	/**
 	 * 新規登録を実行
 	 */
-	@PostMapping(value="/signup")
+	@PostMapping(value = "/signup")
 	public ModelAndView doSignup(
 			@RequestParam("name") String name,
 			@RequestParam("account_name") String account_name,
@@ -73,11 +73,11 @@ public class AccountController {
 			return mv;
 		}
 		//システム完成したら消します
-//		String photo ="css/images/icon_woman1.png";
+		//		String photo ="css/images/icon_woman1.png";
 		Integer login = 1;
 		LocalDate date = LocalDate.now();
 		//登録するAccountエンティティのインスタンスを生成
-		Account account = new Account(name, account_name, email, password,photo,login,date);
+		Account account = new Account(name, account_name, email, password, photo, login, date);
 
 		//AccountエンティティをAccountテーブルに登録
 		AccountRepository.saveAndFlush(account);
@@ -131,12 +131,9 @@ public class AccountController {
 			int aCode = accountInfo.getCode();
 			List<Review> reviewList = reviewR.findByAccount(aCode);
 
-			//ジャンル情報取得、リスト生成してhtmlへ
+			//ジャンルの名前が格納されたリスト生成
 			List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
 			List<String> genreNames = new ArrayList<String>();
-			genreNames.add("");
-
-			//ジャンルの名前が格納されたリスト生成
 			genreNames.add("");
 			for (Genre genres : genreList) {
 				String gName = genres.getName();
@@ -162,43 +159,41 @@ public class AccountController {
 		return mv;
 	}
 
-
 	/**
 	 * アカウント情報更新ページへ
 	 */
 
 	//http://localhost:8080/editAccount
-		@GetMapping("/editAccount")
-		public ModelAndView edit(ModelAndView mv) {
-			Account a = (Account)session.getAttribute("accountInfo");
-			int code = a.getCode();
+	@GetMapping("/editAccount")
+	public ModelAndView edit(ModelAndView mv) {
+		Account a = (Account) session.getAttribute("accountInfo");
+		int code = a.getCode();
 
-			Account account = null;
-			//Userテーブルから指定のレコードを取得
-			Optional<Account> record = AccountRepository.findById(code);
+		Account account = null;
+		//Userテーブルから指定のレコードを取得
+		Optional<Account> record = AccountRepository.findById(code);
 
-			if (record.isEmpty() == false) {//レコードがあれば
-				account = record.get(); //レコードを取得する
-			}
-
-			//Thymeleafで表示する準備
-			mv.addObject("code", code);
-			mv.addObject("name", account.getName());
-			mv.addObject("accountName", account.getAccountName());
-			mv.addObject("email", account.getEmail());
-			mv.addObject("password", account.getPassword());
-			mv.addObject("photo", account.getPhoto());
-
-
-			//アカウントプロフィールの取得
-			Optional<Profile> p = profileR.findById(code);
-			Profile profile = p.get();
-
-			mv.addObject("profile", profile);
-
-			mv.setViewName("/editAccount");
-			return mv;
+		if (record.isEmpty() == false) {//レコードがあれば
+			account = record.get(); //レコードを取得する
 		}
+
+		//Thymeleafで表示する準備
+		mv.addObject("code", code);
+		mv.addObject("name", account.getName());
+		mv.addObject("accountName", account.getAccountName());
+		mv.addObject("email", account.getEmail());
+		mv.addObject("password", account.getPassword());
+		mv.addObject("photo", account.getPhoto());
+
+		//アカウントプロフィールの取得
+		Optional<Profile> p = profileR.findById(code);
+		Profile profile = p.get();
+
+		mv.addObject("profile", profile);
+
+		mv.setViewName("/editAccount");
+		return mv;
+	}
 
 	/**
 	 * アカウント情報更新を実行
@@ -216,18 +211,28 @@ public class AccountController {
 			@RequestParam("mybest") String mybest,
 			ModelAndView mv) {
 
-		Account a = (Account)session.getAttribute("accountInfo");
+		Account a = (Account) session.getAttribute("accountInfo");
 		int login = a.getLogin();
 		LocalDate date = a.getDate();
 
-		Account account = new Account(code, name,accountName, email, password,photo,login,date);
+		Account account = new Account(code, name, accountName, email, password, photo, login, date);
 		AccountRepository.saveAndFlush(account);
 
 		Profile p = new Profile(code, comment, favorite, mybest);
 		profileR.saveAndFlush(p);
 
+		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			String gName = genres.getName();
+			genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
+
 		session.setAttribute("accountInfo", account);
-		mv.addObject("accountInfo",account);
+		mv.addObject("accountInfo", account);
 		mv.addObject("profile", p);
 
 		mv.setViewName("top");
@@ -240,7 +245,7 @@ public class AccountController {
 	//http://localhost:8080/top
 	@GetMapping("/top")
 	public ModelAndView top(ModelAndView mv) {
-		Account accountInfo = (Account)session.getAttribute("accountInfo");
+		Account accountInfo = (Account) session.getAttribute("accountInfo");
 
 		//ログインしたアカウントのレビュー情報のみ取得
 		//アカウントコードを取得
@@ -250,7 +255,6 @@ public class AccountController {
 		//ジャンル情報取得、リスト生成してhtmlへ
 		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
-		genreNames.add("");
 
 		//ジャンルの名前が格納されたリスト生成
 		genreNames.add("");
@@ -258,7 +262,6 @@ public class AccountController {
 			String gName = genres.getName();
 			genreNames.add(gName);
 		}
-
 
 		//アカウントプロフィールの取得
 		Optional<Profile> p = profileR.findById(aCode);
@@ -279,8 +282,7 @@ public class AccountController {
 	@RequestMapping("/account/{aCode}")
 	public ModelAndView accountDetail(
 			@PathVariable(name = "aCode") int aCode,
-			ModelAndView mv
-			) {
+			ModelAndView mv) {
 		Optional<Account> accountInfo = AccountRepository.findById(aCode);
 		Account a = accountInfo.get();
 
@@ -293,7 +295,6 @@ public class AccountController {
 		mv.setViewName("accountDetail");
 		return mv;
 	}
-
 
 	/**
 	 * ログアウトを実行

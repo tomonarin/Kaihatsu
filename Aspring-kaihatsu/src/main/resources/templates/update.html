@@ -31,7 +31,7 @@
 
 		<div>
 			作品ジャンル <select name="genre">
-				<option th:each="gen:${session.genre}" th:value="${gen.code}">
+				<option th:each="gen:${session.genre}" th:value="${gen.code}"　th:selected="${session.genre == gen.name}">
 				<span th:text="${gen.name}"></span></option>
 			</select>
 		</div>

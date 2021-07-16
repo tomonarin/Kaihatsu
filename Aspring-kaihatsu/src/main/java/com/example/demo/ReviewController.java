@@ -252,8 +252,6 @@ public class ReviewController {
 		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
 		List<String> genreNames = new ArrayList<String>();
 		genreNames.add("");
-		//ジャンルの名前が格納されたリスト生成
-		genreNames.add("");
 		for (Genre genres : genreList) {
 			String gName = genres.getName();
 			genreNames.add(gName);
