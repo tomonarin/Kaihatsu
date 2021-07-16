@@ -308,6 +308,14 @@ a:hover {
 	text-align: left;
 	word-wrap: break-word;
 }
+
+/*コメントページリンクの設定*/
+.comp{
+	padding:2px;
+	height:20px;
+	float:right;
+}
+
 /*コメント表示の設定*/
 .commentbox {
 	display: block;

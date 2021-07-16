@@ -58,7 +58,10 @@
 			<td th:if="${review.spoil eq 0}">
 			<span th:text="${review.review}"></span>
 			<br>
-			<a th:href="'/review/comment/'+ ${review.code}">コメント</a></td>
+			<a th:href="'/review/comment/'+ ${review.code}">
+				<img alt="" src="/css/images/comment.png;" class="comp">
+			</a>
+			</td>
 
 			<td th:if="${review.spoil eq 1}">
 				<div class="hidden_box">
@@ -68,7 +71,9 @@
 						<!--非表示ここから-->
 						<span th:text="${review.review}"></span>
 						<br>
-						<a th:href="'/review/comment/'+ ${review.code}">コメント</a>
+						<a th:href="'/review/comment/'+ ${review.code}">
+						<img alt="" src="/css/images/comment.png;" class="comp">
+						</a>
 						<!--ここまで-->
 					</div>
 				</div>
