@@ -17,8 +17,8 @@
 	<h2>レビュー</h2>
 
 	<div class="reviewbox">
+		<span th:text="${account.get(__${review.account}__)} +'さん'"></span>
 		<span th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></span>
-		<br>
 		<p th:text="${review.review}"></p>
 	</div>
 	<h2>このレビューへのコメント</h2>
@@ -27,7 +27,6 @@
 	<div th:if="${comments != null}" th:each="comment:${comments}" class="commentbox">
 		<span th:text="${account.get(__${comment.accountCode}__)} +'さん'"></span>
 		<span th:text="${#temporals.format(comment.date, 'yyyy-MM-dd HH:mm')}"></span>
-		<br>
 		<p th:text="${comment.comment}"></p>
 	</div>
 
