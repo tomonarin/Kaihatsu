@@ -5,25 +5,29 @@ body {
 	color: navy;
 	font-size: 20px;
 	text-align: center;
+	margin:0;
 }
 /*ヘッダーの設定*/
 header {
-	padding: 1px 10px;
 	background-color: orange;
-	color: navy;
-	text-align: left;
+	text-align: right;
 	position: fixed;
 	top: 0;
 	width: 100%;
+	float:right;
 }
-/*ヘッダーメニューの設定*/
-.nav {
-	color: navy;
-	padding: 1px 20px;
-	text-align: right;
-	font-size: 15px;
+.logo{
+	float:left;
+	height:75px;
 }
 
+/*ヘッダーメニューの設定*/
+.nav {
+	text-align: right;
+	font-size: 15px;
+	padding-top:40px;
+	padding-right:10px;
+}
 /*プロフィール画像の設定*/
 .profile {
 	border-radius: 50%;
@@ -32,7 +36,6 @@ header {
 /*テーブルの設定*/
 table {
 	background-color: white;
-	color: navy;
 	border: 2px solid gray;
 	border-collapse: collapse;
 	text-align: center;

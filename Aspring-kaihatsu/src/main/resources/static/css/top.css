@@ -5,23 +5,37 @@ body {
 	color: navy;
 	font-size: 20px;
 	text-align: center;
+	margin:0;
 }
 /*ヘッダーの設定*/
 header {
-	padding: 1px 10px;
 	background-color: orange;
-	color: navy;
-	text-align: left;
+	text-align: right;
 	position: fixed;
 	top: 0;
 	width: 100%;
+	float:right;
 }
+.logo{
+	float:left;
+	height:75px;
+}
+
 /*ヘッダーメニューの設定*/
 .nav {
-	color: navy;
-	padding: 1px 20px;
 	text-align: right;
 	font-size: 15px;
+	padding-top:40px;
+	padding-right:10px;
+}
+
+/*メニューの設定*/
+.menu {
+	color: navy;
+}
+
+.menu:hover {
+	color: gray;
 }
 
 /*プロフィール画像の設定*/
@@ -32,11 +46,13 @@ header {
 }
 
 .profile {
+	background-color:white;
+	border: 2px solid gray;
 	border-radius: 50%;
 	width: 130px;
-	 left: -50%;
-	 float: left;
-	 margin:auto 10px 5px ;
+	left: -50%;
+	float: left;
+	margin:auto 10px 5px ;
 }
 
 .table1{
