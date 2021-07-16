@@ -18,6 +18,7 @@
 
 	<div class="reviewbox">
 		<span th:text="${account.get(__${review.account}__)} +'さん'"></span>
+		<span> </span>
 		<span th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></span>
 		<p th:text="${review.review}"></p>
 	</div>
