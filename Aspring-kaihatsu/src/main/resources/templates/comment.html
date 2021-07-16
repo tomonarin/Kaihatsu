@@ -23,7 +23,6 @@
 	</div>
 	<h2>このレビューへのコメント</h2>
 	<span th:text="${message}" style="color: red"></span>
-	<br>
 
 	<div th:if="${comments != null}" th:each="comment:${comments}" class="commentbox">
 		<span th:text="${account.get(__${comment.accountCode}__)} +'さん'"></span>
