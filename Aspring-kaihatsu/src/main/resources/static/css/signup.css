@@ -125,14 +125,16 @@ select:focus {
 	opacity: 1;
 }
 
+/* 背景のふわふわの設定 */
+
 .wave {
   opacity: .4;
   position: absolute;
   top: 40%;
   left: 45%;
   background: #ffff00;
-  width: 650px;
-  height: 650px;
+  width: 600px;
+  height: 600px;
   margin-left: -250px;
   margin-top: -250px;
   transform-origin: 50% 45%;

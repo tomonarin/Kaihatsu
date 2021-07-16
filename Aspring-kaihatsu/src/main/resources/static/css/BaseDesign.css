@@ -206,6 +206,10 @@ select:focus {
 }
 
 /*ログインスタンプの設定*/
+.stamp{
+		display:inline-block;
+}
+
 .stamp img {
 	width: 150px;
 	float: left;

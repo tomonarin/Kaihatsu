@@ -15,7 +15,10 @@
   <div class='wave -three'></div>
 	<br>
 	<br>
-	<br> 登録する情報の入力をお願いします。
+	<br> 登録する情報の入力をお願いします。<br>
+
+	<span th:text="${message}" style="color: red"></span><br>
+
 	<form action="/signup" method="post">
 		<label for="popup" class="open">プロフィール画像を選択</label>
 		<input id="popup" type="checkbox">
