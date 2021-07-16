@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CommentController {
-
+///////
 	@Autowired
 	HttpSession session;
 
