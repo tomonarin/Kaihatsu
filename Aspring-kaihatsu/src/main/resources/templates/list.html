@@ -26,7 +26,7 @@
 </script>
 
 	<form th:action="'/sort/'+${session.category}" method="post" name="sort">
-	<div>並べ替え<select name="sort" onchange="f();">
+	<div >並べ替え<select name="sort" onchange="f();">
 				<option value="genre" th:selected="${sort == genre}">ジャンル順</option>
 				<option value="star1" th:selected="${sort == star1}">評価が高い順</option>
 				<option value="star2" th:selected="${sort == star2}">評価が低い順</option>
@@ -36,6 +36,10 @@
 		</form><br>
 
 	<span th:text="${message}" style="color: red"></span>
+	<div th:if="${reviews.size == 0}">
+	該当するレビューはありません
+	</div>
+	<div th:if="${reviews.size != 0}">
 	作品名をクリックするとGoogle検索ができます。
 	<table border="1">
 		<tr>
@@ -85,6 +89,7 @@
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
+	</div>
 
 	<hr>
 

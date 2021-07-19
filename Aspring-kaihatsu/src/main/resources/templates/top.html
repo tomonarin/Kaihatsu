@@ -49,11 +49,11 @@
 
 
 	<h3>【<span th:text="${session.accountInfo.name}"></span> さんの過去レビュー】</h3>
-	<div th:if="${review == null}">
+	<div th:if="${reviews.size == 0}">
 	過去レビューはありません
 	</div>
 
-	<div th:if="${reviews != null}">
+	<div th:if="${reviews.size != 0}">
 	<table border="1">
 		<tr>
 			<th>作品形態</th>
