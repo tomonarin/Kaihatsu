@@ -6,6 +6,7 @@ body {
 	font-size: 20px;
 	text-align: center;
 	margin:0;
+	word-break: keep-all;
 }
 /*ヘッダーの設定*/
 header {
@@ -48,6 +49,9 @@ table th {
 
 .th1{
 	background-color: gray;
+}
+.reviews{
+	width: 1200px;
 }
 
 /*名前、アカウント名、メールアドレスフォームの設定*/

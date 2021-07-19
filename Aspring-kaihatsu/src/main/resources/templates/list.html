@@ -41,7 +41,7 @@
 	</div>
 	<div th:if="${reviews.size != 0}">
 	作品名をクリックするとGoogle検索ができます。
-	<table border="1">
+	<table border="1" class=reviews>
 		<tr>
 			<th>作品形態</th>
 			<th>ジャンル</th>
@@ -65,7 +65,7 @@
 			<td th:if="${review.star eq 5}">★★★★★</td>
 
 			<td th:if="${review.spoil eq 0}">
-			<span th:text="${review.review}"></span>
+			<span th:text="${review.review}" class=review></span>
 			<a th:href="'/review/comment/'+ ${review.code}"class="comp">
 			💭
 			</a>
