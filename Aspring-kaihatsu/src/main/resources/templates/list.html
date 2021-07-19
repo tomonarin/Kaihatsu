@@ -26,12 +26,12 @@
 </script>
 
 	<form th:action="'/sort/'+${session.category}" method="post" name="sort">
-	<div >並べ替え<select name="sort" onchange="f();">
-				<option value="genre" th:selected="${sort == genre}">ジャンル順</option>
-				<option value="star1" th:selected="${sort == star1}">評価が高い順</option>
-				<option value="star2" th:selected="${sort == star2}">評価が低い順</option>
-				<option value="latest" th:selected="${sort == latest}">最新の投稿順</option>
-				<option value="oldest" th:selected="${sort == oldest}">古い投稿順</option>
+	<div>並べ替え<select name="sort" onchange="f();">
+				<option value="genre" th:selected="${sort.equals('genre')}">ジャンル順</option>
+				<option value="star1" th:selected="${sort.equals('star1')}">評価が高い順</option>
+				<option value="star2" th:selected="${sort.equals('star2')}">評価が低い順</option>
+				<option value="latest" th:selected="${sort.equals('latest')}">最新の投稿順</option>
+				<option value="oldest" th:selected="${sort.equals('oldest')}">古い投稿順</option>
 		</select></div>
 		</form><br>
 

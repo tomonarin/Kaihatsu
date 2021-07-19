@@ -251,7 +251,7 @@ public class AccountController {
 			mv.addObject("rank", "rank3");
 		}
 
-		mv.addObject("accountInfo", account);
+		session.setAttribute("accountInfo", account);
 		mv.addObject("profile", p);
 
 		int aCode = a.getCode();
