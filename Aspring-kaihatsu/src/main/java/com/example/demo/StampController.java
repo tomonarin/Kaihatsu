@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpSession;
@@ -26,11 +25,13 @@ public class StampController {
 	@Autowired
 	ReviewRepository reviewR;
 
-
-	@RequestMapping(value="/stamp")
+	@RequestMapping(value = "/stamp")
 	public ModelAndView stamp(ModelAndView mv) {
-		Account a = (Account)session.getAttribute("accountInfo");
+		Account a = (Account) session.getAttribute("accountInfo");
 		Integer stamp = a.getLogin();
+
+		mv.addObject("tf", false);
+
 		mv.addObject("stamp", stamp);
 		mv.setViewName("stamp");
 
@@ -38,42 +39,40 @@ public class StampController {
 
 	}
 
-
-
-	@PostMapping(value="/stamp")
+	@PostMapping(value = "/stamp")
 	public ModelAndView stamp2(ModelAndView mv) {
-		Account a = (Account)session.getAttribute("accountInfo");
+		Account a = (Account) session.getAttribute("accountInfo");
 		int stamp = a.getLogin();
 		LocalDate lastlogin = a.getDate();
 		LocalDate today = LocalDate.now();
 
 		boolean tf = today.isAfter(lastlogin);
 
-		if(tf == true){
-		//スタンプを押す
-		stamp = stamp + 1;
-		a.setLogin(stamp);
-		a.setDate(today);
 
-		//登録するAccountエンティティのインスタンスを生成
-		AccountR.saveAndFlush(a);
+		if (tf == true) {
+			//スタンプを押す
+			stamp = stamp + 1;
+			a.setLogin(stamp);
+			a.setDate(today);
 
-		//sessionに格納
-		session.setAttribute("accountInfo", a);
+			//登録するAccountエンティティのインスタンスを生成
+			AccountR.saveAndFlush(a);
 
-		//+1したスタンプ数をhtmlに送る
-		mv.addObject("stamp", stamp);
+			//sessionに格納
+			session.setAttribute("accountInfo", a);
 
-		mv.setViewName("stamp");
-		return mv;
+			//+1したスタンプ数をhtmlに送る
+			mv.addObject("stamp", stamp);
+			mv.addObject("tf", tf);
 
-		}else{
+			mv.setViewName("stamp");
+			return mv;
 
-		mv.addObject("message", "本日分のスタンプはもう押してあります！");
-		return stamp(mv);
+		} else {
+
+			mv.addObject("message", "本日分のスタンプはもう押してあります！");
+			return stamp(mv);
 		}
 
-
-
 	}
-	}
+}

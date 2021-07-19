@@ -73,9 +73,9 @@ public class AccountController {
 			return mv;
 		}
 		//システム完成したら消します
-		//		String photo ="css/images/icon_woman1.png";
-		Integer login = 1;
-		LocalDate date = LocalDate.now();
+		Integer login = 0;
+		LocalDate today = LocalDate.now();
+		LocalDate date = today.minusDays(1);
 		//登録するAccountエンティティのインスタンスを生成
 		Account account = new Account(name, account_name, email, password, photo, login, date);
 

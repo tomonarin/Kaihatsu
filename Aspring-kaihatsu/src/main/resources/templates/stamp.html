@@ -7,28 +7,80 @@
 </head>
 <body>
 	<header>
-		<img alt="" src="/css/images/siteLogo.png;" class="logo">
-		<span th:replace="header"></span>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo"> <span
+			th:replace="header"></span>
 	</header>
 	<br>
 	<br>
 	<br>
+
+	<!-- <label for="popup" class="open">プロフィール画像を選択</label>
+		<input id="popup" type="checkbox">
+		<div class="popup_overlay">
+			<div class="icon">
+			<label for=	"popup" class="close">×</label>
+				<p>sutann</p>
+				<input id="image_1" type="radio" value="css/images/icon_human.png" name="photo" checked>
+				<label for="image_1">
+				 -->
+
+
 	<br>
 	<br>
-	<form action="/stamp"id="form" method="post">
-	<a href="javascript:form.submit()">今日のログインスタンプを押す！</a><br><br>
+	<form action="/stamp" id="form" method="post" name="form">
+		<a href="#" onclick="submit();">今日のログインスタンプを押す！</a><br> <br>
 	</form>
 
-	<span th:text="${message}" style="color: red"></span><br><br>
+	<span th:text="${message}" style="color: red"></span>
+	<br>
+	<br>
 
-	<span th:text="${session. accountInfo.name}"></span> さんのスタンプは<br>
+	<div th:if="${stamp eq 0}">
+		<span th:text="${session. accountInfo.name}"></span> さんのスタンプはまだありません
+	</div>
 
-	<h3><span th:text="${stamp}"></span>個！</h3>
+	<div th:if="${stamp ne 0}">
+		<span th:text="${session. accountInfo.name}"></span> さんのスタンプは<br>
 
-	<p class="stamp" th:each="i:${#numbers.sequence(1,__${stamp}__)}"><img src="css/images/stamp.png"></p>
+		<h3>
+			<span th:text="${stamp}"></span>個！
+		</h3>
+
+		<p class="stamp" th:each="i:${#numbers.sequence(1,__${stamp}__)}">
+			<img src="css/images/stamp.png">
+		</p>
+	</div>
 
 
 
+	<script th:inline="javascript">
+
+	/*<![CDATA[*/
+	var data = /*[[${tf}]]*/;
+
+	var count = /*[[${stamp}]]*/;
+
+	/*]]>*/
+	function f() {
+		if (data == true) {
+			setTimeout(function(){
+				if(count == 10){
+					alert("おめでとうございます！スタンプが10個溜まったので、シルバーランクに昇格しました！");
+				}else if(count == 20){
+					alert("おめでとうございます！スタンプが20個溜まったので、ゴールドランクに昇格しました！");
+				}else{
+					alert("ログインありがとうございます！本日文のスタンプが追加されました！");
+				}
+				}, 100);
+		}
+	}
+
+	window.onload=f;
+
+		function submit() {
+				document.form.submit();
+			}
+	</script>
 
 </body>
 </html>
