@@ -46,7 +46,7 @@
 		</div>
 		<textarea name="review" th:field="${review.review}"></textarea>
 
-		ネタバレあり<input type="checkbox" name="withspoil" value="1" th:checked="${withspoil == 1}"><br>
+		ネタバレあり<input type="checkbox" name="withspoil" value="1" th:checked="${review.spoil == 1}"><br>
 
 		<input type="submit" value="更新する" class="btn">
 		<input type="hidden" name="code" th:value="${review.code}">

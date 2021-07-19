@@ -164,8 +164,6 @@ public class ReviewController {
 		//アカウント情報の取り出し
 		Account account = (Account) session.getAttribute("accountInfo");
 		int accountCode = account.getCode();
-		List<Review> reviewList = reviewR.findByAccount(accountCode);
-		mv.addObject("reviews", reviewList);
 
 		//登録するreviewエンティティのインスタンスを生成
 		Review record = new Review(category, genre, name, director, star, spoil, review, accountCode);
@@ -205,6 +203,10 @@ public class ReviewController {
 		} else {
 			mv.addObject("rank", "rank3");
 		}
+
+		//ログイン者のレビュー一覧
+		List<Review> reviewList = reviewR.findByAccount(accountCode);
+		mv.addObject("reviews", reviewList);
 
 		Optional<Profile> p = profileR.findById(accountCode);
 		Profile profile = p.get();
@@ -264,7 +266,6 @@ public class ReviewController {
 		int aCode = accountInfo.getCode();
 		List<Review> reviewList = reviewR.findByAccount(aCode);
 		mv.addObject("reviews", reviewList);
-		mv.addObject("accountInfo", accountInfo);
 
 		//ジャンルの名前が格納されたリスト生成
 		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
@@ -278,6 +279,16 @@ public class ReviewController {
 		//アカウントプロフィールの取得
 		Optional<Profile> p = profileR.findById(aCode);
 		Profile profile = p.get();
+
+		//スタンプ数によってクラス分け
+		int stamp = account.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
 
 		mv.addObject("genres", genreNames);
 		mv.addObject("message", "レビューの更新が完了しました。");
