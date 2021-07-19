@@ -40,7 +40,8 @@
 	</table>
 
 	<h3>【<span th:text="${accountInfo.name}"></span> さんの過去レビュー】</h3>
-	<table border="1">
+	作品名をクリックするとGoogle検索ができます。
+	<table border="1" class=reviews>
 		<tr>
 			<th>作品形態</th>
 			<th>ジャンル</th>
@@ -54,7 +55,8 @@
 		<tr th:each="review:${reviews}">
 			<td th:text="${review.category}"></td>
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
-			<td th:text="${review.name}"></td>
+			<td> <a th:href="${'https://www.google.co.jp/search?q='+ review.name +'+ '+ review.director}"
+					target="_blank" rel="noopener"th:text="${review.name}"></a></td>
 			<td th:text="${review.director}"></td>
 			<td><span th:if="${review.star eq 1}">★</span>
 				<span th:if="${review.star eq 2}">★★</span>
@@ -88,7 +90,7 @@
 	<br>
 	<br>
 
-	<a th:href="${session.ref}">レビュー一覧に戻る</a><br><br>
+	<a th:href="${session.ref}">全てのレビュー</a><br><br>
 
 
 </body>
