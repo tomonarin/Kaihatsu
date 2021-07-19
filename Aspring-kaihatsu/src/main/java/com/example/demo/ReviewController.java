@@ -195,6 +195,17 @@ public class ReviewController {
 
 		mv.addObject("names", accountNames);
 
+
+		//スタンプ数によってクラス分け
+		int stamp = account.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
+
 		Optional<Profile> p = profileR.findById(accountCode);
 		Profile profile = p.get();
 		mv.addObject("profile", profile);
