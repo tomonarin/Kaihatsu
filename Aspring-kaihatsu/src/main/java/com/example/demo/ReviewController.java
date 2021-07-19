@@ -63,6 +63,8 @@ public class ReviewController {
 
 		session.setAttribute("title", "全件レビュー");
 
+		session.setAttribute("ref", "/review");
+
 		mv.setViewName("list");
 		return mv;
 	}
@@ -98,6 +100,9 @@ public class ReviewController {
 
 		session.setAttribute("title", "映画レビュー");
 
+		session.setAttribute("ref", "/review/movie");
+
+
 		mv.setViewName("list");
 
 		return mv;
@@ -132,6 +137,9 @@ public class ReviewController {
 		session.setAttribute("category", "book");
 
 		session.setAttribute("title", "書籍レビュー");
+
+		session.setAttribute("ref", "/review/book");
+
 
 		mv.setViewName("list");
 		return mv;

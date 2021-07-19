@@ -19,7 +19,7 @@
 
 	<h3>【<span th:text="${accountInfo.name}"></span> さんのアカウント情報】</h3>
 
-	<img th:src="'/'+${accountInfo.photo}" alt="プロフィール画像" class=profile>
+	<img th:src="${accountInfo.photo}" alt="プロフィール画像" class=profile>
 	<table border="1">
 		<tr>
 		<th>名前</th><td th:text="${accountInfo.name}"></td>
@@ -88,7 +88,7 @@
 	<br>
 	<br>
 
-<a href="/top">マイページに戻る</a>
+	<a th:href="${session.ref}">レビュー一覧に戻る</a><br><br>
 
 
 </body>
