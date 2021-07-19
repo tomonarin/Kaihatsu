@@ -201,6 +201,11 @@ public class AccountController {
 
 		mv.addObject("profile", profile);
 
+		int aCode = a.getCode();
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+
+		mv.addObject("reviews", reviewList);
+
 		mv.setViewName("/editAccount");
 		return mv;
 	}
