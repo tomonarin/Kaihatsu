@@ -50,7 +50,9 @@
 			<td th:if="${review.spoil eq 0}">
 			<span th:text="${review.review}"></span>
 			<br>
-			<a th:href="'review/reply/'+ ${review.code}">コメント</a>
+			<a th:href="'/review/comment/'+ ${review.code}"class="comp">
+			💭
+			</a>
 			</td>
 			<td th:if="${review.spoil eq 1}">
 				<div class="hidden_box">
@@ -59,8 +61,9 @@
 					<div class="hidden_show">
 						<!--非表示ここから-->
 						<span th:text="${review.review}"></span>
-						<br>
-						<a th:href="'review/reply/'+ ${review.code}">コメント</a>
+						<a th:href="'/review/comment/'+ ${review.code}"class="comp">
+						💭
+						</a>
 						<!--ここまで-->
 				</div></div></td>
 			<td th:text="${names.get(__${review.account}__)}"></td>
