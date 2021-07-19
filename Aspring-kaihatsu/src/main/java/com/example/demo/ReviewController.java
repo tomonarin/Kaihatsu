@@ -102,7 +102,6 @@ public class ReviewController {
 
 		session.setAttribute("ref", "/review/movie");
 
-
 		mv.setViewName("list");
 
 		return mv;
@@ -139,7 +138,6 @@ public class ReviewController {
 		session.setAttribute("title", "書籍レビュー");
 
 		session.setAttribute("ref", "/review/book");
-
 
 		mv.setViewName("list");
 		return mv;
@@ -200,7 +198,6 @@ public class ReviewController {
 		}
 
 		mv.addObject("names", accountNames);
-
 
 		//スタンプ数によってクラス分け
 		int stamp = account.getLogin();
@@ -336,6 +333,16 @@ public class ReviewController {
 			String gName = genres.getName();
 			genreNames.add(gName);
 		}
+		//スタンプ数によってクラス分け
+		int stamp = accountInfo.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
+
 		mv.addObject("profile", profile);
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
