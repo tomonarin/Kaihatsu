@@ -201,11 +201,6 @@ public class AccountController {
 
 		mv.addObject("profile", profile);
 
-		int aCode = a.getCode();
-		List<Review> reviewList = reviewR.findByAccount(aCode);
-
-		mv.addObject("reviews", reviewList);
-
 		mv.setViewName("/editAccount");
 		return mv;
 	}
@@ -259,6 +254,11 @@ public class AccountController {
 		session.setAttribute("accountInfo", account);
 		mv.addObject("accountInfo", account);
 		mv.addObject("profile", p);
+
+		int aCode = a.getCode();
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+
+		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("top");
 		return mv;
