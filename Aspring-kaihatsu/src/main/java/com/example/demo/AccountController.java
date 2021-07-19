@@ -126,6 +126,16 @@ public class AccountController {
 			session.setAttribute("accountInfo", accountInfo);
 			session.setAttribute("genre", GenreRepository.findAll());
 
+			//スタンプ数によってクラス分け
+			int stamp = accountInfo.getLogin();
+			if (stamp < 10) {
+				mv.addObject("rank", "rank1");
+			} else if (stamp < 20 && stamp >= 10) {
+				mv.addObject("rank", "rank2");
+			} else {
+				mv.addObject("rank", "rank3");
+			}
+
 			//ログインしたアカウントのレビュー情報のみ取得
 			//アカウントコードを取得
 			int aCode = accountInfo.getCode();
@@ -231,6 +241,16 @@ public class AccountController {
 		}
 		mv.addObject("genres", genreNames);
 
+		//スタンプ数によってクラス分け
+		int stamp = a.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
+
 		session.setAttribute("accountInfo", account);
 		mv.addObject("accountInfo", account);
 		mv.addObject("profile", p);
@@ -263,6 +283,15 @@ public class AccountController {
 			genreNames.add(gName);
 		}
 
+		//スタンプ数によってクラス分け
+		int stamp = accountInfo.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
 		//アカウントプロフィールの取得
 		Optional<Profile> p = profileR.findById(aCode);
 		Profile profile = p.get();
@@ -305,7 +334,7 @@ public class AccountController {
 
 		mv.addObject("accountInfo", a);
 		mv.addObject("profile", p);
-		mv.addObject("reviews",reviewList);
+		mv.addObject("reviews", reviewList);
 
 		mv.setViewName("accountDetail");
 		return mv;
