@@ -61,7 +61,7 @@ public class ReviewController {
 		mv.addObject("names", accountNames);
 		session.setAttribute("category", "all");
 
-		session.setAttribute("title", "全件レビュー");
+		session.setAttribute("title", "全てのレビュー");
 
 		session.setAttribute("ref", "/review");
 
