@@ -49,6 +49,11 @@
 
 
 	<h3>【<span th:text="${session.accountInfo.name}"></span> さんの過去レビュー】</h3>
+	<div th:if="${review == null}">
+	過去レビューはありません
+	</div>
+
+	<div th:if="${reviews != null}">
 	<table border="1">
 		<tr>
 			<th>作品形態</th>
@@ -79,6 +84,7 @@
 				<input type="hidden" name="code" th:value="${review.code}"></form></td>
 		</tr>
 	</table>
+	</div>
 	<br>
 	<br>
 
