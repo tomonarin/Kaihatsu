@@ -36,7 +36,7 @@
 		</form><br>
 
 	<span th:text="${message}" style="color: red"></span>
-
+	作品名をクリックするとGoogle検索ができます。
 	<table border="1">
 		<tr>
 			<th>作品形態</th>
@@ -51,7 +51,8 @@
 		<tr th:each="review:${reviews}">
 			<td th:text="${review.category}"></td>
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
-			<td th:text="${review.name}"></td>
+			<td> <a th:href="${'https://www.google.co.jp/search?q='+ review.name +'+ '+ review.director}"
+					target="_blank" rel="noopener"th:text="${review.name}"></a></td>
 			<td th:text="${review.director}"></td>
 			<td th:if="${review.star eq 1}">★</td>
 			<td th:if="${review.star eq 2}">★★</td>
