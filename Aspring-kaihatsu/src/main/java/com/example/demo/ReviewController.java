@@ -358,11 +358,15 @@ public class ReviewController {
 	//投稿の一括削除
 	@PostMapping("/deleteall")
 	public ModelAndView deleteAll(
-		@RequestParam("delete") int code,
+		@RequestParam(name="code", required=false) int[] codes,
 		ModelAndView mv) {
-		//レビューを削除
-		reviewR.deleteById(code);
-
+		if(codes != null) {
+			//レビューを削除
+			for(int code:codes) {
+				System.out.println(code);
+				reviewR.deleteById(code);
+			}
+		}
 		//ログインしたアカウントのレビュー情報のみ取得
 		//アカウントコードを取得
 		Account accountInfo = (Account) session.getAttribute("accountInfo");
