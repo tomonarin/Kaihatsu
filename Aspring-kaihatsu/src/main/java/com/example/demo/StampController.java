@@ -61,6 +61,16 @@ public class StampController {
 			//sessionに格納
 			session.setAttribute("accountInfo", a);
 
+			if(stamp == 10) {
+				mv.addObject("stamptxt", "おめでとうございます！");
+				mv.addObject("stamptxt2", "プラチナランクに昇格しました！");
+			}else if(stamp == 20) {
+				mv.addObject("stamptxt", "おめでとうございます！");
+				mv.addObject("stamptxt2", "ゴールドランクに昇格しました！");
+			}else {
+				mv.addObject("stamptxt", "本日分のスタンプが押されました！");
+			}
+
 			//+1したスタンプ数をhtmlに送る
 			mv.addObject("stamp", stamp);
 			mv.addObject("tf", tf);

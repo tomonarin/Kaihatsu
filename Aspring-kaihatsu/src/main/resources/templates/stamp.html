@@ -18,7 +18,18 @@
 	<br>
 	<br>
 	<form action="/stamp" id="form" method="post" name="form">
-		<a href="#" onclick="submit();">今日のログインスタンプを押す！</a><br> <br>
+		<label for="trigger" onclick="submit()" class="btn">今日のログインスタンプを押す！</label>
+		<div class="popup_wrap">
+			<input id="trigger" type="checkbox" th:checked="${tf}">
+			<div class="popup_overlay">
+				<label for="trigger" class="popup_trigger"></label>
+				<div class="popup_content">
+					<label for="trigger" class="close_btn">×</label>
+					<p><span th:text="${stamptxt}"></span><br>
+						<span th:text="${stamptxt2}"></span></p>
+				</div>
+			</div>
+		</div>
 	</form>
 
 	<span th:text="${message}" style="color: red"></span>
@@ -41,36 +52,11 @@
 		</p>
 	</div>
 
-
-
 	<script th:inline="javascript">
-
-
-	/*<![CDATA[*/
-	var data = /*[[${tf}]]*/;
-
-	var count = /*[[${stamp}]]*/;
-
-	/*]]>*/
-	function f() {
-		if (data == true) {
-			setTimeout(function(){
-				if(count == 10){
-					alert("おめでとうございます！\nスタンプが10個溜まったので、シルバーランクに昇格しました！");
-				}else if(count == 20){
-					alert("おめでとうございます！\nスタンプが20個溜まったので、ゴールドランクに昇格しました！");
-				}else{
-					alert("ログインありがとうございます！\n本日分のスタンプが追加されました！");
-				}
-				}, 100);
-		}
-	}
-
-	window.onload=f;
-
 		function submit() {
 				document.form.submit();
 			}
+
 	</script>
 
 </body>
