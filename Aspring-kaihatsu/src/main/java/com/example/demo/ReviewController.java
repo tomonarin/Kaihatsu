@@ -355,5 +355,50 @@ public class ReviewController {
 		mv.setViewName("mypage");
 		return mv;
 	}
+	//投稿の一括削除
+	@PostMapping("/deleteall")
+	public ModelAndView deleteAll(
+		@RequestParam("delete") int code,
+		ModelAndView mv) {
+		//レビューを削除
+		reviewR.deleteById(code);
 
+		//ログインしたアカウントのレビュー情報のみ取得
+		//アカウントコードを取得
+		Account accountInfo = (Account) session.getAttribute("accountInfo");
+		int aCode = accountInfo.getCode();
+
+		List<Review> reviewList = reviewR.findByAccount(aCode);
+
+		List<Genre> genreList = genreR.findAll();
+
+		List<String> genreNames = new ArrayList<String>();
+
+		//アカウントプロフィールの取得
+		Optional<Profile> p = profileR.findById(aCode);
+		Profile profile = p.get();
+
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			String gName = genres.getName();
+			genreNames.add(gName);
+		}
+		//スタンプ数によってクラス分け
+		int stamp = accountInfo.getLogin();
+		if (stamp < 10) {
+			mv.addObject("rank", "rank1");
+		} else if (stamp < 20 && stamp >= 10) {
+			mv.addObject("rank", "rank2");
+		} else {
+			mv.addObject("rank", "rank3");
+		}
+
+		mv.addObject("profile", profile);
+		mv.addObject("genres", genreNames);
+		mv.addObject("reviews", reviewList);
+
+		mv.setViewName("mypage");
+		return mv;
+		}
 }

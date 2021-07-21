@@ -55,8 +55,10 @@
 	</div>
 
 	<div th:if="${reviews.size != 0}">
+	<input type="submit" value="まとめて削除">
+
 	<table border="1" class=reviews>
-		<tr>
+		<tr><th></th>
 			<th>作品形態</th>
 			<th>ジャンル</th>
 			<th>作品名</th>
@@ -68,6 +70,9 @@
 			<th>削除</th>
 		</tr>
 		<tr th:each="review:${reviews}">
+			<td><form action="/deleteall" method="post">
+			<input type="checkbox" name="delete" th:value="${review.code}">
+			</form></td>
 			<td th:text="${review.category}"></td>
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
