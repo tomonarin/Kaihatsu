@@ -14,8 +14,8 @@
   <div class='wave -two'></div>
 	<br>
 	<br>
+	<br>
 	<br> 登録する情報の入力をお願いします。<br>
-
 	<span th:text="${message}" style="color: red"></span><br>
 
 	<form action="/signup" method="post">
@@ -56,6 +56,8 @@
 		<input type="email" name="email" placeholder="メールアドレス"><br>
 		<input type="password" name="password" placeholder="パスワード"><br>
 		<input type="submit" value="新規登録" class="btn"> <br>
-	</form>
+	</form><br>
+
+	<a href="/">＜ログイン画面に戻る</a>
 </body>
 </html>

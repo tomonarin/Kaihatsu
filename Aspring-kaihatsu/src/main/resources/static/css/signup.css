@@ -126,7 +126,7 @@ select:focus {
 }
 
 /* 背景のふわふわの設定 */
-
+/*
 .wave {
   opacity: .3;
   position: absolute;
@@ -153,7 +153,7 @@ select:focus {
 @keyframes drift {
   from { transform: rotate(0deg); }
   from { transform: rotate(360deg); }
-}
+} */
 
 /*名前、アカウント名、メールアドレスフォームの設定*/
 input[type="text"] {
