@@ -219,7 +219,7 @@ public class ReviewController {
 
 		mv.addObject("message", "レビューの投稿が完了しました。");
 
-		mv.setViewName("top");
+		mv.setViewName("mypage");
 		return mv;
 	}
 
@@ -299,7 +299,7 @@ public class ReviewController {
 		mv.addObject("message", "レビューの更新が完了しました。");
 		mv.addObject("profile", profile);
 
-		mv.setViewName("top");
+		mv.setViewName("mypage");
 
 		return mv;
 	}
@@ -347,7 +347,7 @@ public class ReviewController {
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
 
-		mv.setViewName("top");
+		mv.setViewName("mypage");
 		return mv;
 	}
 

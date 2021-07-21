@@ -38,8 +38,8 @@ public class AccountController {
 	 * ログイン画面を表示
 	 */
 
-	//http://localhost:8080/
-	@GetMapping("/")
+	//http://localhost:8080/login
+	@GetMapping("/login")
 	public String login() {
 		// セッション情報はクリアする
 		session.invalidate();
@@ -49,6 +49,7 @@ public class AccountController {
 	/**
 	 * 新規登録画面を表示
 	 */
+	//http://localhost:8080/signup
 	@RequestMapping(value = "/signup")
 	public ModelAndView signup(ModelAndView mv) {
 		mv.setViewName("signup");
@@ -160,7 +161,7 @@ public class AccountController {
 			mv.addObject("reviews", reviewList);
 			mv.addObject("accountInfo", accountInfo);
 			mv.addObject("profile", profile);
-			mv.setViewName("top");
+			mv.setViewName("mypage");
 
 		} else {
 			mv.addObject("message", "アカウント名とパスワードが一致しません");
@@ -259,15 +260,15 @@ public class AccountController {
 
 		mv.addObject("reviews", reviewList);
 
-		mv.setViewName("top");
+		mv.setViewName("mypage");
 		return mv;
 	}
 
 	/**
 	 * マイページへ
 	 */
-	//http://localhost:8080/top
-	@GetMapping("/top")
+	//http://localhost:8080/mypage
+	@GetMapping("/mypage")
 	public ModelAndView top(ModelAndView mv) {
 		Account accountInfo = (Account) session.getAttribute("accountInfo");
 
@@ -305,7 +306,7 @@ public class AccountController {
 		mv.addObject("genres", genreNames);
 		mv.addObject("reviews", reviewList);
 		mv.addObject("profile", profile);
-		mv.setViewName("top");
+		mv.setViewName("mypage");
 		return mv;
 	}
 
