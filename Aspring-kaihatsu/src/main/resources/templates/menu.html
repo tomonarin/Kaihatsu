@@ -1,7 +1,15 @@
+<div th:if="${session.accountInfo == null}">
+<a href="/login">ログイン</a>
+</div>
+
 <a href="/review">全レビュー</a>
 <a href="/review/movie">映画のレビュー</a>
 <a href="/review/book">本のレビュー</a>
 <br>
 <a href="/search" style="padding-left:10px;">レビューを検索する</a>
-<br>
+
+<div th:if="${session.accountInfo != null}">
 <a href="/newreview">新規レビュー投稿</a>
+</div>
+
+

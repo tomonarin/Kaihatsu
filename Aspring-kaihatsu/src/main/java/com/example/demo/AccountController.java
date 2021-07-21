@@ -34,6 +34,52 @@ public class AccountController {
 	@Autowired
 	ProfileRepository profileR;
 
+	//http://localhost:8080/
+	@GetMapping("/")
+	public ModelAndView toppage(ModelAndView mv) {
+		// セッション情報はクリアする
+		session.invalidate();
+
+		session.setAttribute("genre", GenreRepository.findAll());
+
+		//データベースから情報取得
+		List<Review> reviewList = reviewR.findAll();
+		mv.addObject("reviews", reviewList);
+		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<Account> accountList = AccountRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+		List<String> accountNames = new ArrayList<String>();
+
+
+		//アカウント名が格納されたリスト生成
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			String aName = accounts.getAccountName();
+			accountNames.add(aName);
+		}
+
+		mv.addObject("names", accountNames);
+
+		//ジャンルの名前が格納されたリスト生成
+		genreNames.add("");
+		for (Genre genres : genreList) {
+			String gName = genres.getName();
+			genreNames.add(gName);
+		}
+		mv.addObject("genres", genreNames);
+
+
+		session.setAttribute("category", "all");
+
+		session.setAttribute("title", "全てのレビュー");
+
+		session.setAttribute("ref", "/review");
+
+		mv.setViewName("toppage");
+		return mv;
+	}
+
+
 	/**
 	 * ログイン画面を表示
 	 */
@@ -41,8 +87,6 @@ public class AccountController {
 	//http://localhost:8080/login
 	@GetMapping("/login")
 	public String login() {
-		// セッション情報はクリアする
-		session.invalidate();
 		return "login";
 	}
 
@@ -350,7 +394,7 @@ public class AccountController {
 	 */
 	@RequestMapping("/logout")
 	public String logout() {
-		// ログイン画面表示処理を実行するだけ
+		// トップページ画面表示処理を実行するだけ
 		return login();
 	}
 

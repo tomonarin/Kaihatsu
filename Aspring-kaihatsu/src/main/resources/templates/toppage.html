@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
-<title>レビュー</title>
+<title>トップページ</title>
 </head>
 <body>
 	<header>
@@ -14,6 +14,9 @@
 	<br>
 	<br>
 	<br>
+
+<h2>こんにちはゲストさん</h2>
+<h3>全ての機能を使うにはログインしてください</h3>
 
 	<span th:replace="menu"></span>
 
@@ -66,9 +69,6 @@
 
 			<td th:if="${review.spoil eq 0}">
 			<span th:text="${review.review}" class=review></span>
-			<a th:href="'/review/comment/'+ ${review.code}"class="comp">
-			💭
-			</a>
 			</td>
 
 			<td th:if="${review.spoil eq 1}">
@@ -78,23 +78,17 @@
 					<div class="hidden_show">
 						<!--非表示ここから-->
 						<span th:text="${review.review}"></span>
-						<a th:href="'/review/comment/'+ ${review.code}"class="comp">
-						💭
-						</a>
 						<!--ここまで-->
 					</div>
 				</div>
 			</td>
-			<td><a th:href="'/account/'+${review.account}"><span th:text="${names.get(__${review.account}__)}"></span></a></td>
+			<td th:text="${names.get(__${review.account}__)}"></td>
 			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
 		</tr>
 	</table>
 	</div>
 
 	<hr>
-
-<a href="/top">マイページに戻る</a>
-
 
 </body>
 </html>

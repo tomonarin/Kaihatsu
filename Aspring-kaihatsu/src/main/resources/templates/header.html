@@ -1,10 +1,17 @@
 
 <nav class="nav">
-<span th:text="'（'+${session.accountInfo.name}+' さんがログイン中）'"></span>
- 		<a class="menu" href="/mypage">マイページ</a>
- 		<a class="menu" href="/stamp">ログインスタンプ</a>
- 		 <a class="menu" href="/newreview">新規レビュー投稿</a>　
- 		   <span th:replace="logout"></span><br>
+
+	<div th:if="${session.accountInfo != null}">
+	 <span th:text="'（'+${session.accountInfo.name}+' さんがログイン中）'"></span>
+	 		<a class="menu" href="/mypage">マイページ</a>
+	 		<a class="menu" href="/stamp">ログインスタンプ</a>
+	 		 <a class="menu" href="/newreview">新規レビュー投稿</a>　
+	 		   <span th:replace="logout"></span>
+	</div>
+
+	<span th:if="${session.accountInfo == null}">
+	<a class="menu" href="/login">ログイン</a>
+	</span>
 
         <a class="menu" href="/search">レビュー検索</a>
         <a class="menu" href="/review">全てのレビュー</a>

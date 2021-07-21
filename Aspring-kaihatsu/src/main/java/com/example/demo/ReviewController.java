@@ -99,10 +99,12 @@ public class ReviewController {
 		session.setAttribute("category", "movie");
 
 		session.setAttribute("title", "映画レビュー");
-
+		if(session.getAttribute("accountInfo") != null) {
+			mv.setViewName("list");
+		}else {
+			mv.setViewName("toppage");
+		}
 		session.setAttribute("ref", "/review/movie");
-
-		mv.setViewName("list");
 
 		return mv;
 	}
@@ -138,8 +140,11 @@ public class ReviewController {
 		session.setAttribute("title", "書籍レビュー");
 
 		session.setAttribute("ref", "/review/book");
-
-		mv.setViewName("list");
+		if(session.getAttribute("accountInfo") != null) {
+			mv.setViewName("list");
+		}else {
+			mv.setViewName("toppage");
+		}
 		return mv;
 	}
 

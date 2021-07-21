@@ -74,7 +74,11 @@ public class SortController {
 
 		mv.addObject("reviews", reviewList);
 		mv.addObject("sort", sort);
-		mv.setViewName("list");
+		if(session.getAttribute("accountInfo") != null) {
+			mv.setViewName("list");
+		}else {
+			mv.setViewName("toppage");
+		}
 		return mv;
 	}
 
@@ -119,7 +123,12 @@ public class SortController {
 
 			mv.addObject("reviews", reviewList);
 			mv.addObject("sort", sort);
-			mv.setViewName("list");
+
+			if(session.getAttribute("accountInfo") != null) {
+				mv.setViewName("list");
+			}else {
+				mv.setViewName("toppage");
+			}
 			return mv;
 		}
 
@@ -164,7 +173,12 @@ public class SortController {
 
 			mv.addObject("reviews", reviewList);
 			mv.addObject("sort", sort);
-			mv.setViewName("list");
+
+			if(session.getAttribute("accountInfo") != null) {
+				mv.setViewName("list");
+			}else {
+				mv.setViewName("toppage");
+			}
 				return mv;
 			}
 
