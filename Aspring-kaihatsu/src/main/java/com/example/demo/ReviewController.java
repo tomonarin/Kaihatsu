@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +27,9 @@ public class ReviewController {
 	ReviewRepository reviewR;
 
 	@Autowired
+	ReviewRepository2 reviewR2;
+
+	@Autowired
 	GenreRepository genreR;
 
 	@Autowired
@@ -34,16 +40,19 @@ public class ReviewController {
 
 	//全レビュー表示（ログイン時、自分の過去投稿）
 	@GetMapping(value = "/review")
-	public ModelAndView reviews(ModelAndView mv) {
+	public ModelAndView reviews(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			ModelAndView mv) {
 		//データベースから情報取得
-		List<Review> reviewList = reviewR.findAll();
-		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<String> genreNames = new ArrayList<String>();
-		List<String> accountNames = new ArrayList<String>();
+		Pageable reviewList = PageRequest.of(page, 10);
+		Page allreviews = reviewR2.findAll(reviewList);
+		mv.addObject("reviews", allreviews);
+		mv.addObject("page", page);
 
 		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+
 		genreNames.add("");
 		for (Genre genres : genreList) {
 			String gName = genres.getName();
@@ -52,17 +61,18 @@ public class ReviewController {
 		mv.addObject("genres", genreNames);
 
 		//アカウント名が格納されたリスト生成
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> accountNames = new ArrayList<String>();
+
 		accountNames.add("");
 		for (Account accounts : accountList) {
 			String aName = accounts.getAccountName();
 			accountNames.add(aName);
 		}
-
 		mv.addObject("names", accountNames);
+
 		session.setAttribute("category", "all");
-
 		session.setAttribute("title", "全てのレビュー");
-
 		session.setAttribute("ref", "/review");
 
 		mv.setViewName("list");
@@ -71,16 +81,19 @@ public class ReviewController {
 
 	//映画のレビュー表示
 	@GetMapping(value = "/review/movie")
-	public ModelAndView movieReviews(ModelAndView mv) {
+	public ModelAndView movieReviews(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			ModelAndView mv) {
 		//データベースから情報取得
-		List<Review> reviewList = reviewR.findByCategory("映画");
-		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<String> genreNames = new ArrayList<String>();
-		List<String> accountNames = new ArrayList<String>();
+		Pageable reviewList = PageRequest.of(page, 10);
+		List<Review> allreviews = reviewR2.findAllByCategory("映画", reviewList);
+		mv.addObject("reviews", allreviews);
+		mv.addObject("page", page);
 
 		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+
 		genreNames.add("");
 		for (Genre genres : genreList) {
 			String gName = genres.getName();
@@ -89,6 +102,9 @@ public class ReviewController {
 		mv.addObject("genres", genreNames);
 
 		//アカウント名が格納されたリスト生成
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> accountNames = new ArrayList<String>();
+
 		accountNames.add("");
 		for (Account accounts : accountList) {
 			String aName = accounts.getAccountName();
@@ -99,9 +115,9 @@ public class ReviewController {
 		session.setAttribute("category", "movie");
 
 		session.setAttribute("title", "映画レビュー");
-		if(session.getAttribute("accountInfo") != null) {
+		if (session.getAttribute("accountInfo") != null) {
 			mv.setViewName("list");
-		}else {
+		} else {
 			mv.setViewName("toppage");
 		}
 		session.setAttribute("ref", "/review/movie");
@@ -111,15 +127,20 @@ public class ReviewController {
 
 	//本のレビュー表示
 	@GetMapping(value = "/review/book")
-	public ModelAndView bookReviews(ModelAndView mv) {
-		List<Review> reviewList = reviewR.findByCategory("書籍");
-		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<String> genreNames = new ArrayList<String>();
-		List<String> accountNames = new ArrayList<String>();
+	public ModelAndView bookReviews(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			ModelAndView mv
+			) {
+		//データベースから情報取得
+		Pageable reviewList = PageRequest.of(page, 10);
+		List<Review> allreviews = reviewR2.findAllByCategory("書籍", reviewList);
+		mv.addObject("reviews", allreviews);
+		mv.addObject("page", page);
 
 		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+
 		genreNames.add("");
 		for (Genre genres : genreList) {
 			String gName = genres.getName();
@@ -128,6 +149,9 @@ public class ReviewController {
 		mv.addObject("genres", genreNames);
 
 		//アカウント名が格納されたリスト生成
+		List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> accountNames = new ArrayList<String>();
+
 		accountNames.add("");
 		for (Account accounts : accountList) {
 			String aName = accounts.getAccountName();
@@ -140,9 +164,9 @@ public class ReviewController {
 		session.setAttribute("title", "書籍レビュー");
 
 		session.setAttribute("ref", "/review/book");
-		if(session.getAttribute("accountInfo") != null) {
+		if (session.getAttribute("accountInfo") != null) {
 			mv.setViewName("list");
-		}else {
+		} else {
 			mv.setViewName("toppage");
 		}
 		return mv;
@@ -355,14 +379,15 @@ public class ReviewController {
 		mv.setViewName("mypage");
 		return mv;
 	}
+
 	//投稿の一括削除
 	@GetMapping("/deleteall")
 	public ModelAndView deleteAll(
-		@RequestParam(name="codes", required=false) int[] codes,
-		ModelAndView mv) {
-		if(codes != null) {
+			@RequestParam(name = "codes", required = false) int[] codes,
+			ModelAndView mv) {
+		if (codes != null) {
 			//レビューを削除
-			for(int code:codes) {
+			for (int code : codes) {
 				System.out.println(code);
 				reviewR.deleteById(code);
 			}
@@ -404,5 +429,5 @@ public class ReviewController {
 
 		mv.setViewName("mypage");
 		return mv;
-		}
+	}
 }

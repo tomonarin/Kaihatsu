@@ -87,6 +87,14 @@
 		</tr>
 	</table>
 	</div>
+	<form th:action="${session.ref}" name="form1" method="get">
+ 	<a href="javascript:form1.submit()" style="float:left">前の10件を表示</a>
+ 	<input type="hidden" name="page" th:value="${page-1}">
+	</form>
+	<form th:action="${session.ref}" name="form2" method="get">
+ 	<a href="javascript:form2.submit()" >次の10件を表示</a>
+ 	<input type="hidden" name="page" th:value="${page+1}">
+	</form>
 
 	<hr>
 

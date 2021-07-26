@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,35 +34,31 @@ public class AccountController {
 	ReviewRepository reviewR;
 
 	@Autowired
+	ReviewRepository2 reviewR2;
+
+	@Autowired
 	ProfileRepository profileR;
 
 	//http://localhost:8080/
 	@GetMapping("/")
-	public ModelAndView toppage(ModelAndView mv) {
+	public ModelAndView toppage(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			ModelAndView mv) {
 		// セッション情報はクリアする
 		session.invalidate();
 
 		session.setAttribute("genre", GenreRepository.findAll());
 
 		//データベースから情報取得
-		List<Review> reviewList = reviewR.findAll();
-		mv.addObject("reviews", reviewList);
-		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<Account> accountList = AccountRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
-		List<String> genreNames = new ArrayList<String>();
-		List<String> accountNames = new ArrayList<String>();
-
-
-		//アカウント名が格納されたリスト生成
-		accountNames.add("");
-		for (Account accounts : accountList) {
-			String aName = accounts.getAccountName();
-			accountNames.add(aName);
-		}
-
-		mv.addObject("names", accountNames);
+		Pageable reviewList = PageRequest.of(page, 10);
+		List<Review> allreviews = reviewR2.findAllByCategory("書籍", reviewList);
+		mv.addObject("reviews", allreviews);
+		mv.addObject("page", page);
 
 		//ジャンルの名前が格納されたリスト生成
+		List<Genre> genreList = GenreRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> genreNames = new ArrayList<String>();
+
 		genreNames.add("");
 		for (Genre genres : genreList) {
 			String gName = genres.getName();
@@ -68,6 +66,16 @@ public class AccountController {
 		}
 		mv.addObject("genres", genreNames);
 
+		//アカウント名が格納されたリスト生成
+		List<Account> accountList = AccountRepository.findAll(Sort.by(Sort.Direction.ASC, "code"));
+		List<String> accountNames = new ArrayList<String>();
+
+		accountNames.add("");
+		for (Account accounts : accountList) {
+			String aName = accounts.getAccountName();
+			accountNames.add(aName);
+		}
+		mv.addObject("names", accountNames);
 
 		session.setAttribute("category", "all");
 
@@ -78,7 +86,6 @@ public class AccountController {
 		mv.setViewName("toppage");
 		return mv;
 	}
-
 
 	/**
 	 * ログイン画面を表示
