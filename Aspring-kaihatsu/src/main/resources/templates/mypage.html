@@ -53,11 +53,22 @@
 	<div th:if="${reviews.size == 0}">
 	過去レビューはありません
 	</div>
+	<script>
+	function f(){
+		var e = document.getElementsByName("delCode");
+		var codes =[];
+		for(var i = 0; i<e.length; i++){
+			if(e[i].checked){
+			codes.push(e[i].value);
+			}
+		}
+		location.href = "/deleteall?codes=" + codes;
+	}
+	</script>
 
 	<div th:if="${reviews.size != 0}">
-	<form action="/deleteall" method="post">
-	<input type="submit" value="まとめて削除">
-	</form>
+	<input type="button" value="まとめて削除" onclick="f();" class="deleteall">
+
 	<table border="1" class=reviews>
 		<tr><th></th>
 			<th>作品形態</th>
@@ -71,7 +82,7 @@
 			<th>削除</th>
 		</tr>
 		<tr th:each="review:${reviews}">
-			<td><input type="checkbox" name="code" th:value="${review.code}"></td>
+			<td><input type="checkbox" name="delCode" th:value="${review.code}"></td>
 			<td th:text="${review.category}"></td>
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>

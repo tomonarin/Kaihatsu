@@ -356,9 +356,9 @@ public class ReviewController {
 		return mv;
 	}
 	//投稿の一括削除
-	@PostMapping("/deleteall")
+	@GetMapping("/deleteall")
 	public ModelAndView deleteAll(
-		@RequestParam(name="code", required=false) int[] codes,
+		@RequestParam(name="codes", required=false) int[] codes,
 		ModelAndView mv) {
 		if(codes != null) {
 			//レビューを削除
