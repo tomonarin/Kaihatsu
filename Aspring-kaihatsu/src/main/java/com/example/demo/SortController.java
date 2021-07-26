@@ -182,5 +182,50 @@ public class SortController {
 				return mv;
 			}
 
+			@PostMapping(value="/sort/kanri")
+			public ModelAndView sortKanri(
+				@RequestParam(name="sort") String sort,
+				ModelAndView mv) {
+
+				List<Review> reviewList = new ArrayList<Review>();
+
+				 if(sort.equals("genre")) {
+					reviewList = reviewR.findAll(Sort.by(Sort.Direction.ASC, "genre"));
+				}else if(sort.equals("star1")){
+					reviewList = reviewR.findAll(Sort.by(Sort.Direction.DESC, "star"));
+				}else if(sort.equals("star2")) {
+					reviewList = reviewR.findAll(Sort.by(Sort.Direction.ASC, "star"));
+				}else if(sort.equals("latest")){
+					reviewList = reviewR.findAll(Sort.by(Sort.Direction.DESC, "date"));
+				}else if(sort.equals("oldest")){
+					reviewList = reviewR.findAll(Sort.by(Sort.Direction.ASC, "date"));
+				}
+				 List<Genre> genreList = genreR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+					List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+					List<String> genreNames = new ArrayList<String>();
+					List<String> accountNames = new ArrayList<String>();
+
+					//ジャンルの名前が格納されたリスト生成
+					genreNames.add("");
+					for (Genre genres : genreList) {
+						String gName = genres.getName();
+						genreNames.add(gName);
+					}
+					mv.addObject("genres", genreNames);
+
+					//アカウント名が格納されたリスト生成
+					accountNames.add("");
+					for (Account accounts : accountList) {
+						String aName = accounts.getAccountName();
+						accountNames.add(aName);
+					}
+					mv.addObject("names", accountNames);
+
+				mv.addObject("reviews", reviewList);
+				mv.addObject("sort", sort);
+				mv.setViewName("kanrireview");
+				return mv;
+			}
+
 
 }

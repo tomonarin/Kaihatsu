@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/top.css}" rel="stylesheet">
+<title>管理者ページトップ</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>管理者ページトップ</h1>
+	<h2><span th:text="${session.systemInfo.name}"></span> さん</h2>
+
+	<span th:replace="systemmenu"></span>
+
+</body>
+</html>

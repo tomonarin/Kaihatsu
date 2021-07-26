@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/top.css}" rel="stylesheet">
+<title>レビュー管理ページ</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>レビュー管理ページ</h1>
+	<span th:replace="systemmenu"></span>
+
+	<hr>
+	<h2 class="sort"><span th:text="${session.title}"></span></h2>
+
+<script>
+ function f(){
+	 document.sort.submit();
+ }
+</script>
+
+	<form th:action="/sort/kanri" method="post" name="sort">
+	<div>並べ替え<select name="sort" onchange="f();">
+				<option value="genre" th:selected="${sort == 'genre'}">ジャンル順</option>
+				<option value="star1" th:selected="${sort == 'star1'}">評価が高い順</option>
+				<option value="star2" th:selected="${sort == 'star2'}">評価が低い順</option>
+				<option value="latest" th:selected="${sort == 'latest'}">最新の投稿順</option>
+				<option value="oldest" th:selected="${sort == 'oldest'}">古い投稿順</option>
+		</select></div>
+		</form><br>
+
+	<span th:text="${message}" style="color: red"></span>
+	<table border="1" class=reviews>
+		<tr>
+			<th>作品形態</th>
+			<th>ジャンル</th>
+			<th>作品名</th>
+			<th>作者/監督</th>
+			<th>評価</th>
+			<th>感想</th>
+			<th>投稿者</th>
+			<th>投稿日時</th>
+		</tr>
+		<tr th:each="review:${reviews}">
+			<td th:text="${review.category}"></td>
+			<td th:text="${genres.get(__${review.genre}__)}"></td>
+			<td th:text="${review.name}"></td>
+			<td th:text="${review.director}"></td>
+			<td th:if="${review.star eq 1}">★</td>
+			<td th:if="${review.star eq 2}">★★</td>
+			<td th:if="${review.star eq 3}">★★★</td>
+			<td th:if="${review.star eq 4}">★★★★</td>
+			<td th:if="${review.star eq 5}">★★★★★</td>
+
+			<td th:text="${review.review}" class=review>
+			<a th:href="'/review/comment/'+ ${review.code}"class="comp">
+			💭
+			</a>
+			</td>
+			<td th:text="${names.get(__${review.account}__)}"></td>
+			<td th:text="${#temporals.format(review.date, 'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+	</table>
+
+	<hr>
+	<a href="/kanripage">管理ページトップ</a>
+
+</body>
+</html>

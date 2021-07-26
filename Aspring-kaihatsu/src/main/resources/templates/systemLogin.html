@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/login.css}" rel=stylesheet>
+<title>管理者ログイン</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+	</header>
+
+	<br>
+	<br>
+	<br>
+	<span th:text="${message}" style="color: red"></span>
+	<br>
+	<form action="/systemLogin" method="post">
+		<input type="text" name="systemId" placeholder="管理者ID"><br>
+		<input type="password" name="password" placeholder="パスワード"><br>
+		<input type="submit" value="ログイン" class="btn"><br> <br>
+
+	</form>
+
+</body>
+</html>
