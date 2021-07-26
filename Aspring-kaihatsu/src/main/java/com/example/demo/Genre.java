@@ -15,15 +15,17 @@ public class Genre {
 private Integer code;
 private String name;
 
-//コンストラクタ
-private Genre() {
+public Genre() {
 }
 
-private Genre(int code, String name) {
+public Genre(int code, String name) {
 this.code = code;
 this.name= name;
 }
 
+public Genre(String name) {
+this.name= name;
+}
 
 //ゲッターセッター
 public Integer getCode() {

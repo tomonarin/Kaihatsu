@@ -132,7 +132,7 @@ public class SystemController {
 		mv.setViewName("kanrireview");
 		return mv;
 	}
-
+	
 	/**
 	 * ログアウトを実行
 	 */

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>ジャンル管理ページ</title>
+</head>
+<body>
+	<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>ジャンル管理ページ</h1>
+	<span th:replace="systemmenu"></span>
+
+	<hr>
+	<h2 class="sort"><span th:text="${session.title}"></span></h2>
+
+<script>
+ function d(){
+		var e = document.getElementsByName("delGenre");
+		var codes =[];
+		for(var i = 0; i<e.length; i++){
+			if(e[i].checked){
+			codes.push(e[i].value);
+			}
+		}
+		location.href = "/genre/delete?codes=" + codes;
+	}
+</script>
+	<br>
+
+	<span th:text="${message}" style="color: red"></span>
+	<br>
+	<br>
+	<form action="/genre/delete" method="get">
+	<input type="button" value="削除" onclick="d();" class="deleteall">
+	<table border="1" class=reviews>
+		<tr><th></th>
+			<th>ジャンル番号</th>
+			<th>ジャンル名</th>
+		</tr>
+		<tr th:each="genre:${genreList}">
+		<td><input type="checkbox" name="delGenre" th:value="${genre.code}"></td>
+			<td th:text="${genre.code}"></td>
+			<td th:text="${genre.name}"></td>
+		</tr>
+	</table>
+	</form>
+	<br>
+
+	新しくジャンルを追加する
+	<form action="/addGenre" method="post">
+	<input type="text" name="name" placeholder="ジャンル名"><br>
+	<input type="submit" value="追加" class="btn"><br>
+	</form>
+	<hr>
+	<a href="/kanritop">管理ページトップ</a>
+
+</body>
+</html>

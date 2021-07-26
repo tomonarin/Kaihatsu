@@ -37,7 +37,7 @@
 </script>
 
 	<form action="/sort/kanri" method="post" name="sort">
-	<div>並べ替え<select name="sort" onchange="d();">
+	<div>並べ替え<select name="sort" onchange="f();">
 				<option value="genre" th:selected="${sort == 'genre'}">ジャンル順</option>
 				<option value="star1" th:selected="${sort == 'star1'}">評価が高い順</option>
 				<option value="star2" th:selected="${sort == 'star2'}">評価が低い順</option>
@@ -47,7 +47,7 @@
 		</form><br>
 
 	<span th:text="${message}" style="color: red"></span>
-	<input type="button" value="まとめて削除" onclick="f();" class="deleteall">
+	<input type="button" value="まとめて削除" onclick="d();" class="deleteall">
 	<table border="1" class=reviews>
 		<tr><th></th>
 			<th>作品形態</th>
