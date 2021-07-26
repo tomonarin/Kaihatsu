@@ -388,7 +388,6 @@ public class ReviewController {
 		if (codes != null) {
 			//レビューを削除
 			for (int code : codes) {
-				System.out.println(code);
 				reviewR.deleteById(code);
 			}
 		}

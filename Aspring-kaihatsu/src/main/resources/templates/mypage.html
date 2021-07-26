@@ -26,7 +26,10 @@
 	<hr>
 
 	<h3>【<span th:text="${session. accountInfo.name}"></span> さんのアカウント情報】</h3>
-	現在の会員ランクは<span th:if="${rank == 'rank1'}">ブロンド</span><span th:if="${rank == 'rank2'}">シルバー</span><span th:if="${rank == 'rank3'}">ゴールド</span>です
+
+	現在の会員ランクは<span th:if="${rank == 'rank1'}">ブロンズ</span><span th:if="${rank == 'rank2'}">シルバー</span>
+	<span th:if="${rank == 'rank3'}">ゴールド</span>です<br>
+	<div th:if="${remind ne null}"><span th:text="${remind}" style="color:red"></span></div>
 	<br>
 	<div id="wrap">
 	<img th:src="${session.accountInfo.photo}" alt="プロフィール画像" th:class="${rank}">

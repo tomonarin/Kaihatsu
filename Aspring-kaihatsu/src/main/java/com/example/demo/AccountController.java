@@ -202,7 +202,15 @@ public class AccountController {
 				genreNames.add(gName);
 			}
 
-			//アカウントプロフィール取得
+			//ログインスタンプリマインド
+			Account a = (Account) session.getAttribute("accountInfo");
+			LocalDate lastlogin = a.getDate();
+			LocalDate today = LocalDate.now();
+			boolean tf = today.isAfter(lastlogin);
+
+			if(tf == true) {
+				mv.addObject("remind", "本日分のログインスタンプを押してください！");
+			}
 
 			//アカウントプロフィールの取得
 			Optional<Profile> p = profileR.findById(aCode);
