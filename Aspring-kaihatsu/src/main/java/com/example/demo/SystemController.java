@@ -77,7 +77,7 @@ public class SystemController {
 
 			//Thymeleafで表示する準備
 			mv.addObject("systemInfo", systemInfo);
-			mv.setViewName("kanripage");
+			mv.setViewName("kanritop");
 			return mv;
 
 		} else {
@@ -91,8 +91,8 @@ public class SystemController {
 	/**
 	 * 管理者ページトップへ
 	 */
-	@GetMapping("/kanripage")
-	public ModelAndView kanriPage(ModelAndView mv) {
+	@GetMapping("/kanritop")
+	public ModelAndView kanriTop(ModelAndView mv) {
 		System systemInfo = (System) session.getAttribute("systemInfo");
 		mv.addObject("systemInfo", systemInfo);
 		return mv;

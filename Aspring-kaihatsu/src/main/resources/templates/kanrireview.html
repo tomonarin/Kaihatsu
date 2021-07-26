@@ -23,10 +23,21 @@
  function f(){
 	 document.sort.submit();
  }
+
+ function d(){
+		var e = document.getElementsByName("delCode");
+		var codes =[];
+		for(var i = 0; i<e.length; i++){
+			if(e[i].checked){
+			codes.push(e[i].value);
+			}
+		}
+		location.href = "/deletekanri?codes=" + codes;
+	}
 </script>
 
-	<form th:action="/sort/kanri" method="post" name="sort">
-	<div>並べ替え<select name="sort" onchange="f();">
+	<form action="/sort/kanri" method="post" name="sort">
+	<div>並べ替え<select name="sort" onchange="d();">
 				<option value="genre" th:selected="${sort == 'genre'}">ジャンル順</option>
 				<option value="star1" th:selected="${sort == 'star1'}">評価が高い順</option>
 				<option value="star2" th:selected="${sort == 'star2'}">評価が低い順</option>
@@ -36,8 +47,9 @@
 		</form><br>
 
 	<span th:text="${message}" style="color: red"></span>
+	<input type="button" value="まとめて削除" onclick="f();" class="deleteall">
 	<table border="1" class=reviews>
-		<tr>
+		<tr><th></th>
 			<th>作品形態</th>
 			<th>ジャンル</th>
 			<th>作品名</th>
@@ -48,6 +60,7 @@
 			<th>投稿日時</th>
 		</tr>
 		<tr th:each="review:${reviews}">
+		<td><input type="checkbox" name="delCode" th:value="${review.code}"></td>
 			<td th:text="${review.category}"></td>
 			<td th:text="${genres.get(__${review.genre}__)}"></td>
 			<td th:text="${review.name}"></td>
@@ -69,7 +82,7 @@
 	</table>
 
 	<hr>
-	<a href="/kanripage">管理ページトップ</a>
+	<a href="/kanritop">管理ページトップ</a>
 
 </body>
 </html>

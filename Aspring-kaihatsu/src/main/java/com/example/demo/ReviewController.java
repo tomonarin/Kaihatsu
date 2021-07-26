@@ -429,4 +429,48 @@ public class ReviewController {
 		mv.setViewName("mypage");
 		return mv;
 	}
+
+	//投稿の一括削除
+		@GetMapping("/deletekanri")
+		public ModelAndView deleteKanri(
+				@RequestParam(name = "codes", required = false) int[] codes,
+				ModelAndView mv) {
+			if (codes != null) {
+				//レビューを削除
+				for (int code : codes) {
+					reviewR.deleteById(code);
+				}
+			}
+
+			List<Review> reviewList = reviewR.findAll();
+
+			List<Genre> genreList = genreR.findAll();
+
+			List<String> genreNames = new ArrayList<String>();
+
+
+			//ジャンルの名前が格納されたリスト生成
+			genreNames.add("");
+			for (Genre genres : genreList) {
+				String gName = genres.getName();
+				genreNames.add(gName);
+			}
+
+			//アカウント名が格納されたリスト生成
+			List<Account> accountList = accountR.findAll(Sort.by(Sort.Direction.ASC, "code"));
+			List<String> accountNames = new ArrayList<String>();
+
+			accountNames.add("");
+			for (Account accounts : accountList) {
+				String aName = accounts.getAccountName();
+				accountNames.add(aName);
+			}
+
+			mv.addObject("names", accountNames);
+			mv.addObject("genres", genreNames);
+			mv.addObject("reviews", reviewList);
+
+			mv.setViewName("kanrireview");
+			return mv;
+		}
 }
