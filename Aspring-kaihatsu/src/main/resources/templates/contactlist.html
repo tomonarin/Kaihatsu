@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>お問い合わせ一覧</title>
+</head>
+<body>
+<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h2>お問い合わせ一覧</h2>
+
+	<div th:if="${contacts.size == 0}">
+	お問い合わせはありません
+	</div>
+	<div th:if="${contacts.size != 0}">
+
+	<table border="1" class="reviews">
+		<tr>
+			<th>お問い合わせコード</th>
+			<th>題名</th>
+			<th>お客様お名前（ニックネーム）</th>
+			<th>お客様メールアドレス</th>
+			<th>お問い合わせ内容</th>
+		</tr>
+		<tr th:each="contact:${contacts}">
+			<td th:text="${contact.code}"></td>
+			<td th:text="${contact.title}"></td>
+			<td th:text="${contact.name}"></td>
+			<td th:text="${contact.email}"></td>
+			<td th:text="${contact.content}"></td>
+		</tr>
+	</table>
+	</div>
+
+
+
+</body>
+</html>

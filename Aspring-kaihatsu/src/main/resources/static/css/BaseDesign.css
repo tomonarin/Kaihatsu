@@ -65,6 +65,21 @@ input[type="text"] {
 	margin: 0.5em auto;
 }
 
+input[type="email"] {
+	display: block;
+	width: 250px;
+	padding: 0.5em;
+	border: 2px solid gray;
+	box-sizing: border-box;
+	background-color: white;
+	margin: auto;
+}
+
+input[type="email"]:focus {
+	outline: none;
+	background-color: lightgoldenrodyellow;
+	box-shadow: 0 0 9px gold;
+}
 input[type="text"]:focus {
 	outline: none;
 	background-color: lightgoldenrodyellow;
@@ -273,7 +288,7 @@ select:focus {
   transition: opacity 0.5s;
 }
 
-デモファイル
+
 
 /*list.html ソートボタン表示設定*/
 

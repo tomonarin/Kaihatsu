@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/BaseDesign.css}" rel="stylesheet">
+<title>お問い合わせ</title>
+
+</head>
+<body>
+	<header>
+		<img alt="" src="/css/images/siteLogo.png;" class="logo">
+		<span th:replace="header"></span>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<span th:text="${message}" style="color: red"></span>
+
+	<h1>お問い合わせフォーム</h1>
+
+	<span th:text="${error}" style="color: red"></span>
+
+
+	<form action="/newcontact" method="post">
+
+		題名<input type="text" name="title" placeholder="お問い合わせ内容の概要" th:value="${title}"><br>
+
+		メールアドレス<input type="email" name="email" placeholder="ご返信先メールアドレス" th:value="${email}"><br>
+
+		お名前<input type="text" name="name" placeholder="お名前(ニックネーム)" th:value="${name}"><br>
+
+		お問い合わせ内容
+		<textarea name="content" placeholder="お問い合わせ内容の詳細をこちらにお書きください" th:value="${contact}"></textarea>
+
+		<input type="submit" value="送信" class="btn">
+
+	</form>
+
+
+</body>
+</html>
