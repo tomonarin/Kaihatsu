@@ -313,6 +313,12 @@ select:focus {
   border-bottom: none;
 }
 
+/*ページ遷移ボタンの表示設定*/
+.page{
+	margin-left:400px;
+}
+
+
 /*リンクの表示設定*/
 a {
 	color: gray;
